@@ -1,0 +1,42 @@
+[
+    {
+        "direccion": "direccion1",
+        "jugadores_confirmados": "4/12",
+        "nombre": "cancha1",
+        "precio": "$2",
+        "telefono": "1234567890",
+        "tipo_cancha": "cancha de 5"
+    },
+    {
+        "direccion": "direccion2",
+        "jugadores_confirmados": "15/25",
+        "nombre": "cancha2",
+        "precio": "$10",
+        "telefono": "2345678901",
+        "tipo_cancha": "cancha de 11"
+    },
+    {
+        "direccion": "direccion1",
+        "jugadores_confirmados": "19/20",
+        "nombre": "cancha1",
+        "precio": "$6",
+        "telefono": "1234567890",
+        "tipo_cancha": "cancha de 9"
+    },
+    {
+        "direccion": "direccion3",
+        "jugadores_confirmados": "9/12",
+        "nombre": "cancha3",
+        "precio": "$2",
+        "telefono": "3456789012",
+        "tipo_cancha": "cancha de 5"
+    },
+    {
+        "direccion": "direccion2",
+        "jugadores_confirmados": "24/25",
+        "nombre": "cancha2",
+        "precio": "$10",
+        "telefono": "2345678901",
+        "tipo_cancha": "cancha de 11"
+    }
+]
