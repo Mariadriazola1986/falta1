@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Mis Grupos</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/micss.css">
+	<script type="text/javascript" src="js/misGrupos.js"></script>
+</head>
+<body>
+
+<div class="container-fluid barra">
+	<div class="row">
+		<div class="col-sm-1">
+			<button class="btn-default btn-lg">Atras</button>
+		</div>
+		<div class="col-sm-9"></div>
+		<div class="col-sm-2">
+			<button class="btn-default btn-lg" data-toggle="modal" data-target="#myModal">Solicitudes</button>
+		</div>
+	</div>
+</div>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-xs-0">
+			<!--<img class="img-responsive" src="borde.jpg">-->
+		</div>
+		<div class="col-sm-6 text-left fblanco">
+			<br>
+			<table class="table table-hover">
+				<thead>
+					<th>Imagen</th>
+					<th>Nombre</th>
+					<th>Cantidad</th>
+					<th></th>
+				</thead>
+				<tbody id="T">
+				</tbody>
+			</table>
+			
+		</div>
+		<div class="col-sm-3">
+			<!--<img class="img-responsive" src="borde.jpg">-->
+		</div>
+
+	</div>
+</div>	
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Solicitudes</h4>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+</body>
+</html>
