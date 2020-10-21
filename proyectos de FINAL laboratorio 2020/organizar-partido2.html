@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cancha de Barrio: Organizar Partido - Parte 2</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style1.css">
+</head>
+<body class="fondo1">
+	<div class="container-fluid">
+		<div class="barra text-white">
+			<h1 class="titulo p-1">Cancha de Barrio</h1>
+			<div class="row">
+			  <div class="col-sm-3">.
+				<button class="btn btn-primary p-2">Atras</button>
+			  </div>
+			  <div class="col-sm-3"></div>
+			  <div class="col-sm-3"></div>
+			  <div class="col-sm-3">
+			  	<button class="btn btn-primary p-2">Cerrar Sesión</button>
+			  </div>
+			</div>
+		</div>
+		<div class="titulo">
+			<h3 class="p-2">Organizar Partido</h3>
+		</div>
+
+		<h5 class="p-1">Ya estas por organizar tu partido. Solo falta añadir tus grupos y podras reservar en el horario que averiguaste.</h5>
+		<h5 class="p-1">Paso 2: Agrega a tus grupos para organizar el partido:</h5>
+		<div class="container select1 fondo2">
+			<h5 class="titulo">Estos son los datos de la cancha que reservó:</h5>
+			<div class="divFormularioCancha1a titulo">
+				<h6></h6>
+			</div>
+		</div><br><br>
+		<div class="container fondo2">
+			<h5 class="titulo">Selecciona tus grupos para este partido:</h5>
+			<div class="divFormularioCancha1b titulo" id="divFormularioCancha1b">
+				<form action="" method="POST">
+					<input type="checkbox" id="grupo" name="grupo" value="Grupo 1">Grupo1<br/>
+                    <input type="checkbox" id="grupo" name="grupo" value="Grupo 2">Grupo2<br/>
+                    <input type="checkbox" id="grupo" name="grupo" value="Grupo 3">Grupo3<br/>
+                    <input type="checkbox" id="grupo" name="grupo" value="Grupo 4">Grupo4<br/>
+                    <input type="checkbox" id="grupo" name="grupo" value="Grupo 5">Grupo5<br/>
+                    <button class="btn btn-secondary" type="button" id="organizarPartido">Organizar Partido</button>
+				</form>
+			</div>
+		</div><br><br>
+
+		<div class="container resultadoCancha fondo2">
+			<div class="row" id="resultBusqueda">
+
+
+			</div>
+			<div class="error" id="error">
+					
+			</div>				
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/canchas.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
