@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap3.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="lib/jquery3.js"></script>
+        <script src="lib/bootstrap3.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            
+            <br><br>
+            <div class="row text-center">
+                <div class="col-md-4 col-md-offset-4">
+                    <h2>Inicio de sesión</h2>
+                    <br>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="php/autenticar.php" method="POST">
+                                <div class="form-group">
+                                    <label for="usuario" class="control-label">Usuario:</label>
+                                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese su nombre de Usuario" name="usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword" class="control-label">Contraseña:</label>
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese Contraseña" name="password" required>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info" id="btnLogin">Login</button>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-link">Olvidaste la contraseña</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

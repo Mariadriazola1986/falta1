@@ -1,0 +1,9 @@
+
+.fondo_titulo
+{
+    color: white;
+    background: linear-gradient(to bottom, #0066ff, #3399ff 30%, #3399ff 70%, #0066ff);
+}
+body{
+	background-color: #34DBD3;
+}

@@ -1,0 +1,34 @@
+.diaseleccionado{
+	background-color: green;
+}
+
+.header_tabla
+{
+	background-color: dodgerblue;
+	color: white;
+}
+
+.fondo_titulo
+{
+	background-color: dodgerblue;
+	color: white;
+}
+
+.error_message {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    margin-left: -150px;
+    width: 400px;
+	z-index: 1;
+	background-color: mistyrose;
+	color: darkred;
+}
+.fondo{
+	background-color:#2989B6  ;
+}
+
+body{
+	background-color: #34DBD3;
+}
+
