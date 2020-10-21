@@ -1,0 +1,47 @@
+body{
+  background-color: #33ccff;
+}
+    
+.fblanco{
+  background-color: white;
+}
+
+.finput{
+  width: 300px;
+}
+
+.barra {
+  overflow: hidden;
+  background-color: #0066ff;
+}
+
+.barra a {
+  float: left;
+  color: white;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.bcargar{
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+}
+
+tr{
+  border: solid black;
+}
+
+table{
+  width: all;
+}
+
+th{
+  width: 200px;
+}
+
+.sol{
+  position: fixed;
+  right: 30px;
+}
+
