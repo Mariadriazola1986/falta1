@@ -16,7 +16,7 @@ $(document).ready(function(){
 				$.each(result, function(){
 					if (x == this.nomgrupo) {
 						$("#T").append($("<tr></tr>").append(
-							$("<img>").attr("src", "img/"+this.Gimg),
+							$("<img>").attr("src", "imagenes/"+this.Gimg),
 							$("<td></td>").text(this.nomgrupo),
 							$("<td></td>").text(this.cantidad),
 							$("<button></button>").attr("id", this.idgrupo).attr("class", "btn-info btn-lg").text("Solicitar Unirse")

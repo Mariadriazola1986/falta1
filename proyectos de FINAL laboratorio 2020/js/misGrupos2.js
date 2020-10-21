@@ -6,7 +6,7 @@ $(document).ready(function(){
 		dataType: "json",
 		success: function(result){
 
-			$("#Dimg").append($("<img>").attr("src", "img/"+result[0].Gimg));		
+			$("#Dimg").append($("<img>").attr("src", "imagenes/"+result[0].Gimg));		
 			$("#Dnom").prepend(result[0].cantidad + "<br>");
 			$("#Dnom").prepend(result[0].nomgrupo + "<br>");
 			$("#Dbut").append($("<button></button>").attr("class", "btn-danger btn-lg").text("Abandonar Grupo"));
