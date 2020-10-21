@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cancha de Barrio: Unirse a Partido</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style1.css">
+</head>
+<body class="fondo1">
+	<div class="container-fluid">
+		<div class="barra text-white">
+			<h1 class="titulo p-1">Cancha de Barrio</h1>
+			<div class="row">
+			  <div class="col-sm-3">.
+				<button class="btn btn-primary p-2">Atras</button>
+			  </div>
+			  <div class="col-sm-3"></div>
+			  <div class="col-sm-3"></div>
+			  <div class="col-sm-3">
+			  	<button class="btn btn-primary p-2">Cerrar Sesión</button>
+			  </div>
+			</div>
+		</div>
+		<div class="titulo">
+			<h3 class="p-2" id="tUnirsePartido">Unirse a Partido</h3>
+		</div>
+
+		<h5 class="p-1">Desde aquí podra unirse a un partido organizado.</h5>
+		
+		<div class="container select1 fondo2">
+			<h5 class="titulo">Seleccione la cancha:</h5>
+			<div class="divFormularioCancha1a titulo">
+					<label for="busquedaCancha" class="col-sm-2">Ingrese aqui su busqueda:</label>
+					<input type="text" id="busquedaCancha" name="busquedaCancha" class="col-sm-6">
+					<button class="btn btn-secondary p-2 col-sm-2" type="button" id="buscarCancha">Buscar partido</button>
+			</div>
+		</div><br><br>
+
+		<div class="container resultadoCancha fondo2">
+			<form action="organizar-partido2.html" method="post">
+				<div class="row" id="resultBusqueda">
+					
+				</div>
+			</form>
+			<div class="error" id="error">
+					
+			</div>				
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/canchas.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
