@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 21-10-2020 a las 19:06:57
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.11
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-10-2020 a las 19:43:43
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,6 +52,14 @@ CREATE TABLE `estados_usuarios` (
   `ID_ESTADO` int(11) NOT NULL,
   `ESTADO` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estados_usuarios`
+--
+
+INSERT INTO `estados_usuarios` (`ID_ESTADO`, `ESTADO`) VALUES
+(0, 'inactivo'),
+(1, 'activo');
 
 -- --------------------------------------------------------
 
@@ -146,7 +154,8 @@ CREATE TABLE `usuarios` (
   `PASSWORD` varchar(255) NOT NULL,
   `EMAIL` varchar(40) NOT NULL,
   `TIPO_USUARIO` int(11) NOT NULL,
-  `ESTADO_USUARIO` int(11) NOT NULL
+  `ESTADO_USUARIO` int(11) NOT NULL,
+  `COD_ACTIVACION` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -220,7 +229,7 @@ ALTER TABLE `canchas`
 -- AUTO_INCREMENT de la tabla `estados_usuarios`
 --
 ALTER TABLE `estados_usuarios`
-  MODIFY `ID_ESTADO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_ESTADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_canchas`
@@ -250,7 +259,7 @@ ALTER TABLE `tipo_usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
