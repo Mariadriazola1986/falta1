@@ -11,9 +11,10 @@ if(isset($_POST["usuario"]) && isset($_POST["password"]))/*$_POST["usuario"] !==
 	$registro=$resultado->fetch(PDO::FETCH_ASSOC);
 	closeConnection($conn);
 
+
 	if(password_verify( $password,$registro['PASSWORD']))//'PASSWORD' es el nombre del campo de la tabla,password_verify es una funcion de desifrar hash del password
 	{
-		if ($registro['ESTADO_USUARIO']==0)//'estado_idEstado' es el nombre del campo de la tabla
+		if ($registro['ESTADO_USUARIO']==0)//'ESTADO_USUARIO' es el nombre del campo de la tabla
 		{
 			echo "activar";
 		}
@@ -22,7 +23,6 @@ if(isset($_POST["usuario"]) && isset($_POST["password"]))/*$_POST["usuario"] !==
 			$_SESSION["email"]=$_POST["mail"];
 			//header("location:../index2.php");
 			header("location:../index.php");
-
 			echo "ok";
 
 		}
