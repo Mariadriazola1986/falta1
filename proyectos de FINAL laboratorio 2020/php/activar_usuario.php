@@ -13,9 +13,14 @@ if(isset($_GET["link"])){
 	$activar=$conn->prepare($sqlactivar);
 	$activo=1;
 	$activar->execute(array('estado' => $activo,':codigo'=>$code));
+	$sqlborrar="UPDATE usuarios SET COD_ACTIVACION = NULL WHERE COD_ACTIVACION =:codigoB";
+	$activar=$conn->prepare($sqlborrar);
+	$activar->execute(array(':codigoB'=>$code));
 	closeConnection($conn);
-	//header("location:../base_de_datos/cuenta_activada.html");
-	echo"la cuenta fue activada";}
+	header("location:../cuentaActivada.html");
+
+
+}
 
 }
 
