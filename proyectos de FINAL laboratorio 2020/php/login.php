@@ -27,14 +27,9 @@ if(isset($_POST["usuario"]) && isset($_POST["password"]))
 				session_start();
 				$_SESSION["ID_USUARIO"]=$registro["ID_USUARIO"];
 				$_SESSION["NOMBRE"]=$registro["NOMBRE"];
-				if ($tipo_de_usuario==1) {//Esto esta mal tendriamos que dar las paginas de acuerdo a los permisos pero por ahora basta con hacer funcionar SI HAY TIEMPO HAY Q CAMBIARLO
 
-					//header("location:../organizar-partido.html");//tiene que ser una pagina php para que guarde la sesion
-					//$resultados_de_validacion['error']='NO';
-				}
-				else if ($tipo_de_usuario==1){
-					//header("location:../organizar-partido.html");//pagina respectiva al dueño de cancha
-				}
+				$pagina_default = cargarPermisosUsuario($registro["ID_USUARIO"]);
+				$resultados_de_validacion['datos']=$pagina_default;
 
 
 			}
@@ -53,7 +48,19 @@ if(isset($_POST["usuario"]) && isset($_POST["password"]))
 }
 
 
-
+function cargarPermisosUsuario($idUsuario)
+    {
+        $conn = getConnection();
+        $query = "SELECT acceso 
+        FROM USUARIOS, ROLES, ROLES_PERMISOS, PERMISOS 
+        WHERE PERMISOS.id_permiso = ROLES_PERMISOS.id_permiso AND 
+        ROLES_PERMISOS.id_tipo = ROLES.id_tipo AND ROLES.id_tipo = USUARIOS.tipo_usuario AND USUARIOS.id_usuario = $idUsuario";
+        $result = $conn->prepare($query);
+        $result->execute();
+        $listPermisos = $result->fetchAll(PDO::FETCH_ASSOC);
+        closeConnection($conn);
+        return $listPermisos[0]['acceso'];
+    }
 
 
 

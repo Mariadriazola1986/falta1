@@ -7,6 +7,7 @@ $(document).ready(function()
 
 
 	$("#formLogin").submit(function(event) {
+		
 		event.preventDefault();
 		loginUsuario( $("#usuarioLogin").val(),$("#inputPasswordLogin").val());
 
@@ -29,12 +30,12 @@ function loginUsuario(usuario,password)
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
-					$(location).attr('href','indexDelJugador.php');
+					$(location).attr('href',response.datos);
 					
 			}
 			else{
 				
-				mostrarError($("#errorVLoginPHP"),response.error);
+				mostrarErrorLogin($("#errorVLoginPHP"),response.error);
 			}
 			
 		},
@@ -44,7 +45,7 @@ function loginUsuario(usuario,password)
 	});
 }
 
-function mostrarError(span,msje){
+function mostrarErrorLogin(span,msje){
 	var errores=span;
 	errores.removeClass("oculto");
 	errores.html(msje);

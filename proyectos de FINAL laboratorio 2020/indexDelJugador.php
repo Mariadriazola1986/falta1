@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+	<?php 
+  		require_once("php/verificarSesion.php");
+ 	?>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,19 +21,9 @@
 	<body>
 
         <div class="container">
-        	<?php
-
-		    session_start();
-		    $usuario=$_SESSION["NOMBRE"];
-		    //echo $usuario;
-		    if (!isset($_SESSION['NOMBRE']) and !isset($_SESSION["ID_USUARIO"])) {
-		    	header('Location:index.html');
-		    	exit();
-		    }
-		?>
             <div class="row">
 				<nav class="navbar navbar-default">
-					<h4 class="col-md-10">Hola jugador <?php echo $usuario;?> que vas a hacer?</h4>
+					<h4 class="col-md-10">Hola jugador <?php echo $_SESSION["NOMBRE"];?> que vas a hacer?</h4>
 					<a href="php/cerrarsesion.php"><button type="button" class="btn btn-warning col-md-2">Cerrar Sesion</button></a>
 				</nav>
 			</div>

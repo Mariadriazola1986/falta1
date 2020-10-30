@@ -12,3 +12,6 @@ body{
 .diaseleccionado{
 	background-color: #94F92F ;
 }
+.oculto{
+	display: none;
+}

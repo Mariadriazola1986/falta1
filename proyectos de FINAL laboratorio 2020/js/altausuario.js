@@ -13,7 +13,6 @@ $(document).ready(function()
 
 
 	$("#formUsuario").submit(function(event) {
-		//alert();
 		event.preventDefault();
 		altaUsuario( $("#usuario").val(),$("#inputPassword").val(),$("#inputRepetirPassword").val(),$("#email").val(),$("#btnRegistrar").val());
 
@@ -47,7 +46,7 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 					
 			}
 			else{
-				mostrarError(0,response.error);
+				mostrarError($("#errorVRegistroPHP"),response.error);
 			}
 			
 		},
@@ -57,10 +56,10 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 	});
 }
 
-function mostrarError(posicion,msje){
-	var errores=$("span");
+function mostrarError(span,msje){
+	var errores=span;
 	errores.removeClass("oculto");
-	errores.eq(posicion).html(msje);
+	errores.html(msje);
 	
 }
 function limpiarAdvertencia () {

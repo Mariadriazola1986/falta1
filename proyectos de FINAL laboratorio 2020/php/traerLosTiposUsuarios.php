@@ -11,7 +11,7 @@
 	function obtenerTiposCanchas()
 	{
 		$conn = getConnection();
-		$sql_canchas="SELECT * FROM tipo_usuarios";
+		$sql_canchas="SELECT * FROM roles";
 		$resultados=$conn->prepare($sql_canchas);
 		$resultados->execute();
 		$registros=$resultados->fetchAll(PDO::FETCH_OBJ);
