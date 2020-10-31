@@ -30,11 +30,13 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 		type: "POST",
 		dataType: "json",
 		beforeSend: function () {
-
-
+			$("#contenedor_carga").addClass('contenedor_carga');
+			$("#carga").addClass('carga');
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
+					$("#contenedor_carga").removeClass('contenedor_carga');
+					$("#carga").removeClass('carga');
 					$("#modalRegistro").modal("hide");
 					$("#modalDeSeleccion").modal("hide");
 
@@ -46,6 +48,8 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 					
 			}
 			else{
+				$("#contenedor_carga").removeClass('contenedor_carga');
+				$("#carga").removeClass('carga');
 				mostrarError($("#errorVRegistroPHP"),response.error);
 			}
 			

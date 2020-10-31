@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php 
+	<?php
   		require_once("php/verificarSesion.php");
  	?>
 	<head>
@@ -48,7 +48,7 @@
 						<h4>Mis partidos:</h4>
 					</div>
 					<div class="panel-body">
-						
+
 					</div>
 				</div>
 			</div>
@@ -68,19 +68,22 @@
 										<h4> <label for="CalendarioWeb" class="label label-info">Selecciona el Dia:</label></h4>
 
 										<div id="CalendarioWeb"></div>
+										<span class="class label label-danger" id="errorDeFechaseleccionada"></span>
 										<div class="form-group">
 	                                    	<h4>
 	                                    		<label for="tipoFutbol" class="label label-info">
 	                                    	Selecciona el tipo de Futbol:</label>
 	                                    	</h4>
 	                                    	<select class="form-control" id="tipoFutbol">
-											    
+
 											</select>
 	                                	</div>
+	                                	<span class="class label label-danger" id="errorDeFutbolseleccionado"></span>
 	                                	<div class="form-group">
 	                                    	<h4><label for="horaInicioPartidoOrganizado" class="label label-info">Selecciona la hora de inicio:</label></h4>
 	                                    	<input type="time" class="form-control" id="horaInicioPartidoOrganizado" name="horaInicioPartidoOrganizado" required>
 	                                	</div>
+	                                	<span class="class label label-danger" id="errorDeHoraseleccionada"></span>
 	                                	<button type="submit" class="btn btn-success" id="btnRegistrarPartido" value="<?php echo($_SESSION['ID_USUARIO']) ?>">Registrar Partido</button>
 								</form>
 	                        </div>
@@ -102,9 +105,9 @@
 				          <h4 class="modal-title">Registro Correcto del Partido</h4>
 				        </div>
 				        <div class="modal-body">
-				          
+
 		                        <h4>El Partido fue Guardado Correctamente</h4>
-		                        
+
 				        </div>
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

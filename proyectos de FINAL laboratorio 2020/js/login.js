@@ -25,16 +25,19 @@ function loginUsuario(usuario,password)
 		type: "POST",
 		dataType: "json",
 		beforeSend: function () {
-
-
+			$("#contenedor_carga").addClass('contenedor_carga');
+			$("#carga").addClass('carga');
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
+					$("#contenedor_carga").removeClass('contenedor_carga');
+					$("#carga").removeClass('carga');
 					$(location).attr('href',response.datos);
 					
 			}
 			else{
-				
+				$("#contenedor_carga").removeClass('contenedor_carga');
+				$("#carga").removeClass('carga');
 				mostrarErrorLogin($("#errorVLoginPHP"),response.error);
 			}
 			
