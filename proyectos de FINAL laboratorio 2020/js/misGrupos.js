@@ -7,7 +7,7 @@ $(document).ready(function(){
 		success: function(result){
 			$.each(result, function(){
 				
-				$("#T").append($("<tr></tr>").append(
+				$("#tablaG").append($("<tr></tr>").append(
 					$("<img>").attr("src", "imagenes/"+this.Gimg),
 					$("<td></td>").text(this.nomgrupo),
 					$("<td></td>").text(this.cantidad),
