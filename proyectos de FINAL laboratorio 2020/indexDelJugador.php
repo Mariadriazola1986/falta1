@@ -77,6 +77,7 @@
 	                                    	<select class="form-control" id="tipoFutbol">
 
 											</select>
+											<a href="#" data-toggle="tooltip" title="La duracion del partido depende del tipo de futbol seleccionado">info</a>
 	                                	</div>
 	                                	<span class="class label label-danger" id="errorDeFutbolseleccionado"></span>
 	                                	<div class="form-group">

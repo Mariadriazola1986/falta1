@@ -1,6 +1,7 @@
 var GDIA = ""; //variable global del calendario.
 
 $(document).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip();
 	$('input,select').click(function(event) {
 		limpiarAdvertencia();
 	});
