@@ -48,7 +48,36 @@
 						<h4>Mis partidos:</h4>
 					</div>
 					<div class="panel-body">
-
+						<div class="table-responsive">          
+							  <table class="table">
+							    <thead>
+							      <tr>
+							        <th>Fecha</th>
+							        <th>Hora de inicio</th>
+							        <th>Hora de fin</th>
+							        <th>Tipo de Futbol</th>
+							        <th>Cantidad de jugadores confirmados</th>
+							        <th>Que hago?</th>
+							      </tr>
+							    </thead>
+							    <tbody id="misPartidos">
+							    	<tr>
+							    		<!--<td>02/11/2020</td>
+							    		<td>16:00</td>
+							    		<td>18:00</td>
+							    		<td>futbol 11</td>
+							    		<td><div class="progress">
+										    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+										      22/22
+										    </div>
+										  </div>
+										</td>
+							    		<td><button class="btn btn-info">invitar</button></td>-->
+							    	</tr>
+							      
+							    </tbody>
+							  </table>
+						</div>
 					</div>
 				</div>
 			</div>

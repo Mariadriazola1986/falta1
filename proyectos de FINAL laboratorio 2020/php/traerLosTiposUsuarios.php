@@ -4,11 +4,11 @@
 
 	if(isset($_POST["funcion"]))
 	{
-		obtenerTiposCanchas();
+		obtenerRoles();
 
 	}
 
-	function obtenerTiposCanchas()
+	function obtenerRoles()
 	{
 		$conn = getConnection();
 		$sql_canchas="SELECT * FROM roles";

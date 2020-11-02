@@ -22,10 +22,14 @@
 	                        $duracionfulbol=[$duracion["DURACION"],$hora];
 	                        $total_duracion=sumarHoras($duracionfulbol);
 
-	                        $sql="INSERT INTO partidos (ID_PARTIDO, ID_USUARIO, FECHA, HORA,HORA_FIN,TIPO_DE_FUTBOL) VALUES (NULL,:id_usuario,:dia,:hora,:hora_fin,:tipo_futbol)";
+	                        $sql="INSERT INTO partidos (ID_PARTIDO, ID_USUARIO, FECHA, HORA,HORA_FIN,TIPO_DE_FUTBOL,CANTIDAD_DE_JUGADORES_ACTUALES) VALUES (NULL,:id_usuario,:dia,:hora,:hora_fin,:tipo_futbol,1)";
 	                        $resultado=$conn->prepare($sql);
 	                        $resultado->execute(array(":id_usuario"=>$id_usuario,":dia"=>$dia,":hora"=>$hora,":hora_fin"=>$total_duracion,":tipo_futbol"=>$tipo_futbol));
-	                        if ($resultado->rowCount()>0) {//si si se pudo ingresar los datos que se confirme que no hubo errores	
+                            $idultimo=$conn->lastInsertId();
+	                        if ($resultado->rowCount()>0) {//si si se pudo ingresar los datos que se confirme que no hubo errores
+                                $sql_juega_partido="INSERT INTO usuarios_juegan_partidos (ID_USUARIO, ID_PARTIDO, ID_INVITADO) VALUES (:id_usuario,:partido, NULL)";
+                                $resultado_juego=$conn->prepare($sql_juega_partido);
+                                $resultado_juego->execute(array(":id_usuario"=>$id_usuario,":partido"=>$idultimo));
 	                        	$resultados_de_validacion['error']='NO';
 	                        }
 	                					

@@ -8,6 +8,7 @@ $(document).ready(function() {
     obtenerDiaActual();
     obtenerCalendario();
     obtenerTipoFutbol();
+    obtenerMisPartidos($("#btnRegistrarPartido").val());
     $("#formOrganizarPartido").submit(function(event) {
     	//alert(GDIA);
     	event.preventDefault();
@@ -16,6 +17,205 @@ $(document).ready(function() {
     	}
     });
 });
+
+
+
+function obtenerMisPartidos(id_user){
+	var parametros={"id_usuario":id_user};
+	$.ajax
+	({
+		data: parametros,
+		url: "php/traerMisPartidos.php",
+		type: "POST",
+		dataType: "json",
+		beforeSend: function () {
+
+		},
+		success:  function (response) {
+			$.each(response, function() {
+
+					if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=8 && this.CANTIDAD_DE_JUGADORES_ACTUALES<16) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES==16) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=11 && this.CANTIDAD_DE_JUGADORES_ACTUALES<22) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES==22) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
+
+
+					}
+					else if (this.ID_TIPO==2 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==2 && this.CANTIDAD_DE_JUGADORES_ACTUALES==10) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
+
+
+					}
+					else if (this.ID_TIPO==3 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=7 && this.CANTIDAD_DE_JUGADORES_ACTUALES<14) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==3 && this.CANTIDAD_DE_JUGADORES_ACTUALES==14) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
+
+
+					}
+					else if (this.ID_TIPO==5 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+					}
+
+					else if (this.ID_TIPO==5 && this.CANTIDAD_DE_JUGADORES_ACTUALES==10) {
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
+
+
+					}
+					
+					
+					
+
+
+
+
+					else{
+						$("#misPartidos").append("<tr><td>"
+						+this.FECHA+
+						"</td><td>"
+						+this.HORA+
+						"</td><td>"
+						+this.HORA_FIN+
+						"</td><td>"
+						+this.TIPO+
+						"</td><td><div class='progress'><div class='progress-bar progress-bar-danger role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:20%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
+
+
+
+
+
+					}
+
+				
+			});
+
+		}
+			,
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+}
+
 
 function validarSiFechaNoEsPasada(){
 	var fechahoy=new Date();//fecha de hoy
@@ -68,6 +268,8 @@ function registrarPartido(id_user,date,time,futbol_type){
 				setTimeout(function(){
 					  $("#MRegistroCorrectoPartido").modal('hide');
 					}, 2000);
+				$("#misPartidos>tr").empty();
+				obtenerMisPartidos($("#btnRegistrarPartido").val());
 			}
 		},
 		error: function (xhr, status, error) {
