@@ -33,20 +33,28 @@ $(document).ready(function(){
 						if (this.nombreJ.includes(x)) {
 							$("#algo").append(
 								$("<li class='list-group-item'></li>").append(
-								$("<input type='checkbox'>").attr("name",this.nombreJ),	$("<label></label>").text(this.nombreJ)
+									$("<input type='checkbox'>").attr("id",this.nombreJ).attr("name",this.nombreJ),
+									$("<label></label>").text(this.nombreJ).attr("for",this.nombreJ)
 							));
 						}
 					});
 				}
 			})
 		}
+
+	})
+
+	$("#cerrar").click(function(){
+		$.each($("#modal2 #algo input"),function(){
+			if ($(this).is(":checked")) {
+				$("#listaJ").append($("<li></li>").text(this.name))
+			}
+		})
 	})
 
 
 
-	$("#algo input").change(function(){
-		console.log("se hizo algo")
-	})
+	
 
 	
 })

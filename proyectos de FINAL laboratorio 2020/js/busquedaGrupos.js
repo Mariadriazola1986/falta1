@@ -6,7 +6,7 @@ $(document).ready(function(){
 		//vaciar la tabla
 		$("#T").html("");
 
-		var x = $("#nombre").val();
+		var x = $("#nombre").val().toLowerCase();
 
 		$.ajax({
 			type: "POST",
@@ -14,7 +14,8 @@ $(document).ready(function(){
 			dataType: "json",
 			success: function(result){
 				$.each(result, function(){
-					if (x == this.nomgrupo) {
+					var z = this.nomgrupo.toLowerCase();
+					if (z.includes(x)) {
 						$("#T").append($("<tr></tr>").append(
 							$("<img>").attr("src", "imagenes/"+this.Gimg),
 							$("<td></td>").text(this.nomgrupo),
