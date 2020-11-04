@@ -55,7 +55,7 @@ function mostrarErrorLogin(span,msje){
 	
 }
 function limpiarAdvertencia () {
-	var errores=$("span");
+	var errores=$("#errorVLoginPHP");
 	errores.addClass("oculto");
 	errores.html("");
 }
