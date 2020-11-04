@@ -2,7 +2,8 @@
 $(document).ready(function()	
 {
 	$('input').click(function(event) {
-		limpiarAdvertencia();
+
+		limpiarAdvertenciaRegistro();
 	});
 	$("#btnJugador").click(function(event) {
 		$("#btnRegistrar").val(1);
@@ -50,7 +51,7 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 			else{
 				$("#contenedor_carga").removeClass('contenedor_carga');
 				$("#carga").removeClass('carga');
-				mostrarError($("#errorVRegistroPHP"),response.error);
+				mostrarErrorRegistro($("#errorVRegistroPHP"),response.error);
 			}
 			
 		},
@@ -60,14 +61,14 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 	});
 }
 
-function mostrarError(span,msje){
+function mostrarErrorRegistro(span,msje){
 	var errores=span;
 	errores.removeClass("oculto");
 	errores.html(msje);
 	
 }
-function limpiarAdvertencia () {
-	var errores=$("span");
+function limpiarAdvertenciaRegistro(){
+	var errores=$("#errorVRegistroPHP");
 	errores.addClass("oculto");
 	errores.html("");
 }

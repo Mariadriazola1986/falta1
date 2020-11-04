@@ -2,7 +2,7 @@
 $(document).ready(function()	
 {
 	$('input').click(function(event) {
-		limpiarAdvertencia();
+		limpiarAdvertenciaLogin();
 	});
 
 
@@ -54,7 +54,7 @@ function mostrarErrorLogin(span,msje){
 	errores.html(msje);
 	
 }
-function limpiarAdvertencia () {
+function limpiarAdvertenciaLogin() {
 	var errores=$("#errorVLoginPHP");
 	errores.addClass("oculto");
 	errores.html("");
