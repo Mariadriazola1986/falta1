@@ -16,6 +16,7 @@
         <script src="lib/fullcalendar.js"></script>
 		<script src="lib/es.js"></script>
 		<script src="js/organizarpartido.js"></script>
+		<script src="js/unirseapartido.js"></script>
 		<title>Jugador</title>
 	</head>
 	<body>
@@ -34,7 +35,7 @@
 						<h4>Elegi la opcion que vos quieras:</h4>
 					</div>
 					<div class="panel-body">
-						<button type="button" class="btn btn-default">Unirse a Partido</button>
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#UnirseAPartido" id="btnUnirseAPartido">Unirse a Partido</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#organizarPartido">Organizar Partido</button>
 						<button type="button" class="btn btn-default">Buscar Grupo</button>
 						<button type="button" class="btn btn-default">Crear Grupo</button>
@@ -45,7 +46,7 @@
 			<div class="row">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h4>Mis partidos:</h4>
+						<h4>Mis partidos Organizados:</h4>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">          
@@ -62,17 +63,7 @@
 							    </thead>
 							    <tbody id="misPartidos">
 							    	<tr>
-							    		<!--<td>02/11/2020</td>
-							    		<td>16:00</td>
-							    		<td>18:00</td>
-							    		<td>futbol 11</td>
-							    		<td><div class="progress">
-										    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-										      22/22
-										    </div>
-										  </div>
-										</td>
-							    		<td><button class="btn btn-info">invitar</button></td>-->
+							    		
 							    	</tr>
 							      
 							    </tbody>
@@ -143,6 +134,73 @@
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				      </div>
+
+			    </div>
+  			</div>
+
+  			<div class="modal fade" id="UnirseAPartido" role="dialog">
+			    <div class="modal-dialog modal-lg">
+
+
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Unite a un Partido</h4>
+			        </div>
+			        <div class="modal-body">
+			          <div class="panel panel-default">
+	                        <div class="panel-body">
+	                        	<div class="table-responsive">          
+							  <table class="table">
+							    <thead>
+							      <tr>
+							        <th>Fecha</th>
+							        <th>Hora de inicio</th>
+							        <th>Hora de fin</th>
+							        <th>Tipo de Futbol</th>
+							        <th>Cantidad de jugadores confirmados</th>
+							        <th>Que hago?</th>
+							      </tr>
+							    </thead>
+							    <tbody id="partidosDisponiblesAUnirse">
+							    	<tr>
+							 
+							    	</tr>
+							      
+							    </tbody>
+							  </table>
+								</div>
+	                        </div>
+                    	</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+
+			    </div>
+  			</div>
+
+  			<div class="modal fade" id="agregado_al_partido_exito" role="dialog">
+			    <div class="modal-dialog modal-lg">
+
+
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Ya formas parte del partido</h4>
+			        </div>
+			        <div class="modal-body">
+			          <div class="panel panel-success">
+	                        <div class="panel-heading">
+	                        	<h4>Te añadiste al partido correctamente</h4>
+	                        </div>
+                    	</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
 
 			    </div>
   			</div>
