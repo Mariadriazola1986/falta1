@@ -104,7 +104,7 @@
 										<h4> <label for="CalendarioWeb" class="label label-info">Selecciona el Dia:</label></h4>
 
 										<div id="CalendarioWeb"></div>
-										<span class="class label label-danger" id="errorDeFechaseleccionada"></span>
+										<p class="class bg-danger" id="errorDeFechaseleccionada"></p>
 										<div class="form-group">
 	                                    	<h4>
 	                                    		<label for="tipoFutbol" class="label label-info">
