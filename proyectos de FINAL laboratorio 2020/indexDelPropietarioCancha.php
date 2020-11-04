@@ -22,16 +22,32 @@
 
         <div class="container">
             <div class="row">
-				<nav class="navbar navbar-default">
-					<h4 class="col-md-10">Hola Propietario de cancha <?php echo $_SESSION["NOMBRE"];?> que vas a hacer?</h4>
-					<a href="php/cerrarsesion.php"><button type="button" class="btn btn-warning col-md-2">Cerrar Sesion</button></a>
+            	<nav class="navbar navbar-default">
+				  <div class="container-fluid">
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="#">falta1.com</a>
+				    </div>
+				    <div class="collapse navbar-collapse" id="myNavbar">
+				      <ul class="nav navbar-nav">
+				   
+				      </ul>
+				      <ul class="nav navbar-nav navbar-right">
+				        <li><a href="php/cerrarsesion.php"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a></li>
+				      </ul>
+				    </div>
+				  </div>
 				</nav>
 			</div>
 
             <div class="row">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h4>Elegi la opcion que vos quieras:</h4>
+						<h4>Hola <?php echo $_SESSION["NOMBRE"];?> aca podes elegir que hacer con tu cancha y las reservas de las mismas:</h4>
 					</div>
 					<div class="panel-body">
 						<button type="button" class="btn btn-default">Registra una nueva Cancha</button>
