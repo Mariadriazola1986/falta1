@@ -197,6 +197,36 @@
 			    </div>
   			</div>
 
+  			<div class="modal fade" id="PublicarPartido" role="dialog">
+			    <div class="modal-dialog modal-lg">
+
+
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Publica el partido para que todos lo vean</h4>
+			        </div>
+			        <div class="modal-body">
+			          <div class="panel panel-default">
+	                        <div class="panel-body">
+								<form action="#" id="formPublicarPartido">
+								    <div class="form-group">
+									  <label for="commedetalles">Detalles del partido:</label>
+									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que juridiccion van a jugar y que barrio para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
+									</div>
+									<button type="submit" class="btn btn-success" id="btnFormModalPublicar">Publicar</button>
+								</form>
+	                        </div>
+                    	</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+
+			    </div>
+  			</div>
+
   			<div class="modal fade" id="agregado_al_partido_exito" role="dialog">
 			    <div class="modal-dialog modal-lg">
 
@@ -210,6 +240,29 @@
 			          <div class="panel panel-success">
 	                        <div class="panel-heading">
 	                        	<h4>Te añadiste al partido correctamente</h4>
+	                        </div>
+                    	</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+
+			    </div>
+  			</div>
+  			<div class="modal fade" id="PublicacionExitosa" role="dialog">
+			    <div class="modal-dialog modal-lg">
+
+
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Tu Partido fue publicado</h4>
+			        </div>
+			        <div class="modal-body">
+			          <div class="panel panel-success">
+	                        <div class="panel-heading">
+	                        	<h4>Solo resta esperar que los jugadores se sumen a tu partido</h4>
 	                        </div>
                     	</div>
 			        </div>

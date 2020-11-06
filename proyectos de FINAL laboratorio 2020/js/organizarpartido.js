@@ -32,7 +32,7 @@ function obtenerMisPartidos(id_user){
 
 		},
 		success:  function (response) {
-			$.each(response, function() {
+			$.each(response, function(){
 
 					if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=8 && this.CANTIDAD_DE_JUGADORES_ACTUALES<16) {
 						$("#misPartidos").append("<tr><td>"
@@ -44,11 +44,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
-
 					else if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES==16) {
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -59,11 +56,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'value="+this.ID_PARTIDO+" name='boton_reservar'>Reservar Cancha</button></td></tr>");
 					}
-
 					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=11 && this.CANTIDAD_DE_JUGADORES_ACTUALES<22) {
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -74,12 +68,9 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
-
-					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES==22) {
+					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES==22){
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
 						"</td><td>"
@@ -89,9 +80,7 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success' value="+this.ID_PARTIDO+" name='boton_reservar'>Reservar Cancha</button></td></tr>");
 					}
 					else if (this.ID_TIPO==2 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
 						$("#misPartidos").append("<tr><td>"
@@ -103,11 +92,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
-
 					else if (this.ID_TIPO==2 && this.CANTIDAD_DE_JUGADORES_ACTUALES==10) {
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -118,9 +104,7 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success' value="+this.ID_PARTIDO+" name='boton_reservar'>Reservar Cancha</button></td></tr>");
 					}
 					else if (this.ID_TIPO==3 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=7 && this.CANTIDAD_DE_JUGADORES_ACTUALES<14) {
 						$("#misPartidos").append("<tr><td>"
@@ -132,11 +116,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
-
 					else if (this.ID_TIPO==3 && this.CANTIDAD_DE_JUGADORES_ACTUALES==14) {
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -147,9 +128,7 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success' value="+this.ID_PARTIDO+" name='boton_reservar'>Reservar Cancha</button></td></tr>");
 					}
 					else if (this.ID_TIPO==5 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
 						$("#misPartidos").append("<tr><td>"
@@ -161,11 +140,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
-
 					else if (this.ID_TIPO==5 && this.CANTIDAD_DE_JUGADORES_ACTUALES==10) {
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -176,17 +152,8 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-success role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:100%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success'>Reservar Cancha</button></td></tr>");
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-success' value="+this.ID_PARTIDO+" name='boton_reservar'>Reservar Cancha</button></td></tr>");
 					}
-					
-					
-					
-
-
-
-
 					else{
 						$("#misPartidos").append("<tr><td>"
 						+this.FECHA+
@@ -197,16 +164,21 @@ function obtenerMisPartidos(id_user){
 						"</td><td>"
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-danger role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:20%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
-						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info'>Publicar</button><button type='button' class='btn btn-info'>Invitar</button></td></tr>");
-
-
-
-
-
+						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_publicar'>Publicar</button><button type='button' class='btn btn-info' value="+this.ID_PARTIDO+" name='boton_invitar'>Invitar</button></td></tr>");
 					}
+					
+				});
 
-				
-			});
+				$("[name=boton_publicar]").click(function(event) {
+						$("#btnFormModalPublicar").val($(this).val());
+    					$("#PublicarPartido").modal("show");
+    					$("#formPublicarPartido").submit(function(event) {
+    						event.preventDefault();
+    						PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());
+    						
+    					});
+
+    				});
 
 		}
 			,
@@ -215,6 +187,40 @@ function obtenerMisPartidos(id_user){
 		}
 	});
 }
+
+function PublicarMiPartido(idpartido,comentarios){
+	parametros={"id_partido":idpartido,"comentarios":comentarios};
+	$.ajax
+	({
+		data: parametros,
+		url: "php/PublicarMiPartido.php",
+		//contentType: "application/json",
+		type: "POST",
+		dataType: "json",
+		beforeSend: function () {
+
+		},
+		success:  function (response) {
+			if (response.error=="NO") {
+				$("#PublicarPartido").modal("hide");
+				$("#formPublicarPartido")[0].reset();
+				$("#PublicacionExitosa").modal("show");
+				setTimeout(function(){
+					  $("#PublicacionExitosa").modal('hide');
+					}, 2000);
+				$("#misPartidos>tr").empty();
+				obtenerMisPartidos($("#btnRegistrarPartido").val());
+			}
+						
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+
+}
+
+
 
 
 function validarSiFechaNoEsPasada(){

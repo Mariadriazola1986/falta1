@@ -22,8 +22,6 @@ function obtenerPartidosDisponibles(id_user)
 		},
 		success:  function (response) {
 			$.each(response, function() {
-				 
-
 					if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=8 && this.CANTIDAD_DE_JUGADORES_ACTUALES<16) {
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
 						+this.FECHA+
@@ -35,11 +33,7 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
 					}
-
-
 					else if (this.ID_TIPO==1 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=11 && this.CANTIDAD_DE_JUGADORES_ACTUALES<22) {
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
 						+this.FECHA+
@@ -51,11 +45,7 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
 					}
-
-					
 					else if (this.ID_TIPO==2 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
 						+this.FECHA+
@@ -67,8 +57,6 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
 					}
 					else if (this.ID_TIPO==3 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=7 && this.CANTIDAD_DE_JUGADORES_ACTUALES<14) {
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
@@ -81,10 +69,7 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
 					}
-
 					else if (this.ID_TIPO==5 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=5 && this.CANTIDAD_DE_JUGADORES_ACTUALES<10) {
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
 						+this.FECHA+
@@ -96,12 +81,7 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-warning role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:50%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
 					}
-
-
-
 					else{
 						$("#partidosDisponiblesAUnirse").append("<tr><td>"
 						+this.FECHA+
@@ -113,13 +93,9 @@ function obtenerPartidosDisponibles(id_user)
 						+this.TIPO+
 						"</td><td><div class='progress'><div class='progress-bar progress-bar-danger role=progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width:20%'>"+this.CANTIDAD_DE_JUGADORES_ACTUALES+"/"
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
-
-
-
-
-
 					}
 			});
+			
 			$("[name=boton_unirse]").click(function(event) {
 				unirseAPartido($("#btnRegistrarPartido").val(),$(this).val());
     			//alert($(this).val());
