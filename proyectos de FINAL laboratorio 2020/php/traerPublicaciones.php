@@ -1,29 +1,18 @@
 <?php
 	session_start();
 	require("conexion.php");
+	traerPublicaciones();
 
-	if(isset($_POST["id_usuario"]))
-	{
-		obtenerPartidosDisponibles($_POST["id_usuario"]);
-
-	}
-
-	function obtenerPartidosDisponibles($id_user)
+	function traerPublicaciones()
 	{
 		//var_dump($id_user);
 		$conn = getConnection();
-
-		$sql="select * from partidos as P, tipos_de_futbol as T 
-where P.ID_PARTIDO in (select Pa.ID_PARTIDO from partidos as Pa where not exists 
-(select * from usuarios_juegan_partidos as Us where Pa.ID_PARTIDO = Us.ID_PARTIDO and Us.ID_USUARIO = :id_usuario)) 
-AND P.TIPO_DE_FUTBOL = T.ID_TIPO AND P.CANTIDAD_DE_JUGADORES_ACTUALES < T.JUGADORES_MINIMOS_REQUERIDOS AND P.FECHA >= CURDATE() AND P.ID_USUARIO!=:id_usuario ORDER BY P.FECHA ASC";
-
+		$sql="select * from partidos,tipos_de_futbol,publicaciones where publicaciones.ID_PARTIDO=partidos.ID_PARTIDO AND partidos.TIPO_DE_FUTBOL=tipos_de_futbol.ID_TIPO AND partidos.CANTIDAD_DE_JUGADORES_ACTUALES<tipos_de_futbol.JUGADORES_MINIMOS_REQUERIDOS AND partidos.FECHA>=CURDATE() ORDER BY partidos.FECHA ASC";
 		$resultados=$conn->prepare($sql);
-		$resultados->execute(array(":id_usuario" => $id_user ));
+		$resultados->execute();
 		$registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
 		closeConnection($conn);
 		$hora_actual = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires'));
-
 		$hora_now=$hora_actual->format('H:i:s');
 		$Hoy = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires'));
 		$registros_coincidentes=array();
@@ -44,7 +33,6 @@ AND P.TIPO_DE_FUTBOL = T.ID_TIPO AND P.CANTIDAD_DE_JUGADORES_ACTUALES < T.JUGADO
 		echo json_encode($registros_coincidentes);
 
 	}
-
 
 
  ?>
