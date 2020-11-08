@@ -179,6 +179,20 @@ function obtenerMisPartidos(id_user){
     					});
 
     				});
+				$("[name=boton_invitar]").click(function(event) {
+						var id=($(this).val());
+    					$("#MAquienVasAInvitar").modal("show");
+    					$("#seleccionoAmigo").click(function(event) {
+    						$("#MenviarAAmigo").modal("show");
+    						$("#btnEnviarEmailAAmigo").val(id);
+    					});
+    					/*$("#formPublicarPartido").submit(function(event) {
+    						event.preventDefault();
+    						PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());
+    						
+    					});*/
+
+    				});
 
 		}
 			,

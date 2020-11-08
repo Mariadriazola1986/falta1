@@ -17,10 +17,13 @@
 		<script src="lib/es.js"></script>
 		<script src="js/organizarpartido.js"></script>
 		<script src="js/unirseapartido.js"></script>
+		<script src="js/enviarInvitacion.js"></script>
 		<title>Jugador</title>
 	</head>
 	<body>
-
+		<div id="contenedor_carga_jugador">
+			<div id="carga_jugador"></div>
+		</div>
         <div class="container">
         	<div class="row">
             	<nav class="navbar navbar-default">
@@ -147,12 +150,58 @@
 
 				        </div>
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 				        </div>
 				      </div>
 
 			    </div>
   			</div>
+  			<div class="modal fade" id="MAquienVasAInvitar" role="dialog">
+			    <div class="modal-dialog">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Elegi a quien vas a enviar la invitacion</h4>
+				        </div>
+				        <div class="modal-body">
+				        	<button type="button" class="btn btn-info" id="seleccionoAmigo" value="<?php echo $_SESSION["NOMBRE"];?>">A un amigo</button>
+				        	<button type="button" class="btn btn-info">A grupo</button>		                        
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				        </div>
+				      </div>
+
+			    </div>
+  			</div>
+  			<div class="modal fade" id="MenviarAAmigo" role="dialog">
+			    <div class="modal-dialog">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Ingresa el mail de tu amigo</h4>
+				        </div>
+				        <div class="modal-body">
+				        	<form action="#" method="POST" id="formInvitacionAAmigo">
+	                               		<div class="form-group">
+	                                    	<h4><label for="emaideamigo" class="label label-info">Ingresa el email de tu amigo:</label></h4>
+	                                    	<input type="email" class="form-control" id="emaideamigo"  required>
+	                                	</div>
+	                                	<div class="form-group">
+	                                    	<h4><label for="districtoBarrio" class="label label-info">Ingresa el districto y el barrio donde se va a jugar el partido:</label></h4>
+	                                    	<input type="text" class="form-control" id="districtoBarrio"  required>
+	                                	</div>
+	                                	<button type="submit" class="btn btn-success" id="btnEnviarEmailAAmigo" value="">Enviar Email</button>
+							</form>                
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				        </div>
+				      </div>
+
+			    </div>
+  			</div>
+
 
   			<div class="modal fade" id="UnirseAPartido" role="dialog">
 			    <div class="modal-dialog modal-lg">
@@ -211,8 +260,8 @@
 	                        <div class="panel-body">
 								<form action="#" id="formPublicarPartido">
 								    <div class="form-group">
-									  <label for="commedetalles">Detalles del partido:</label>
-									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que juridiccion van a jugar y que barrio para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
+									  <h4><label for="commedetalles" class="label label-info">Detalles del partido:</label></h4>
+									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que districto van a jugar y que barrio para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
 									</div>
 									<button type="submit" class="btn btn-success" id="btnFormModalPublicar">Publicar</button>
 								</form>
