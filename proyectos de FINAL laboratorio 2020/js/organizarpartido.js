@@ -170,15 +170,20 @@ function obtenerMisPartidos(id_user){
 				});
 
 				$("[name=boton_publicar]").click(function(event) {
+					if (verSiEstapublicado($(this).val())) {
 						$("#btnFormModalPublicar").val($(this).val());
     					$("#PublicarPartido").modal("show");
     					$("#formPublicarPartido").submit(function(event) {
     						event.preventDefault();
-    						PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());
+    						
+    							PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());		
     						
     					});
+    				}
 
-    				});
+    			});
+					
+
 				$("[name=boton_invitar]").click(function(event) {
 						var id=($(this).val());
     					$("#MAquienVasAInvitar").modal("show");
@@ -201,6 +206,54 @@ function obtenerMisPartidos(id_user){
 		}
 	});
 }
+
+function verSiEstapublicado(idpartido){
+	var booleano=true;
+	var parametros={"idpartido":idpartido};
+	$.ajax
+	({
+		data:parametros,
+		url:   'php/verSiEstapublicado.php',
+		type:  "POST",
+		dataType:"json",
+		async: false, 
+		beforeSend: function () {
+			
+		},
+		success:  function (response) {
+			if (response.error=="NO") {
+				if (response.datos=="publicado") {
+					
+					var message = $('<div class="well text-center error_message">Este partido ya lo publicaste<button type="button" class="close" data-dismiss="alert">&times</button></div>');
+				message.appendTo($('tbody')).fadeIn(300).delay(5000).fadeOut(500);
+					booleano=false;
+					
+				}
+				else{
+					booleano=true;
+				}
+
+			}
+			else{
+				console.log(response.error);
+			}
+			
+			
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+
+		
+	return booleano;
+}
+
+
+
+
+
+
 
 function PublicarMiPartido(idpartido,comentarios){
 	parametros={"id_partido":idpartido,"comentarios":comentarios};

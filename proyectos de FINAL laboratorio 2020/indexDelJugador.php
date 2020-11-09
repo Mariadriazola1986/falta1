@@ -56,6 +56,7 @@
 					<div class="panel-body">
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#UnirseAPartido" id="btnUnirseAPartido">Unirse a Partido</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#organizarPartido">Organizar Partido</button>
+						<button type="button" class="btn btn-default" id="cuandoJuego">Cuando Juego</button>
 						<button type="button" class="btn btn-default">Buscar Grupo</button>
 						<button type="button" class="btn btn-default">Crear Grupo</button>
 						<button type="button" class="btn btn-default">Mis Grupos</button>
@@ -67,7 +68,7 @@
 					<div class="panel-heading">
 						<h4>Mira <?php echo $_SESSION["NOMBRE"];?> estos son tus partidos organizados:</h4>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" >
 						<div class="table-responsive">          
 							  <table class="table">
 							    <thead>
@@ -80,7 +81,7 @@
 							        <th>Que hago?</th>
 							      </tr>
 							    </thead>
-							    <tbody id="misPartidos">
+							    <tbody id="misPartidos" >
 							    	<tr>
 							    		
 							    	</tr>
@@ -184,11 +185,11 @@
 				        <div class="modal-body">
 				        	<form action="#" method="POST" id="formInvitacionAAmigo">
 	                               		<div class="form-group">
-	                                    	<h4><label for="emaideamigo" class="label label-info">Ingresa el email de tu amigo:</label></h4>
+	                                    	<label for="emaideamigo" >Ingresa el email de tu amigo:</label>
 	                                    	<input type="email" class="form-control" id="emaideamigo"  required>
 	                                	</div>
 	                                	<div class="form-group">
-	                                    	<h4><label for="districtoBarrio" class="label label-info">Ingresa el districto y el barrio donde se va a jugar el partido:</label></h4>
+	                                    	<label for="districtoBarrio" >Ingresa el districto y el barrio donde se va a jugar el partido:</label>
 	                                    	<input type="text" class="form-control" id="districtoBarrio"  required>
 	                                	</div>
 	                                	<button type="submit" class="btn btn-success" id="btnEnviarEmailAAmigo" value="">Enviar Email</button>

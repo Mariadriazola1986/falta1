@@ -24,8 +24,9 @@ function estaActiva(idpartido){
 					$("#queTraer").append('<div class="row"><div class="col-md-6 col-lg-offset-4"><h1 class="bienvenido">ingresa tus datos</h1></div></div><div class="row"><div class="col-md-8 col-lg-offset-2"><form action="#" method="POST" id="formInvitadoEmail"><div class="form-group"><label for="inputnombreinvitado" class="control-label">Nombre:</label><input type="text" class="form-control" id="inputnombreinvitado" placeholder="Ingrese su nombre" required></div><div class="form-group"><label for="inputapellidoivitado" class="control-label">Apellido:</label><input type="text" class="form-control" id="inputapellidoinvitado" placeholder="Ingrese su apellido"required></div><div class="form-group"><label for="inputdniinvitado" class="control-label">DNI:</label><input type="number" class="form-control" id="inputdniinvitado" placeholder="Ingrese su DNI"required></div><div class="form-group"><label for="inputtelefonoinvitado" class="control-label">Telefono:</label><input type="number" class="form-control" id="inputtelefonoinvitado" placeholder="Ingrese su telefono"required></div><br><div class="form-group"><button type="submit" class="btn btn-success" id="btnregistrarinvitado" value='+idpartido+'>Enviar Datos</button></div></form></div></div>');
 					$("#formInvitadoEmail").submit(function(event) {
 						event.preventDefault();
-						registrarAInvitadoEmail($("#inputnombreinvitado").val(),$("#inputapellidoinvitado").val(),$("#inputdniinvitado").val(),$("#inputtelefonoinvitado").val(),$("#btnregistrarinvitado").val());
-						
+						if (validarUnavezMas($("#btnregistrarinvitado").val())) {
+							registrarAInvitadoEmail($("#inputnombreinvitado").val(),$("#inputapellidoinvitado").val(),$("#inputdniinvitado").val(),$("#inputtelefonoinvitado").val(),$("#btnregistrarinvitado").val());
+						}
 					});
 				}
 				else if (response.datos=="inactivo") {
@@ -69,7 +70,7 @@ function registrarAInvitadoEmail(nombre,apellido,dni,telefono,idpartido){
 
 function validarUnavezMas(idpartido) {//TENGO QUE REVISAR POR QUE MIERDA NO PUEDO ASIGNAR A FALSE LA VARIABLE VALOR DESDE EL SUCCESS 
 	var parametros={"idpartido":idpartido};
-	var valor="";
+	var valor=true;
 	$.ajax
 	({
 		data:parametros,
@@ -77,14 +78,16 @@ function validarUnavezMas(idpartido) {//TENGO QUE REVISAR POR QUE MIERDA NO PUED
 		//contentType: "application/json",
 		type: "POST",
 		dataType: "json",
+		async: false, 
 		beforeSend: function () {
 
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
 				if (response.datos=="inactivo") {
+					$("#formInvitadoEmail").remove();
 					$("#queTraer").append('<div class="alert alert-danger"><strong>Uppps!</strong> El partido no esta disponible es posible que:</div><ul class="list-group"><li class="list-group-item list-group-item-danger">El partido que intentas acceder ya paso la fecha y hora establecido.</li><li class="list-group-item list-group-item-danger">El partido ya se esta jugando.</li><li class="list-group-item list-group-item-danger">Se completo el numero requerido de jugadores para este partido.</li></ul>');
-					asignarValor(false);
+					valor=false;
 				}
 				
 			}
@@ -97,9 +100,6 @@ function validarUnavezMas(idpartido) {//TENGO QUE REVISAR POR QUE MIERDA NO PUED
 			console.log(error);
 		}
 	});
-	function asignarValor(valortraido){
-		valor=valortraido;
-	}
 
 	return valor;
 }
