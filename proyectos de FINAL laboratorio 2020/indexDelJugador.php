@@ -18,6 +18,7 @@
 		<script src="js/organizarpartido.js"></script>
 		<script src="js/unirseapartido.js"></script>
 		<script src="js/enviarInvitacion.js"></script>
+		<script src="js/cuandojuego.js"></script>
 		<title>Jugador</title>
 	</head>
 	<body>
@@ -189,7 +190,7 @@
 	                                    	<input type="email" class="form-control" id="emaideamigo"  required>
 	                                	</div>
 	                                	<div class="form-group">
-	                                    	<label for="districtoBarrio" >Ingresa el districto y el barrio donde se va a jugar el partido:</label>
+	                                    	<label for="districtoBarrio" >Ingresa el distrito y el barrio donde se va a jugar el partido:</label>
 	                                    	<input type="text" class="form-control" id="districtoBarrio"  required>
 	                                	</div>
 	                                	<button type="submit" class="btn btn-success" id="btnEnviarEmailAAmigo" value="">Enviar Email</button>
