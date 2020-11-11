@@ -20,7 +20,7 @@ $(document).ready(function(){
 	})
 
 
-	$("#buscador2").click(function(){
+/*	$("#buscador2").click(function(){
 		$("#algo").html("");
 		var x = $("#buscador").val().toLowerCase()
 		if (x!="") {
@@ -42,7 +42,37 @@ $(document).ready(function(){
 			})
 		}
 
+	})*/
+
+	$("#buscador2").click(function(){
+		$("#algo").html("");
+		var x = $("#buscador").val().toLowerCase()
+		if (x!="") {
+			$.ajax({
+				type: "POST",
+				url: "php/misGrupos2.php",
+				dataType: "json",
+				success: function(result){
+					$.each(result, function(){
+						if (this.includes(x)) {
+							$("#algo").append(
+								$("<li class='list-group-item'></li>").append(
+									$("<input type='checkbox'>").attr("id",this).attr("name",this),
+									$("<label></label>").text(this).attr("for",this)
+							));
+						}
+					});
+					if ($("#algo").html()=="") {
+						$("#algo").append("<h1>No se encontro resultado</h1>")
+					}
+				}
+			})
+		}
+
 	})
+
+
+
 
 	$("#cerrar").click(function(){
 		$.each($("#modal2 #algo input"),function(){
