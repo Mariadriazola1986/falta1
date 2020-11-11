@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Mi Grupo2</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -9,39 +11,44 @@
 	<link rel="stylesheet" href="css/visualizar_canchas.css">
 	<script type="text/javascript" src="js/misGrupos2.js"></script>
 </head>
+
+
 <body>
 
 <div class="container">
 	<div class="row">
-		<nav class="navbar navbar-default barra">
-		<div class="col-sm-1">
-			<a href="misGrupos.html"><button class="btn-default btn-lg">Atras</button></a>
-		</div>
+		<nav class="navbar navbar-default fondo">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+				</ul>
+				<a href="misGrupos.html"><button type="button" class="btn btn-default">Atras</button></a>
+			</div>
 		</nav>
 	</div>
-</div>
 
-	<div class="container">
+
+	
 		<div class="row">
 
 			<div class="panel panel-primary">
 				<br>
 
-
-				<div class="row">
+					<div class="row">
+				
 					<div class="panel-heading">
-					<div id="Dimg" class="col-sm-3">
+					<div id="Dimg" class="col-sm-3 col-xs-6">
 						
 					</div>
-					<div id="Dnom" class="col-sm-5">
+					<div id="Dnom" class="col-sm-5 col-xs-6">
 						<a data-toggle="modal" data-target="#myModal">Administrar Grupo</a>
 					</div>
 					<div id="Dbut" class="col-sm-4">
 						<br>
 					</div>
 					</div>
+					</div>
 
-				</div>
+				
 
 				<div class="panel-body">
 				<div>
@@ -59,8 +66,8 @@
 
 			</div>
 		</div>
-	</div>
-
+	
+</div>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
