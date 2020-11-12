@@ -58,7 +58,7 @@
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#UnirseAPartido" id="btnUnirseAPartido">Unirse a Partido</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#organizarPartido">Organizar Partido</button>
 						<button type="button" class="btn btn-default" id="cuandoJuego">Cuando Juego</button>
-						<a href="misGrupos.html"><button type="button" class="btn btn-default">Mis Grupos</button></a>
+						<a href="misGrupos.php"><button type="button" class="btn btn-default">Mis Grupos</button></a>
 						
 					</div>
 				</div>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+	<?php
+  		require_once("php/verificarSesion.php");
+ 	?>
 <head>
 	<title>Mis Grupos</title>
 	<meta charset="utf-8">
