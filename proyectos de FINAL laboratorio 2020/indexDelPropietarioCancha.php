@@ -48,6 +48,19 @@
 			<div id="queMostrarAPropietario">
 				
   			</div>
+  			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<ul class="nav nav-tabs col-lg-12">
+					    	<li class="active"><a data-toggle="tab" href="#publicaciones">Mis Canchas</a></li>
+					    	<li><a data-toggle="tab" href="#Canchas">Administrar Reservas</a></li>
+					  	</ul>
+					  
+					</div>
+						
+				</div>
+				  
+			</div>
 
   			<div class="modal fade" id="modalDeSeleccionEstablecimiento" role="dialog">
 			    <div class="modal-dialog">
@@ -101,10 +114,11 @@
 	                                </div>
 	                                <div class="input-group mb-3">
 									  <div class="input-group-prepend">
-									    <span class="input-group-text">Subir imagenes de la cancha</span>
+									    
+									    <a href="#" data-toggle="tooltip" title="5 imagenes obligatorias">Subir imagenes de la cancha</a>
 									  </div>
 									  <div class="custom-file">
-									    <input type="file" class="custom-file-input" id="inputGroupFile01" required="" multiple>
+									    <input type="file" class="custom-file-input" id="archivos" required="" multiple data-toggle="tooltip" title="5 imagenes obligatorias">
 									  </div>
 									</div><br>
 	                                
