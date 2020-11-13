@@ -1,4 +1,43 @@
+function creandoGrupo(){
+	var archivos = document.getElementById("fotoG");
+	var archivo = archivos.files; 
+	var archivos = new FormData();
+
+	for(i=0; i<archivo.length; i++){
+		archivos.append('archivo'+i,archivo[i],);
+	}
+    
+	archivos.append("nombre",$("#nombreGrupo").val());
+
+	$.ajax({
+		url: "php/crearGrupo.php",
+		dataType: "text",
+		data: archivos,
+		type: "post",
+		processData:false,
+        cache:false,
+        contentType: false,
+		success: function(response){
+
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	})
+
+
+}
+
+
 $(document).ready(function(){
+
+	$("#crearGrupo").submit(function(event){
+		event.preventDefault();	
+		creandoGrupo();
+	})
+
+
+
 
 	$.ajax({
 		type: "POST",
@@ -18,31 +57,6 @@ $(document).ready(function(){
 		}
 
 	})
-
-
-/*	$("#buscador2").click(function(){
-		$("#algo").html("");
-		var x = $("#buscador").val().toLowerCase()
-		if (x!="") {
-			$.ajax({
-				type: "POST",
-				url: "json/jugadores.json",
-				dataType: "json",
-				success: function(result){
-					$.each(result, function(){
-						if (this.nombreJ.includes(x)) {
-							$("#algo").append(
-								$("<li class='list-group-item'></li>").append(
-									$("<input type='checkbox'>").attr("id",this.nombreJ).attr("name",this.nombreJ),
-									$("<label></label>").text(this.nombreJ).attr("for",this.nombreJ)
-							));
-						}
-					});
-				}
-			})
-		}
-
-	})*/
 
 	$("#buscador2").click(function(){
 		$("#algo").html("");
@@ -72,8 +86,6 @@ $(document).ready(function(){
 	})
 
 
-
-
 	$("#cerrar").click(function(){
 		$.each($("#modal2 #algo input"),function(){
 			if ($(this).is(":checked")) {
@@ -81,10 +93,6 @@ $(document).ready(function(){
 			}
 		})
 	})
-
-
-
-	
-
 	
 })
+

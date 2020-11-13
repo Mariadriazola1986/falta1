@@ -202,7 +202,7 @@
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="fotoG" class="control-label">Foto de grupo</label><br>
-        								<input class="form-control" type="file" name="fotoG" id="fotoG">
+        								<input class="form-control" type="file" name="fotoG" id="fotoG" required>
 	                                </div>
 	                                <br>
 	                                <div class="form-group">
