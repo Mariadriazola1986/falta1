@@ -68,29 +68,44 @@
 				<div id="Canchas" class="tab-pane fade in active"> 
 					<div class="panel panel-primary">
 			        	<div class="panel-heading">
-			            <h4>Filtrar Canchas</h4>
+			            <h4>Mis Canchas</h4>
 			            </div>
 						<div class="panel-body">
+							<div class="row col-md-6">
+								<h2>Busca tu cancha</h2>
+								  <p>Elegi por que parametros filtrar las canchas:</p>
+								  
+								    <div class="checkbox">
+								      <label><input type="checkbox" value="" id="checkBoxDistrito">Distrito</label>
+								    </div>
+								    <div class="checkbox">
+								      <label><input type="checkbox" value="" id="checkBoxDireccion">Direccion</label>
+								    </div>
+								    <div class="checkbox">
+								      <label><input type="checkbox" value="" id="checkBoxTipoDeFutbol">Tipo De Futbol</label>
+								    </div>							    
+								  
+							</div>
 							<div class="row col-md-6">						
-								<form action="#" method="POST">
-									<div class="form-group">
-										<h4><label for="input_busqueda" class="label label-info">Nombre de Cancha:</label></h4>
-										<input type="text" class="form-control"  id="input_busqueda" name="cancha" placeholder="Ingrese Nombre">
+								
+									<div class="form-group oculto" id="distrito">
+										<h4><label for="inputDistrito" class="label label-info">Distrito:</label></h4>
+										<input type="text" class="form-control"  id="inputDistrito" placeholder="Ingrese Distrito">
 									</div>													
-									<div class="form-group">
-										<h4><label for="input_direccion" class="label label-info">Direccion de la Cancha:</label></h4>
-										<input type="text" id="input_direccion" class="form-control" name="direccion" placeholder="Ingrese Direccion">
+									<div class="form-group oculto" id="direccion">
+										<h4><label for="inputDireccion" class="label label-info">Direccion de la Cancha:</label></h4>
+										<input type="text" id="inputDireccion" class="form-control"  placeholder="Ingrese Direccion">
 									</div>
-									<div class="form-group">
-										<h4><label for="tipo" class="label label-info">Tipo de Cancha:</label></h4>
-										<select class="form-control" id="tipoCancha">
+									<div class="form-group oculto" id="tipodefutbol">
+										<h4><label for="tipoFutbol" class="label label-info">Tipo de Futbol:</label></h4>
+										<select class="form-control" id="tipoFutbol">
 
 										</select>
 									</div>
 									<div class="form-group">
 										<button type="button" class="btn btn-info btn-block" name="filtrar" id="btnBuscarReservas" value="filtrar">Filtrar</button>
 									</div>
-								</form>		
+									
 							</div>
 						</div>
 						<div class="row" id="canchaResultado">

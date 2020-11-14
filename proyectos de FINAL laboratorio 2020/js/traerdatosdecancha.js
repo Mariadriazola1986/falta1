@@ -1,7 +1,38 @@
 
-$(document).ready(function()
-{
+$(document).ready(function()	
+{	
+	$("#checkBoxDistrito").change(function() {
+    //Si el checkbox está seleccionado
+    	if($(this).is(":checked")) {
+      		$('#distrito').toggle(1000);
+    	}
+    	else {
+      		$('#distrito').toggle(1000);
+    	}
+  	});
+
+  	$("#checkBoxDireccion").change(function() {
+    //Si el checkbox está seleccionado
+    	if($(this).is(":checked")) {
+      		$('#direccion').toggle(1000);
+    	}
+    	else {
+      		$('#direccion').toggle(1000);
+    	}
+  	});
+  	$("#checkBoxTipoDeFutbol").change(function() {
+    //Si el checkbox está seleccionado
+    	if($(this).is(":checked")) {
+      		$('#tipodefutbol').toggle(1000);
+    	}
+    	else {
+      		$('#tipodefutbol').toggle(1000);
+    	}
+  	});
+
+
 	obtenerDatosCancha();
+	obtenerDeTipoCanchas();
 
 });
 
@@ -38,6 +69,33 @@ function obtenerDatosCancha()//todos los datos inclusive las imagenes
 					}
 				 	cantidad++;
 				 	
+				});
+			}
+			
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+}
+
+function obtenerDeTipoCanchas()
+{
+	var parametros={"funcion":"traerLasTiposCanchas"};
+	$.ajax
+	({
+		data: parametros,
+		url: "php/traerTiposDeCanchas.php",
+		//contentType: "application/json",
+		type: "POST",
+		dataType: "json",
+		beforeSend: function () {
+
+		},
+		success:  function (response) {
+			if (response.error=="NO") {
+				$.each(response.datos, function() {
+				 	$("#tipoFutbol").append('<option value='+this.ID_TIPO+'>'+this.TIPO+'</option>');
 				});
 			}
 			

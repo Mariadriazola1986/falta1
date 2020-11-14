@@ -59,7 +59,7 @@ function validarImagenes(){
 	            }
 	        }
 	    if (!ok) {
-	    	modalError("Error en el formato de las imagenes","Las imagenes permitidas son jpeg, jpg y png.");
+	    	modalMensajePropietario("Error en el formato de las imagenes","Las imagenes permitidas son jpeg, jpg y png.");
 	                $("#modalMensajePropietario").modal("show");
 	                $("#archivos").val('');
 	    }
@@ -94,9 +94,17 @@ function cargarCancha() {
         cache:false,
         contentType: false,
         success: function(response){
-        	modalMensajePropietario("Carga Exitosa","La cancha fue registrada correctamente");
-        	$("#modalMensajePropietario").modal("show");
-        	$("#formCargaCancha")[0].reset();
+        	var respuesta=JSON.parse(response);//si me trae un json como estring hay q usar esta funcion
+        	if (respuesta["error"]=="NO") {
+        		modalMensajePropietario("Carga Exitosa","La cancha fue registrada correctamente");
+        		$("#modalMensajePropietario").modal("show");
+        		$("#formCargaCancha")[0].reset();
+        	}
+        	else {
+        		modalMensajePropietario("Error en el formato,en la cantidad de imagenes, o el tamaño de las mismas","Las imagenes permitidas son jpeg, jpg y png y la cantidad paermitida maxima es 5 y el tamaño permitido es hasta 4mb.");
+	                $("#modalMensajePropietario").modal("show");
+	                $("#archivos").val('');
+        	}
         }
      });  
 
