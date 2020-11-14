@@ -27,8 +27,6 @@ else{
 	array_push($sepuedeCargarDatos,false);
 }
 
-
-
 if (estaTodoOk($sepuedeCargarDatos)) {
 	$conn = getConnection();
 
@@ -41,6 +39,12 @@ if (estaTodoOk($sepuedeCargarDatos)) {
 	$sql="INSERT INTO grupos (ID_GRUPO,ID_USUARIO_CREADOR,NOMBRE,ID_FOTO,CANT_MIEMBROS) VALUES (NULL,:idusuariocreador,:nombre,:idfoto, 1)";
     $resultado=$conn->prepare($sql);
     $resultado->execute(array(":idusuariocreador"=>$_SESSION["ID_USUARIO"],":nombre"=>$_POST["nombre"],":idfoto"=>$idultimo));
+
+    $idultimogrupo=$conn->lastInsertId();
+
+    $sqlgrupousuario="INSERT INTO grupos_usuarios (ID_GRUPO, ID_USUARIO) VALUES (:idgrupo,:idusuario)";
+    $resultadogrupo=$conn->prepare($sqlgrupousuario);
+    $resultadogrupo->execute(array(":idgrupo"=>$idultimogrupo,"idusuario"=>$_SESSION["ID_USUARIO"]));
 
     closeConnection($conn);
 }

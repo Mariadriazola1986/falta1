@@ -18,16 +18,14 @@ function creandoGrupo(){
         cache:false,
         contentType: false,
 		success: function(response){
-
+			$("#modalCrear").modal("hide");
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
 		}
 	})
 
-
 }
-
 
 $(document).ready(function(){
 
@@ -36,27 +34,29 @@ $(document).ready(function(){
 		creandoGrupo();
 	})
 
-
-
+	var bot = {"Batman":$("#Botonazo").val()};
 
 	$.ajax({
+		data: bot,
 		type: "POST",
-		url: "json/grupos.json",
+		url: "php/traerGrupos.php",
 		dataType: "json",
 		success: function(result){
 			$.each(result, function(){
-				
 				$("#tablaG").append($("<tr></tr>").append(
-					$("<img>").attr("src", "imagenes/"+this.Gimg),
-					$("<td></td>").text(this.nomgrupo),
-					$("<td></td>").text(this.cantidad),
-					$("<button></button>").attr("id", this.idgrupo).attr("class", "btn-default btn-lg").text("Ver Grupo")
+					$("<img>").attr("src", "imagenes/"+this.RUTA),
+					$("<td></td>").text(this.NOMBRE),
+					$("<td></td>").text(this.CANT_MIEMBROS),
+					$("<button></button>").attr("id", this.ID_GRUPO).attr("class", "btn-default btn-lg").text("Ver Grupo")
 					));
-
 			})
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+			console.log("Se rompio todo y no se por que");
 		}
-
 	})
+
 
 	$("#buscador2").click(function(){
 		$("#algo").html("");

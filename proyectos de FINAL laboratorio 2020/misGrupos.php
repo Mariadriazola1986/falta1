@@ -53,13 +53,17 @@
 			<div class="panel-body">
 				<a href="indexDelJugador.php"><button type="button" class="btn btn-default">Atras</button></a>
 				
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBusqueda">Busqueda De grupos</button>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBusqueda" id="Botonazo" value="<?php echo($_SESSION['ID_USUARIO']) ?>">Busqueda De grupos</button>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalCrear">Crear Grupo</button>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSoli">Solicitudes</button>
 			</div>
 		</div>
 	</div>
+--------------
 
+
+
+--------------
 
 	<div class="row">
 
