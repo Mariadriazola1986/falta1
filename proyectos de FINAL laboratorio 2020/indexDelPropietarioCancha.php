@@ -213,10 +213,10 @@
 	                                <div class="input-group mb-3">
 									  <div class="input-group-prepend">
 									    
-									    <a href="#" data-toggle="tooltip" title="5 imagenes obligatorias">Subir imagenes de la cancha</a>
+									    <a href="#" data-toggle="tooltip" title="2 como minima y 10 como maxima">Subir imagenes de la cancha</a>
 									  </div>
 									  <div class="custom-file">
-									    <input type="file" class="custom-file-input" id="archivos" required="" multiple data-toggle="tooltip" title="5 imagenes obligatorias">
+									    <input type="file" class="custom-file-input" id="archivos" required="" multiple data-toggle="tooltip" title="2 como minima y 10 como maxima">
 									  </div>
 									</div><br>
 	                                

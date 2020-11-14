@@ -10,7 +10,7 @@
     $sepuedeCargarDatos=array();//array de booleanos
     $imagenesCargadasalservidor=array();//array de nombres
     
-    if (count($_FILES)==5 ){
+    if (count($_FILES)<=10 && count($_FILES)>1){
 	    foreach ($_FILES as $key) //Iteramos el arreglo de archivos
 	    {
 	        if($key['error'] == UPLOAD_ERR_OK )//Si el archivo se paso correctamente continuamos 
@@ -41,7 +41,7 @@
 	    }
 	}
 	else{
-		$resultados_de_validacion["error"]="La cantidad de imagenes requeridas debe ser igual a 5 y no menos ni mas.";
+		$resultados_de_validacion["error"]="La cantidad de imagenes requeridas debe ser mayor que 1 y menor o igual a 10.";
 		array_push($sepuedeCargarDatos,false);
 	}
 

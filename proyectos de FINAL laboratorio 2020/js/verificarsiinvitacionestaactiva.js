@@ -58,8 +58,16 @@ function registrarAInvitadoEmail(nombre,apellido,dni,telefono,idpartido){
 		},
 		success:  function (response) {
 			$("#queTraer").remove();
-			$("body").append('<div class="modal fade" id="invitadoRegistradoCorrectamenteEmail" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Te Registraste Correctamente</h4></div><div class="modal-body"><h4>Se te contactara por telefono una vez confirmado el partido y la cancha.</h4></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>')
-			$("#invitadoRegistradoCorrectamenteEmail").modal("show");
+			if(response.error=="NO"){
+				//$("body").append('<div class="modal fade" id="invitadoRegistradoCorrectamenteEmail" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Te Registraste Correctamente</h4></div><div class="modal-body"><h4>Se te contactara por telefono una vez confirmado el partido y la cancha.</h4></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>')
+				modalInvitadoPorMailMensaje("Te Registraste Correctamente","Se te contactara por telefono una vez confirmado el partido y la cancha");
+				$("#invitadoRegistrado").modal("show");
+			}
+			else {
+				modalInvitadoPorMailMensaje("Error",response.error);
+				$("#invitadoRegistrado").modal("show");
+			}
+			
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
@@ -67,8 +75,12 @@ function registrarAInvitadoEmail(nombre,apellido,dni,telefono,idpartido){
 	});
 }
 
+function modalInvitadoPorMailMensaje(titulo,contenido){
+		$("body").append('<div class="modal fade" id="invitadoRegistrado" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">'+titulo+'</h4></div><div class="modal-body"><h4>'+contenido+'.</h4></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>')
 
-function validarUnavezMas(idpartido) {//TENGO QUE REVISAR POR QUE MIERDA NO PUEDO ASIGNAR A FALSE LA VARIABLE VALOR DESDE EL SUCCESS 
+}
+
+function validarUnavezMas(idpartido) {
 	var parametros={"idpartido":idpartido};
 	var valor=true;
 	$.ajax
@@ -78,7 +90,7 @@ function validarUnavezMas(idpartido) {//TENGO QUE REVISAR POR QUE MIERDA NO PUED
 		//contentType: "application/json",
 		type: "POST",
 		dataType: "json",
-		async: false, 
+		async: false, //cuando queres que primero te valide la respuesta traida desde el php y no se ejecute el resto de codigo js tenes que poner en asincronico false
 		beforeSend: function () {
 
 		},

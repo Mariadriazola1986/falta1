@@ -45,7 +45,7 @@ function traerMisEstablecimientos(idusuario){
 
 function validarImagenes(){
 	   $("#archivos").change(function(){
-	   	$("#modalMensajePropietario").modal("hide");
+	   	
         var fileLength = this.files.length;
         var match= ["image/jpeg","image/png","image/jpg"];
         var ok=true;
@@ -101,7 +101,7 @@ function cargarCancha() {
         		$("#formCargaCancha")[0].reset();
         	}
         	else {
-        		modalMensajePropietario("Error en el formato,en la cantidad de imagenes, o el tamaño de las mismas","Las imagenes permitidas son jpeg, jpg y png y la cantidad paermitida maxima es 5 y el tamaño permitido es hasta 4mb.");
+        		modalMensajePropietario("Error en el formato,en la cantidad de imagenes, o el tamaño de las mismas","Las imagenes permitidas son jpeg, jpg y png, la cantidad minima requerida es de 2 y de maxima 10, y el tamaño permitido es hasta 4mb.");
 	                $("#modalMensajePropietario").modal("show");
 	                $("#archivos").val('');
         	}
