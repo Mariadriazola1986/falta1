@@ -9,14 +9,12 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="lib/bootstrap3.css">
 		<link rel="stylesheet" href="css/index.css">
-		<link rel="stylesheet" href="css/indexdelpropietario.css">
 		<link rel="stylesheet" href="lib/fullcalendar.css">
 		<script src="lib/jquery3.js"></script>
 		<script src="lib/bootstrap3.js"></script>
 		<script src="js/verificarsipropietarioregistroestablecimiento.js"></script>
 		<script src="js/traertiposdecanchas.js"></script>
 		<script src="js/cargarcancha.js"></script>
-		<script src="js/traerdatosdecancha.js"></script>
 		<title>Dueño de Canchas</title>
 	</head>
 	<body>
@@ -54,96 +52,15 @@
 				<div class="panel panel-primary">
 					<div class="panel-body">
 						<ul class="nav nav-tabs col-lg-12">
-							<li class="active"><a data-toggle="tab" href="#Canchas">Mis Canchas</a></li>
-					    	
-					    	
+					    	<li class="active"><a data-toggle="tab" href="#publicaciones">Mis Canchas</a></li>
+					    	<li><a data-toggle="tab" href="#Canchas">Administrar Reservas</a></li>
 					  	</ul>
 					  
 					</div>
 						
-				</div>		  
-			</div>
-			<div class="row">
-				<div class="tab-content">
-				<div id="Canchas" class="tab-pane fade in active"> 
-					<div class="panel panel-primary">
-			        	<div class="panel-heading">
-			            <h4>Filtrar Canchas</h4>
-			            </div>
-						<div class="panel-body">
-							<div class="row col-md-6">						
-								<form action="#" method="POST">
-									<div class="form-group">
-										<h4><label for="input_busqueda" class="label label-info">Nombre de Cancha:</label></h4>
-										<input type="text" class="form-control"  id="input_busqueda" name="cancha" placeholder="Ingrese Nombre">
-									</div>													
-									<div class="form-group">
-										<h4><label for="input_direccion" class="label label-info">Direccion de la Cancha:</label></h4>
-										<input type="text" id="input_direccion" class="form-control" name="direccion" placeholder="Ingrese Direccion">
-									</div>
-									<div class="form-group">
-										<h4><label for="tipo" class="label label-info">Tipo de Cancha:</label></h4>
-										<select class="form-control" id="tipoCancha">
-
-										</select>
-									</div>
-									<div class="form-group">
-										<button type="button" class="btn btn-info btn-block" name="filtrar" id="btnBuscarReservas" value="filtrar">Filtrar</button>
-									</div>
-								</form>		
-							</div>
-						</div>
-						<div class="row" id="canchaResultado">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="panel-group">
-									<div class="panel panel-primary">
-										<div class="panel-heading">Cancha</div>
-										<div class="panel-body">
-											<div class="row">
-												<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-													<div id="carrusel" class="carousel slide" data-ride="carousel">
-														<ol class="carousel-indicators" id="indicadorCancha">
-															
-														</ol>
-														<div class="carousel-inner" id="imagenesCancha">
-															
-														</div>
-
-														<a href="#carrusel" class="left carousel-control" data-slide="prev">
-															<span class="glyphicon glyphicon-chevron-left"></span>
-															<span class="sr-only">Previous</span>
-														</a>
-														<a href="#carrusel" class="right carousel-control" data-slide="next">
-															<span class="glyphicon glyphicon-chevron-right"></span>
-															<span class="sr-only">Next</span>
-														</a>
-													</div>
-												</div>
-												<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-													<ul>
-														<li id="liDistrito"></li>
-														<li id="liDireccion"></li>
-														<li id="liTipoFutbol"></li>
-														<li id="liPrecio"></li>
-														<li id="liTelefono"></li>
-													</ul>
-												</div>
-											</div>
-										</div>		
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
-				
+				  
 			</div>
-			
-			
-					
-			
-			  
-		
 
   			<div class="modal fade" id="modalDeSeleccionEstablecimiento" role="dialog">
 			    <div class="modal-dialog">
