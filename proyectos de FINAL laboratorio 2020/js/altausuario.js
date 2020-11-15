@@ -15,7 +15,9 @@ $(document).ready(function()
 
 	$("#formUsuario").submit(function(event) {
 		event.preventDefault();
-		altaUsuario( $("#usuario").val(),$("#inputPassword").val(),$("#inputRepetirPassword").val(),$("#email").val(),$("#btnRegistrar").val());
+		if (validarRegistro()) {
+			altaUsuario( $("#usuario").val(),$("#inputPassword").val(),$("#inputRepetirPassword").val(),$("#email").val(),$("#btnRegistrar").val());
+		}
 
 	});
 
@@ -61,14 +63,74 @@ function altaUsuario(usuario,password,passwordR,email,id_tipo)
 	});
 }
 
-function mostrarErrorRegistro(span,msje){
-	var errores=span;
+function validarRegistro(){
+
+	if (!estaVacioRegistro($("#usuario").val())||$("#usuario").val()==undefined) {
+		mostrarErrorRegistro($("#errorRegistroUsuario"),"El campo usuario no debe quedar vacio.");
+		return false;
+	}
+
+	else if (!estaVacioRegistro($("#inputPassword").val())||$("#inputPassword").val()==undefined) {
+		mostrarErrorLogin($("#errorPasswordPassword1"),"El campo contraseña no debe quedar vacio.");
+		return false;
+		}
+	else if (!estaVacioRegistro($("#inputRepetirPassword").val())||$("#inputRepetirPassword").val()==undefined) {
+		mostrarErrorLogin($("#errorPasswordPassword2"),"El campo confirmar contraseña no debe quedar vacio.");
+		return false;
+		}
+	else if ($("#inputPassword").val()!=$("#inputRepetirPassword").val()) {
+		mostrarErrorLogin($("#errorPasswordPassword2"),"Las contraseñas no coinciden.");
+		return false;
+		}
+	else if (!estaVacioRegistro($("#email").val())||$("#email").val()==undefined) {
+		mostrarErrorLogin($("#errorEmail"),"El campo email no debe quedar vacio.");
+		return false;
+		}
+	else if (!validarMail($("#email").val())) {
+		mostrarErrorLogin($("#errorEmail"),"El formato del email no es el correcto.");
+		return false;
+		}
+
+	else{
+		return true;
+	}
+}
+
+function validarMail(input_mail) {
+	var mail=input_mail;
+	var expresion=/^[\w]+@[\w]+\.[a-z]+/;
+	
+	if (!expresion.test(mail)){
+		return false;
+	}
+	else{
+		return true;
+	}
+	
+}
+
+
+
+
+
+function estaVacioRegistro(valor){
+	var expresion=/\S+/g;//expresion que da false cuando solo hay espacios inclusive si apretas muchas vece la barra espaciadora.
+	resultado=expresion.test(valor);
+	return resultado;
+}
+
+
+
+function mostrarErrorRegistro(parrafo,msje){
+	var errores=parrafo;
 	errores.removeClass("oculto");
 	errores.html(msje);
 	
 }
 function limpiarAdvertenciaRegistro(){
-	var errores=$("#errorVRegistroPHP");
-	errores.addClass("oculto");
-	errores.html("");
+	var errores=[$("#errorVRegistroPHP"),$("#errorEmail"),$("#errorPasswordPassword2"),$("#errorPasswordPassword1"),$("#errorRegistroUsuario")];
+	$.each(errores, function(index, val) {
+		val.addClass("oculto");
+		val.html("");
+	});
 }

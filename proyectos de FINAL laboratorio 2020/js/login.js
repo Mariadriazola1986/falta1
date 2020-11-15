@@ -9,7 +9,10 @@ $(document).ready(function()
 	$("#formLogin").submit(function(event) {
 		
 		event.preventDefault();
-		loginUsuario( $("#usuarioLogin").val(),$("#inputPasswordLogin").val());
+		if (validar()) {
+			loginUsuario( $("#usuarioLogin").val(),$("#inputPasswordLogin").val());
+		}
+		
 
 	});
 
@@ -48,14 +51,41 @@ function loginUsuario(usuario,password)
 	});
 }
 
-function mostrarErrorLogin(span,msje){
-	var errores=span;
+function validar(){
+
+	if (!estaVacio($("#usuarioLogin").val())||$("#usuarioLogin").val()==undefined) {
+		mostrarErrorLogin($("#errorLoginUsuario"),"El campo usuario no debe quedar vacio.");
+		return false;
+	}
+
+	else if (!estaVacio($("#inputPasswordLogin").val())||$("#inputPasswordLogin").val()==undefined) {
+		mostrarErrorLogin($("#errorLoginPassword"),"El campo password no debe quedar vacio.");
+		return false;
+		}
+	else{
+		return true;
+	}
+}
+
+
+function estaVacio(valor){
+	var expresion=/\S+/g;//expresion que da false cuando solo hay espacios inclusive si apretas muchas vece la barra espaciadora.
+	resultado=expresion.test(valor);
+	return resultado;
+}
+
+function mostrarErrorLogin(parrafo,msje){
+	var errores=parrafo;
 	errores.removeClass("oculto");
 	errores.html(msje);
 	
 }
+
 function limpiarAdvertenciaLogin() {
-	var errores=$("#errorVLoginPHP");
-	errores.addClass("oculto");
-	errores.html("");
+	var errores=[$("#errorVLoginPHP"),$("#errorLoginUsuario"),$("#errorLoginPassword")];
+	$.each(errores, function(index, val) {
+		val.addClass("oculto");
+		val.html("");
+	});
+	
 }

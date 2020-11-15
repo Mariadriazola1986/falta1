@@ -201,7 +201,7 @@
 							<button type="button" class="btn btn-info"data-toggle="modal" data-target="#modalDeSeleccion" id="btnPropietario" value="2">Tengo una Cancha</button>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 			      
@@ -224,18 +224,22 @@
 	                                <div class="form-group">
 	                                    <label for="usuario" class="control-label">Usuario:</label>
 	                                    <input type="text" class="form-control" id="usuario" placeholder="Ingrese su nombre de Usuario" name="usuario" required>
+	                                    <p class="bg-danger oculto" id="errorRegistroUsuario"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputPassword" class="control-label">Contraseña:</label>
 	                                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese Contraseña" name="password" required>
+	                                    <p class="bg-danger oculto" id="errorPasswordPassword1"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputRepetirPassword" class="control-label">Confirmar Contraseña:</label>
 	                                    <input type="password" class="form-control" id="inputRepetirPassword" placeholder="Confirme Contraseña" name="repetirpassword" required>
+	                                    <p class="bg-danger oculto" id="errorPasswordPassword2"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="email" class="control-label">Email:</label>
 	                                    <input type="email" class="form-control" id="email" placeholder="Ingrese su Email" name="email" required>
+	                                    <p class="bg-danger oculto" id="errorEmail"></p>
 	                                </div>
 
 	                                <br>
@@ -245,7 +249,7 @@
 	                                	</div>
 	                                </div>
 	                            </form>
-	                            <p class="bg-danger" id="errorVRegistroPHP"></p>
+	                            <p class="bg-danger oculto" id="errorVRegistroPHP"></p>
 	                        </div>
                         </div>
                    	</div>                    
@@ -306,10 +310,12 @@
 	                                <div class="form-group">
 	                                    <label for="usuarioLogin" class="control-label">Usuario:</label>
 	                                    <input type="text" class="form-control" id="usuarioLogin" placeholder="Ingrese su nombre de Usuario" name="usuarioLogin" required>
+	                                    <p class="bg-danger oculto" id="errorLoginUsuario"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputPasswordLogin" class="control-label">Contraseña:</label>
 	                                    <input type="password" class="form-control" id="inputPasswordLogin" placeholder="Ingrese Contraseña" name="passwordLogin" required>
+	                                    <p class="bg-danger" id="errorLoginPassword"></p>
 	                                </div>
 	                                <br>
 	                                <div class="form-group">
@@ -319,7 +325,7 @@
 	                                    <button type="button" class="btn btn-link">Olvidaste la contraseña</button>
 	                                </div>
 	                            </form>
-	                            <p class="bg-danger" id="errorVLoginPHP"></p>
+	                            <p class="bg-danger oculto" id="errorVLoginPHP"></p>
 	                        </div>
                     	</div>
 			        </div>
