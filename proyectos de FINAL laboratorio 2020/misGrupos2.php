@@ -1,3 +1,18 @@
+<?php
+require_once("php/conexion.php");
+
+$conn = getConnection();
+
+$sql= "SELECT grupos.ID_GRUPO, grupos.NOMBRE, grupos.CANT_MIEMBROS, fotos.RUTA FROM grupos, fotos WHERE grupos.ID_FOTO=fotos.ID_FOTO and grupos.ID_GRUPO=:idgrupo";
+$resultados=$conn->prepare($sql);
+
+$resultados->execute(array(":idgrupo"=>$_GET["nameid"]));
+
+$registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
+
+closeConnection($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,7 +40,7 @@
 				    <span class="icon-bar"></span>
 				    <span class="icon-bar"></span>
 				    </button>
-				    <a class="navbar-brand" href="misGrupos.html">Atras</a>
+				    <a class="navbar-brand" href="misGrupos.php">Atras</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -38,50 +53,38 @@
 			</div>
 		</nav>
 	</div>
-
-
 	
-		<div class="row">
-
-			<div class="panel panel-primary">
-				<br>
-
-					<div class="row">
-				
-					<div class="panel-heading">
+	<div class="row">
+		<div class="panel panel-primary">
+			<br>
+			<div class="row">			
+				<div class="panel-heading">
 					<div id="Dimg" class="col-sm-3 col-xs-6">
-						
+						<img class="img-responsive" src="imagenes/<?php echo ($registros[0]["RUTA"])?>" alt="Imagen no encontrada">
 					</div>
 					<div id="Dnom" class="col-sm-5 col-xs-6">
-						
-						<a data-toggle="modal" id="bus" value="<?php echo ($_GET["nameid"]);?>" data-target="#myModal">Administrar Grupo</a>
-						<button id="saa">asdas</button>
+						<h1><?php echo ($registros[0]["NOMBRE"]) ?></h1><br>
+						<p><?php echo ($registros[0]["CANT_MIEMBROS"]) ?>/25</p><br>
+						<a data-toggle="modal" data-target="#myModal">Administrar Grupo</a>
 					</div>
 					<div id="Dbut" class="col-sm-4">
 						<br>
+						<button class="btn-danger btn-lg">Abandonar Grupo</button>
 					</div>
-					</div>
-					</div>
-
-				
-
-				<div class="panel-body">
-				<div>
-					<h2>Lista de Miembros</h2>
-					
 				</div>
-
+			</div>			
+			<div class="panel-body">
+				<div>
+					<h2>Lista de Miembros</h2>				
+				</div>
 				<div>
 					<ul id="list" class="list-group">
 						
 					</ul>
 				</div>
-				</div>
-
-
-
 			</div>
 		</div>
+	</div>
 	
 </div>
 
@@ -105,8 +108,6 @@
       
     </div>
   </div>
-
-
 
 </body>
 </html>
