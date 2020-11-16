@@ -32,7 +32,10 @@ function obtenerMisPartidos(id_user){
 
 		},
 		success:  function (response) {
+			if (response.length>0) {
 			$.each(response, function(){
+				
+
 
 					if (this.ID_TIPO==4 && this.CANTIDAD_DE_JUGADORES_ACTUALES>=8 && this.CANTIDAD_DE_JUGADORES_ACTUALES<16) {
 						$("#misPartidos").append("<tr><td>"
@@ -168,6 +171,10 @@ function obtenerMisPartidos(id_user){
 					}
 					
 				});
+			}
+			else{
+				$("#misPartidos").append('<tr><td colspan="6"><div class="alert alert-info"><strong>No tenes partidos organizados.</strong></div></td></tr>');
+			}
 
 				$("[name=boton_publicar]").click(function(event) {
 					if (verSiEstapublicado($(this).val())) {

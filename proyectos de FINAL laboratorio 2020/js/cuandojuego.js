@@ -32,6 +32,10 @@ function traercuandoJuego(idusuario){
 				});
 			}
 			else{
+				$("body").append('<div class="modal fade" id="modalCuandoJuego" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Todos estos partidos tenes para jugar:</h4></div><div class="modal-body"><div class="panel panel-default"><div class="panel-body"><div class="table-responsive"><table class="table"><thead><tr><th>Fecha</th><th>Hora de inicio</th><th>Hora de fin</th><th>Tipo de Futbol</th><th>jugadores actuales</th></tr></thead><tbody id="partidosQuevoyAJugar"><tr></tr></tbody></table></div></div></div></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>');
+				$("#partidosQuevoyAJugar").empty();
+				$("#modalCuandoJuego").modal("show");
+				$("#partidosQuevoyAJugar").append('<tr><td colspan="5"><div class="alert alert-info"><strong>'+response.error+'</strong></div></td></tr>');
 
 			}
 		},

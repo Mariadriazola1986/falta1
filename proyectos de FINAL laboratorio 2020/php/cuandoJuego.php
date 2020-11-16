@@ -16,7 +16,7 @@
 				$resultados_de_validacion['datos']=$registros;
 			}
 		else{
-			$resultados_de_validacion['error']="El usuario no esta anotado en ningun partido.";
+			$resultados_de_validacion['error']="Lastima, no estas anotado en ningun partido.";
 		}	
 
 	}

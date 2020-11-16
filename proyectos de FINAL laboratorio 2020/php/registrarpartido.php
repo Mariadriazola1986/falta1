@@ -20,7 +20,7 @@
                         $existe_partido=$resultado_partidos->fetchAll(PDO::FETCH_ASSOC);//cuidado con fetch(solo trae la primer fila) y fetchAll(trae todas las filas) 
                        
                         
-                        if ($existe_partido) {
+                        if ($existe_partido) {// si exite algun partido en esa fecha
                             $sql_sumar_duracion="SELECT * FROM tipos_de_futbol WHERE tipos_de_futbol.ID_TIPO=:id_tipo_futbol";
                         	$resultado_Deduracion=$conn->prepare($sql_sumar_duracion);
                         	$resultado_Deduracion->execute(array(":id_tipo_futbol"=>$tipo_futbol));
@@ -32,8 +32,7 @@
 		                        $todoOkParaCargar=true;
 		                        
 		                        foreach ($existe_partido as $partidosH) {
-		                    
-
+		                    		
 		                        	if ($horaInicioMipartidoingresado == $partidosH["HORA"] || $horaInicioMipartidoingresado == $partidosH["HORA_FIN"]) {
 		                        		$resultados_de_validacion['error']="Ya tenes un partido organizado dentro del horario que seleccionaste.";
 		                        		$todoOkParaCargar=false;
@@ -81,6 +80,37 @@
 				                    	}
 		                        }
 		                        
+	                    	}
+                        }
+                        else{//si no existe que guarde el partido sin porblemas
+
+	                        $conn = getConnection();
+	                        $sql_duracion="SELECT * FROM tipos_de_futbol WHERE tipos_de_futbol.ID_TIPO=:id_tipo_futbol";
+	                        $resultado_duracion=$conn->prepare($sql_duracion);
+	                        $resultado_duracion->execute(array(":id_tipo_futbol"=>$tipo_futbol));
+	                        if ($resultado_duracion->rowCount()>0) {   
+		                        $duracion=$resultado_duracion->fetch(PDO::FETCH_ASSOC);
+		                        $duracionfulbol=[$duracion["DURACION"],$hora];
+		                        $total_duracion=sumarHoras($duracionfulbol);
+
+		                        $sql="INSERT INTO partidos (ID_PARTIDO, ID_USUARIO, FECHA, HORA,HORA_FIN,TIPO_DE_FUTBOL,CANTIDAD_DE_JUGADORES_ACTUALES) VALUES (NULL,:id_usuario,:dia,:hora,:hora_fin,:tipo_futbol,1)";
+		                        $resultado=$conn->prepare($sql);
+		                        $resultado->execute(array(":id_usuario"=>$id_usuario,":dia"=>$dia,":hora"=>$hora,":hora_fin"=>$total_duracion,":tipo_futbol"=>$tipo_futbol));
+	                            $idultimo=$conn->lastInsertId();
+		                        if ($resultado->rowCount()>0) {//si si se pudo ingresar los datos que se confirme que no hubo errores
+	                                $sql_juega_partido="INSERT INTO usuarios_juegan_partidos (ID_USUARIO, ID_PARTIDO, ID_INVITADO) VALUES (:id_usuario,:partido, NULL)";
+	                                $resultado_juego=$conn->prepare($sql_juega_partido);
+	                                $resultado_juego->execute(array(":id_usuario"=>$id_usuario,":partido"=>$idultimo));
+		                        	$resultados_de_validacion['error']='NO';
+		                        }
+		                					
+		                		else{
+		                			$resultados_de_validacion['error']="Los datos no fueron cargados por favor presione nuevamente registrar partido";
+		                		}
+		                        closeConnection($conn);
+	                    	}
+	                    	else{
+	                    		$resultados_de_validacion['error']="No se pudo traer los datos de duracion del tipo de futbol";
 	                    	}
                         }
 
