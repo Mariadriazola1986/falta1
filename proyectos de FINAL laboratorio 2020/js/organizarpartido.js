@@ -344,6 +344,9 @@ function registrarPartido(id_user,date,time,futbol_type){
 				$("#misPartidos>tr").empty();
 				obtenerMisPartidos($("#btnRegistrarPartido").val());
 			}
+			else{
+				mostrarError($("#errorDeFechaseleccionada"),response.error);
+			}
 		},
 		error: function (xhr, status, error) {
 			console.log(error);

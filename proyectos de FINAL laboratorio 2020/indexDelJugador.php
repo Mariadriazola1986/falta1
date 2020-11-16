@@ -119,12 +119,13 @@
 											</select>
 											<a href="#" data-toggle="tooltip" title="La duracion del partido depende del tipo de futbol seleccionado">info</a>
 	                                	</div>
-	                                	<span class="class label label-danger" id="errorDeFutbolseleccionado"></span>
+	                                	<p class="bg-danger oculto" id="errorDeFutbolseleccionado"></p>
 	                                	<div class="form-group">
 	                                    	<h4><label for="horaInicioPartidoOrganizado" class="label label-info">Selecciona la hora de inicio:</label></h4>
 	                                    	<input type="time" class="form-control" id="horaInicioPartidoOrganizado" name="horaInicioPartidoOrganizado" required>
 	                                	</div>
-	                                	<span class="class label label-danger" id="errorDeHoraseleccionada"></span>
+	                                	<p class="bg-danger oculto" id="errorDeHoraseleccionada"></p>
+	          
 	                                	<button type="submit" class="btn btn-success" id="btnRegistrarPartido" value="<?php echo($_SESSION['ID_USUARIO']) ?>">Registrar Partido</button>
 								</form>
 	                        </div>
