@@ -53,7 +53,9 @@
 						
 					</div>
 					<div id="Dnom" class="col-sm-5 col-xs-6">
-						<a data-toggle="modal" data-target="#myModal">Administrar Grupo</a>
+						
+						<a data-toggle="modal" id="bus" value="<?php echo ($_GET["nameid"]);?>" data-target="#myModal">Administrar Grupo</a>
+						<button id="saa">asdas</button>
 					</div>
 					<div id="Dbut" class="col-sm-4">
 						<br>
@@ -66,6 +68,7 @@
 				<div class="panel-body">
 				<div>
 					<h2>Lista de Miembros</h2>
+					
 				</div>
 
 				<div>

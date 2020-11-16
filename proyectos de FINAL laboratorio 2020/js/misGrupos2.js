@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$.ajax({
+	/*$.ajax({
 		type: "POST",
 		url: "json/grupos.json",
 		dataType: "json",
@@ -13,6 +13,29 @@ $(document).ready(function(){
 
 		}
 	})
+	*/
+	var algo = {"sape":$("#bus").val()};
+	console.log($("#bus").val());
+
+	$("#saa").click(function(){
+		tuto();
+	})
+
+	// $.ajax({
+	// 	data: algo,
+	// 	type: "POST",
+	// 	url: "php/esteGrupo.php",
+	// 	dataType: "json",
+	// 	success: function(result){
+
+	// 		$("#Dimg").append($("<img>").attr("src", "imagenes/"+result[0].RUTA));		
+	// 		$("#Dnom").prepend(result.CANT_MIEMBROS + "<br>");
+	// 		$("#Dnom").prepend(result.NOMBRE + "<br>");
+	// 		$("#Dbut").append($("<button></button>").attr("class", "btn-danger btn-lg").text("Abandonar Grupo"));
+
+	// 	}
+	// })
+
 
 	/*$.ajax({
 		type: "POST",
@@ -41,8 +64,8 @@ $(document).ready(function(){
 	})
 
 
-
-
-
-
 })
+
+function tuto(){
+	console.log($("#bus").val());
+}

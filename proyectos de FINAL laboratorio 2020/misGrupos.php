@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/micss.css">
 	<link rel="stylesheet" href="css/visualizar_canchas.css">
 	<script type="text/javascript" src="js/misGrupos.js"></script>
-	<script type="text/javascript" src="js/busquedaGrupos.js"></script>
+
 
 	
 
@@ -59,11 +59,7 @@
 			</div>
 		</div>
 	</div>
---------------
 
-
-
---------------
 
 	<div class="row">
 
@@ -73,8 +69,12 @@
         </div>
         <div class="panel-body">
         	<div class="row">
+        		<div id="nohay" class="alert alert-info">
+  					<strong>Actualmente no se encuentra en ningún grupo</strong> 
+				</div>
         		<div class="table-responsive">
-        			<table class="table table-hover">
+        			<!-- <form action="misGrupos2.php" method="POST"> -->
+        			<table id="latabla" class="table table-hover">
 						<thead>
 							<th>Imagen</th>
 							<th>Nombre</th>
@@ -84,6 +84,7 @@
 						<tbody id="tablaG">
 						</tbody>
 					</table>
+					<!-- </form> -->
         		</div>
         	</div>
         </div>
@@ -92,6 +93,29 @@
 	</div>
 
 </div>
+
+
+
+
+			<div class="modal fade" id="grupo_creado" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Creando Grupo</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<div class="alert alert-success">
+  							<strong>El grupo a sido creado exitosamente</strong>
+						</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" id="cargarGrupos" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+  			</div>
 
 
 
@@ -150,7 +174,7 @@
 							<input class="finput" type="text" name="nombre" id="nombre">
 							<button type="button" id="bus">Buscar</button>
 						</form>
-						<h1 id="R">No se encontro Resultado</h1>
+						<h1 id="sinGrupos">No se encontro Resultado</h1>
 					<br>
 					<br>
 					<table>
@@ -162,7 +186,7 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tbody id="T">
+						<tbody id="Tablabuscada">
 							
 						</tbody>
 					</table>
@@ -266,8 +290,6 @@
       </div>
 	</div>
 </div>
-
-
 
 
 
