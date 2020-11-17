@@ -32,6 +32,7 @@
 				    <span class="icon-bar"></span>
 				    </button>
 				    <a class="navbar-brand" href="#">falta1.com</a>
+				    <a class="navbar-brand" href="indexDelJugador.php"><span class="glyphicon glyphicon-arrow-left"></span> Atras</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -51,8 +52,6 @@
 				<h4>Jugador <?php echo $_SESSION["NOMBRE"];?> Elegi la opcion que vos quieras:</h4>
 			</div>
 			<div class="panel-body">
-				<a href="indexDelJugador.php"><button type="button" class="btn btn-default">Atras</button></a>
-				
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBusqueda" id="Botonazo" value="<?php echo($_SESSION['ID_USUARIO']) ?>">Busqueda De grupos</button>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalCrear">Crear Grupo</button>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSoli">Solicitudes</button>
@@ -73,7 +72,7 @@
   					<strong>Actualmente no se encuentra en ningún grupo</strong> 
 				</div>
         		<div class="table-responsive">
-        			<!-- <form action="misGrupos2.php" method="POST"> -->
+        			
         			<table id="latabla" class="table table-hover">
 						<thead>
 							<th>Imagen</th>
@@ -84,7 +83,7 @@
 						<tbody id="tablaG">
 						</tbody>
 					</table>
-					<!-- </form> -->
+					
         		</div>
         	</div>
         </div>
@@ -235,7 +234,7 @@
 	                                <br>
 	                                <div class="form-group">
 	                                	<label for="listaJ"><button type="button" id="agregar" data-toggle="modal" data-target="#modal2">Agregar Jugadores</button></label>
-	                                	
+	                       
 	                                	<ul id="listaJ">
 	                                		
 	                                	</ul>

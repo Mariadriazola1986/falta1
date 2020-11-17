@@ -19,7 +19,7 @@ $(document).ready(function(){
 		if (x!="") {
 			$.ajax({
 				type: "POST",
-				url: "php/misGrupos2.php",
+				url: "php/traerJugadores.php",
 				dataType: "json",
 				success: function(result){
 					$.each(result, function(){
@@ -102,6 +102,7 @@ function esteGrupo(){
 	$("table tbody tr button").click(function(){
 		var flash = this.id;
 		var final = flash.slice(3);
+
 		
 		$(location).attr('href',"misGrupos2.php?nameid="+final);
 
