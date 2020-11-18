@@ -1,11 +1,6 @@
 <?php
 require_once("php/conexion.php");
 require_once("php/verificarSesion.php");
-$conn = getConnection();
-$sql= "SELECT grupos.ID_USUARIO_CREADOR, grupos.ID_GRUPO, grupos.NOMBRE, grupos.CANT_MIEMBROS, fotos.RUTA FROM grupos, fotos WHERE grupos.ID_FOTO=fotos.ID_FOTO and grupos.ID_GRUPO=:idgrupo";
-$resultados=$conn->prepare($sql);
-$resultados->execute(array(":idgrupo"=>$_GET["nameid"]));
-$registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -63,12 +58,9 @@ $registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
 
 
 					<div id="Dimg" class="col-sm-3 col-xs-6">
-						
-						<img class="img-responsive" src="imagenes/<?php echo ($registros[0]["RUTA"])?>" alt="Imagen no encontrada">
 					</div>
 					<div id="Dnom" class="col-sm-4 col-xs-6">
-						<h1><?php echo ($registros[0]["NOMBRE"]) ?></h1>
-						<h3><?php echo ($registros[0]["CANT_MIEMBROS"]) ?>/25</h3>
+						
 						<a data-toggle="modal" data-target="#modalEditar" id="esAdmin">Administrar Grupo</a>
 					</div>
 					<div id="Dbut" class="col-sm-4">
@@ -80,27 +72,14 @@ $registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
 				</div>
 			</div>			
 
-			<?php
-			$sqljugadores= "SELECT usuarios.ID_USUARIO, usuarios.NOMBRE FROM `grupos_usuarios`, usuarios WHERE grupos_usuarios.ID_GRUPO=:idgrupousuario AND grupos_usuarios.ID_USUARIO=usuarios.ID_USUARIO";
-			$listajugadores=$conn->prepare($sqljugadores);
-			$listajugadores->execute(array(":idgrupousuario"=>$registros[0]["ID_GRUPO"]));
-			$jugadores=$listajugadores->fetchAll(PDO::FETCH_ASSOC);
-			closeConnection($conn);
-			?>
 
-			<div value="<?php echo ($registros[0]["ID_GRUPO"]) ?>" id="buscador" class="panel-body">
-				<div>
-					<h2>Lista de Miembros</h2>				
-				</div>
-				<div>
-					<ul id="list" class="list-group">
-						<?php
-						foreach ($jugadores as $player) {
-							echo "<li class='list-group-item' value=".$player["ID_USUARIO"].">".$player["NOMBRE"]."</li>";
-						}
-						?>
-					</ul>
-				</div>
+
+			<div class="panel-body">
+				<h2>Lista de Miembros</h2>				
+				
+				<ul id="list" class="list-group">
+
+				</ul>			
 			</div>
 		</div>
 	</div>
@@ -108,14 +87,14 @@ $registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
   <!-- Modal -->
-  <div class="modal fade" value="<?php echo ($registros[0]["ID_USUARIO_CREADOR"]) ?>" id="modalEditar" role="dialog">
+  <div class="modal fade" id="modalEditar" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="idSesion" value="<?php echo($_SESSION['ID_USUARIO'])?>">Modificar Grupo</h4>
+          <h4 class="modal-title">Modificar Grupo</h4>
         </div>
         <div class="modal-body">          
         	<div class="panel panel-default">

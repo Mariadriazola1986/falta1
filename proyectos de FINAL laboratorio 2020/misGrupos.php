@@ -67,7 +67,7 @@
         	<h4>Mis Grupos</h4>
         </div>
         <div class="panel-body">
-        	<div class="row">
+        	
         		<div id="nohay" class="alert alert-info">
   					<strong>Actualmente no se encuentra en ningún grupo</strong> 
 				</div>
@@ -77,7 +77,7 @@
 						<thead>
 							<th>Imagen</th>
 							<th>Nombre</th>
-							<th>Cantidad</th>
+							<th>Cantidad de miembros</th>
 							<th></th>
 						</thead>
 						<tbody id="tablaG">
@@ -85,7 +85,7 @@
 					</table>
 					
         		</div>
-        	</div>
+        	
         </div>
     </div>
 
@@ -232,13 +232,13 @@
         								<input class="form-control" type="file" name="fotoG" id="fotoG" required>
 	                                </div>
 	                                <br>
-	                                <div class="form-group">
+	                                <!-- <div class="form-group">
 	                                	<label for="listaJ"><button type="button" id="agregar" data-toggle="modal" data-target="#modal2">Agregar Jugadores</button></label>
 	                       
 	                                	<ul id="listaJ">
 	                                		
 	                                	</ul>
-	                                </div>
+	                                </div> -->
 	                                <br>
 	                                <div class="row">
 	                                	<div class="form-group col-md-6">

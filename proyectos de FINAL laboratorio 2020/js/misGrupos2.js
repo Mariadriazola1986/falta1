@@ -1,39 +1,55 @@
 $(document).ready(function(){
+	
+	verGrupo();
 
-	// $.ajax({
-	// 	type: "POST",
-	// 	url: "php/traerJugadores.php",
-	// 	dataType: "json",
-	// 	success: function(result){
-	// 		$.each(result,function(){
-	// 			$("#list").append($("<li></li>").attr("class", "list-group-item").text(this));
-	// 		})
+	$.ajax({
+		type: "POST",
+		url: "php/jugadoresEngrupo.php",
+		dataType: "json",
+		success: function(result){
+	 		$.each(result,function(){
+				$("#list").append($("<li></li>").attr("class", "list-group-item").text(this.NOMBRE));
+	 		})
 			
-	// 	}
-	// })
+	 	}
+	})
 
-	// $("#algo").click(function(){
-		
-	// 	for (var i = $("#list li").length - 1; i >= 0; i--) {
-			
-	// 		var z = $($("#list li")[i]).val();
 
-	// 		console.log(z);		
-	// 	}
-		
-	// })
+	//---------------------------------------------
+
 
 	$("#esAdmin").click(function(){
-		if ($("#modalEditar").val()!=$("#idSesion").val()) {
-			$("#panelModificar").html("<div id='nohay' class='alert alert-info'><strong>No Tiene los derechos para modificar este grupo</strong></div>");
-		}
-		console.log($("#idSesion").val());
+		$.ajax({
+			url:"php/esCreador.php",
+			type:"post",
+			dataType:"text",
+			success: function(event){
+				if (event==false) {
+					$("#panelModificar").html("<div id='nohay' class='alert alert-info'><strong>No Tiene los derechos para modificar este grupo</strong></div>");
+				}
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		})
+
 	})
+
+	//----------------------------------------------
+
 
 	$("#modificar").submit(function(event){
 		event.preventDefault();
 		modificarGrupo();
 	})
+
+
+	//---------------------------------------------------
+
+
+
+
+	//----------------------------------------------------
 
 })
 
@@ -47,10 +63,10 @@ function modificarGrupo(){
 	}
     
 	archivos.append("nombre",$("#nombreGrupo").val());
-	archivos.append("idgrupo",$("#buscador").val());
+	
 
 	$.ajax({
-		url: "php/esteGrupo.php",
+		url: "php/actualizarGrupo.php",
 		dataType: "text",
 		data: archivos,
 		type: "post",
@@ -64,6 +80,23 @@ function modificarGrupo(){
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
+		}
+	})
+}
+
+function verGrupo(){
+	$.ajax({
+		url:"php/recargarGrupo.php",
+		type:"post",
+		dataType:"json",
+		success:function(event){
+			$("#Dimg").append($("<img alt='aca va algo'>").attr("src","imagenes/"+event[0].RUTA));
+			$("#Dnom").prepend($("<h3></h3>").text(event[0].CANT_MIEMBROS+"/25"));
+			$("#Dnom").prepend($("<h1></h1>").text(event[0].NOMBRE));
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+			console.log("ah shit, here we go again");
 		}
 	})
 }

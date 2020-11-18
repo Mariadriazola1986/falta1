@@ -102,9 +102,21 @@ function esteGrupo(){
 	$("table tbody tr button").click(function(){
 		var flash = this.id;
 		var final = flash.slice(3);
-
+		var zoom = {"elgrupo":final};
+		$.ajax({
+			url:"php/marcarGrupo.php",
+			dataType:"text",
+			type:"post",
+			data: zoom,
+			success: function(event){
+				$(location).attr('href',"misGrupos2.php");
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("Otro error del que no tengo idea");
+			}
+		})
 		
-		$(location).attr('href',"misGrupos2.php?nameid="+final);
 
 	})	
 }

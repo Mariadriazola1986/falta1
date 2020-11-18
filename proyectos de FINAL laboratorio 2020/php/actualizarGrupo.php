@@ -1,5 +1,6 @@
 <?php
 require_once("conexion.php");
+session_start();
 $ruta = '../imagenes/';
 $sepuedeCargarDatos=array();
 $imagenesCargadasalservidor=array();
@@ -32,11 +33,11 @@ else{
 
 	$sqlimagen="UPDATE fotos, grupos SET fotos.RUTA=:newruta WHERE fotos.ID_FOTO=grupos.ID_FOTO AND grupos.ID_GRUPO=:estegrupo";
 	$resultadoimagenes=$conn->prepare($sqlimagen);
-	$resultadoimagenes->execute(array(":newruta"=>$_FILES["archivo0"]['name'],":estegrupo"=>$_POST["idgrupo"]));
+	$resultadoimagenes->execute(array(":newruta"=>$_FILES["archivo0"]['name'],":estegrupo"=>$_SESSION["GRUPO_ACTUAL"]));
 
 	$sqlnombre="UPDATE grupos SET NOMBRE=:newnombre WHERE grupos.ID_GRUPO=:grupito";
 	$resultadonombre=$conn->prepare($sqlnombre);
-	$resultadonombre->execute(array(":newnombre"=>$_POST["nombre"],":grupito"=>$_POST["idgrupo"]));
+	$resultadonombre->execute(array(":newnombre"=>$_POST["nombre"],":grupito"=>$_SESSION["GRUPO_ACTUAL"]));
 
 	closeConnection($conn);
 
