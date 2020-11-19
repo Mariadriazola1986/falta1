@@ -1,8 +1,8 @@
 
-$(document).ready(function() {	
+$(document).ready(function() {
     $("#btnUnirseAPartido").click(function(event) {
     	$("#partidosDisponiblesAUnirse>tr").empty();
-    	obtenerPartidosDisponibles($("#btnRegistrarPartido").val());    	
+    	obtenerPartidosDisponibles($("#btnRegistrarPartido").val());
     });
 });
 
@@ -95,7 +95,7 @@ function obtenerPartidosDisponibles(id_user)
 						+this.JUGADORES_MINIMOS_REQUERIDOS+"</div></td><td><button type='button' name='boton_unirse' class='btn btn-info' value="+this.ID_PARTIDO+">Unirte Al Partido</button></td></tr>");
 					}
 			});
-			
+
 			$("[name=boton_unirse]").click(function(event) {
 				unirseAPartido($("#btnRegistrarPartido").val(),$(this).val());
     			//alert($(this).val());
@@ -118,24 +118,25 @@ function unirseAPartido(id_user,id_partido){
 		type: "POST",
 		dataType: "json",
 		beforeSend: function () {
-			
+
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
 					//$("body").append('<div id="myModal" class="modal fade in" role="dialog"><div class="modal-dialog"><!-- Modal content--><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Modal Header</h4></div><div class="modal-body"><p>Some text in the modal.</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>')
 					$("#partidosDisponiblesAUnirse>tr").empty();
-					obtenerPartidosDisponibles($("#btnRegistrarPartido").val()); 
+					obtenerPartidosDisponibles($("#btnRegistrarPartido").val());
 					$("#agregado_al_partido_exito").modal("show");
 					$("form")[0].reset();
-					setTimeout(function(){ 
+					setTimeout(function(){
 					  $("#agregado_al_partido_exito").modal('hide');
 					}, 7000);
 
 			}
 			else{
-				
+				var message = $('<div class="alert alert-danger  alert-dismissible text-center error_message"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+response.error+'</div>');
+				message.appendTo($('#UnirseAPartido')).fadeIn(300).delay(5000).fadeOut(500);
 			}
-			
+
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
