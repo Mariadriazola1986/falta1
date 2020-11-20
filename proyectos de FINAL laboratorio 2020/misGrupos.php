@@ -232,13 +232,7 @@
         								<input class="form-control" type="file" name="fotoG" id="fotoG" required>
 	                                </div>
 	                                <br>
-	                                <!-- <div class="form-group">
-	                                	<label for="listaJ"><button type="button" id="agregar" data-toggle="modal" data-target="#modal2">Agregar Jugadores</button></label>
-	                       
-	                                	<ul id="listaJ">
-	                                		
-	                                	</ul>
-	                                </div> -->
+	                            
 	                                <br>
 	                                <div class="row">
 	                                	<div class="form-group col-md-6">
@@ -265,30 +259,6 @@
 
 
 
-
-  <!-- Modal -->
-<div class="modal fade" id="modal2" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Jugadores</h4>
-        </div>
-        <div class="modal-body">
-          <input id="buscador" type="text" name="juj">
-          <button id="buscador2">Buscar:</button>
-          <br>
-          <ul class="list-group" id="algo">
-          	
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="cerrar" data-dismiss="modal">Agregar</button>
-        </div>
-      </div>
-	</div>
-</div>
 
 
 
