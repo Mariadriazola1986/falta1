@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php 
+	<?php
   		require_once("php/verificarSesion.php");
  	?>
 	<head>
@@ -36,7 +36,7 @@
 				    </div>
 				    <div class="collapse navbar-collapse" id="myNavbar">
 				      <ul class="nav navbar-nav">
-				   
+
 				      </ul>
 				      <ul class="nav navbar-nav navbar-right">
 				        <li><a href="php/cerrarsesion.php"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a></li>
@@ -48,24 +48,24 @@
 
 
 			<div id="queMostrarAPropietario">
-				
+
   			</div>
   			<div class="row">
 				<div class="panel panel-primary">
 					<div class="panel-body">
 						<ul class="nav nav-tabs col-lg-12">
 							<li class="active"><a data-toggle="tab" href="#Canchas">Mis Canchas</a></li>
-					    	
-					    	
+
+
 					  	</ul>
-					  
+
 					</div>
-						
-				</div>		  
+
+				</div>
 			</div>
 			<div class="row">
 				<div class="tab-content">
-				<div id="Canchas" class="tab-pane fade in active"> 
+				<div id="Canchas" class="tab-pane fade in active">
 					<div class="panel panel-primary">
 			        	<div class="panel-heading">
 			            <h4>Mis Canchas</h4>
@@ -74,7 +74,7 @@
 							<div class="row col-md-6">
 								<h2>Busca tu cancha</h2>
 								  <p>Elegi por que parametros filtrar las canchas:</p>
-								  
+
 								    <div class="checkbox">
 								      <label><input type="checkbox" value="" id="checkBoxDistrito">Distrito</label>
 								    </div>
@@ -83,15 +83,15 @@
 								    </div>
 								    <div class="checkbox">
 								      <label><input type="checkbox" value="" id="checkBoxTipoDeFutbol">Tipo De Futbol</label>
-								    </div>							    
-								  
+								    </div>
+
 							</div>
-							<div class="row col-md-6">						
-								
+							<div class="row col-md-6">
+
 									<div class="form-group oculto" id="distrito">
 										<h4><label for="inputDistrito" class="label label-info">Distrito:</label></h4>
 										<input type="text" class="form-control"  id="inputDistrito" placeholder="Ingrese Distrito">
-									</div>													
+									</div>
 									<div class="form-group oculto" id="direccion">
 										<h4><label for="inputDireccion" class="label label-info">Direccion de la Cancha:</label></h4>
 										<input type="text" id="inputDireccion" class="form-control"  placeholder="Ingrese Direccion">
@@ -103,66 +103,67 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<button type="button" class="btn btn-info btn-block" name="filtrar" id="btnBuscarReservas" value="filtrar">Filtrar</button>
+										<button type="button" class="btn btn-info btn-block" name="filtrar" id="btnBuscarCanchas" value="">Filtrar</button>
 									</div>
-									
-							</div>
-						</div>
-						<div class="row" id="canchaResultado">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="panel-group">
-									<div class="panel panel-primary">
-										<div class="panel-heading">Cancha</div>
-										<div class="panel-body">
-											<div class="row">
-												<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-													<div id="carrusel" class="carousel slide" data-ride="carousel">
-														<ol class="carousel-indicators" id="indicadorCancha">
-															
-														</ol>
-														<div class="carousel-inner" id="imagenesCancha">
-															
-														</div>
 
-														<a href="#carrusel" class="left carousel-control" data-slide="prev">
-															<span class="glyphicon glyphicon-chevron-left"></span>
-															<span class="sr-only">Previous</span>
-														</a>
-														<a href="#carrusel" class="right carousel-control" data-slide="next">
-															<span class="glyphicon glyphicon-chevron-right"></span>
-															<span class="sr-only">Next</span>
-														</a>
-													</div>
-												</div>
-												<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
-													<ul>
-														<li id="liDistrito"></li>
-														<li id="liDireccion"></li>
-														<li id="liTipoFutbol"></li>
-														<li id="liPrecio"></li>
-														<li id="liTelefono"></li>
-													</ul>
-												</div>
-											</div>
-										</div>		
-									</div>
-								</div>
 							</div>
+						</div><br>
+						<div class="row" id="canchasFiltradas">
+
 						</div>
+
 					</div>
 				</div>
-				
+
 			</div>
-			
-			
-					
-			
-			  
-		
+
+
+
+
+			<div class="modal fade" id="modalMasInfoCancha" role="dialog">
+			    <div class="modal-dialog">
+
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Informacion de la Cancha</h4>
+			        </div>
+			        <div class="modal-body" >
+			        	<div class="row" id="contenedorcarrusel">
+
+			        	</div>
+			        	<div class="row">
+			        		<ul>
+								<li id="liDistrito"></li>
+								<li id="liDireccion"></li>
+								<li id="liTipoFutbol"></li>
+								<li id="liPrecio"></li>
+								<li id="liTelefono"></li>
+							</ul>
+			        	</div>
+
+                   	</div>
+
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+
+			    </div>
+			</div>
+
+
+
+
+
+
+
+
 
   			<div class="modal fade" id="modalDeSeleccionEstablecimiento" role="dialog">
 			    <div class="modal-dialog">
-			    
+
 			      <!-- Modal content-->
 			      <div class="modal-content">
 			        <div class="modal-header">
@@ -173,7 +174,7 @@
 			        	<span class="label label-success">Tus Establecimientos</span>
                         <div class="panel panel-default">
                         	<div class="panel-body" id="todosLosEstablecimientos">
-	                            
+
 	                        </div>
                         </div>
                         <button type="button" class="btn btn-success" id="irACancha">Siguiente</button>
@@ -183,13 +184,15 @@
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
-			      
+
 			    </div>
 			</div>
 
+
+
 			<div class="modal fade" id="modalCargaCancha" role="dialog">
 			    <div class="modal-dialog">
-			    
+
 			      <!-- Modal content-->
 			      <div class="modal-content">
 			        <div class="modal-header">
@@ -203,7 +206,7 @@
 	                                <div class="form-group">
 	                                    <label for="tipo">Tipo de Cancha:</label>
 										<select class="form-control" id="tipo">
-											
+
 										</select>
 	                                </div>
 	                                <div class="form-group">
@@ -212,34 +215,31 @@
 	                                </div>
 	                                <div class="input-group mb-3">
 									  <div class="input-group-prepend">
-									    
+
 									    <a href="#" data-toggle="tooltip" title="2 como minima y 10 como maxima">Subir imagenes de la cancha</a>
 									  </div>
 									  <div class="custom-file">
 									    <input type="file" class="custom-file-input" id="archivos" required="" multiple data-toggle="tooltip" title="2 como minima y 10 como maxima">
 									  </div>
 									</div><br>
-	                                
+
 	                                    <button type="submit" class="btn btn-success" id="btnRegistrarCancha" value="">Registrar Cancha</button>
-	                                
-	                                
+
+
 	                            </form>
-	                            
+
 	                        </div>
                         </div>
-                        
+
                    	</div>
 
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
-			      
+
 			    </div>
 			</div>
-            
-
-
 
 		</div>
 	</body>
