@@ -18,9 +18,9 @@ function traeCanchasActivas()
 
 		},
 		success:  function (response) {
-			$("#listadoCanchas").empty();
+			
 			if (response.error=="NO") {
-
+				$("#listadoCanchas").empty();
 				$("#listadoCanchas").append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-primary"><div class="panel-heading">Canchas</div><div class="panel-body"><div class="table-responsive"><table class="table table-bordered"><thead><tr><th class="success">Distrito</th><th class="success">Direccion</th><th class="success">Informacion Completa</th></tr></thead><tbody id="lasCanchas"></tbody></table></div></div></div></div>');
 				$("#lasCanchas").empty();
 				$.each(response.datos, function() {
@@ -29,8 +29,8 @@ function traeCanchasActivas()
 				});
 			}
 			else{
-				var message = $('<div class="alert alert-danger  alert-dismissible text-center error_message"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+response.error+'</div>');
-				message.appendTo($('#canchasFiltradas')).fadeIn(300).delay(5000).fadeOut(500);
+				$("#listadoCanchas").append('<div class="panel panel-default"><div class="panel-body"><div class="alert alert-info"><strong>'+response.error+'</strong></div></div></div>');
+				
 			}
 			$("[name=btn_mas_info]").click(function(event) {
 				//$("#canchaResultado").removeClass("oculto");
