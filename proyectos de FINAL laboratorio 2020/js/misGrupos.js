@@ -59,8 +59,98 @@ $(document).ready(function(){
 	
 	//-----------------------------------------
 
+	verSolicitudes();
+
+	//--------------------------------
+
 
 })
+
+
+function verSolicitudes(){
+	$("#sol").html("");
+
+	$.ajax({
+		url:"php/verSolicitudes.php",
+		type:"post",
+		dataType:"json",
+		success:function(result){
+			
+
+
+			$("#cantSol").text("Solicitudes ");
+			$("#cantSol").append("<span class='badge'>"+result.length+"</span>");
+
+
+			$.each(result, function(){
+				$("#sol").append($("<div class='row'></div>").append(
+					$("<div class='col-sm-1'></div>").append("<img class='img-responsive' src=imagenes/"+this.RUTA+" alt='Imagen de grupo'>"),
+					$("<div class='col-sm-2'></div>").append("<h4>Has sido invitado al grupo "+this.NOMBRE+"</h4>"),
+					$("<div class='col-sm-1'></div>").append("<button value=1 id=s"+this.ID_GRUPO+" class='btn-success'>Aceptar</button>"),
+					$("<div class='col-sm-1'></div>").append("<button value=0 id=n"+this.ID_GRUPO+" class='btn-danger'>Rechazar</button>")));
+			})
+			aceptarOrechazar();
+
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+			console.log("Hakuna matata");
+		}
+	})
+
+
+}
+
+
+
+
+
+
+
+
+function aceptarOrechazar(){
+	$("#sol button").click(function(){
+		
+		if (this.value==1) {
+			
+			var idg = this.id;
+			//console.log(idg.substring(1));
+
+			var unido={"acagrupo":idg.substring(1)};
+
+			$.ajax({
+				url:"php/aceptarSolicitudGrupo.php",
+				type:"post",
+				dataType:"text",
+				data:unido,
+				success:function(result){
+					$("#union_exitosa").modal("show");
+					verGrupos();
+					verSolicitudes();
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+					console.log("Otra vez fallo y no se por que");
+				}
+			})
+
+
+
+		}
+		else{
+			console.log("rechazo");
+		}
+
+
+
+
+
+
+	})
+}
+
+
+
 
 function esteGrupo(){
 	$("table tbody tr button").click(function(){
@@ -121,10 +211,8 @@ function creandoGrupo(){
 
 function verGrupos(){
 	$("#tablaG").html("");
-	var bot = {"Batman":$("#Botonazo").val()};
 
 	$.ajax({
-		data: bot,
 		type: "POST",
 		url: "php/traerMisGrupos.php",
 		dataType: "json",

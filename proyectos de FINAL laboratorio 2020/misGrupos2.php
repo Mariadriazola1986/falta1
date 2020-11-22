@@ -160,9 +160,26 @@ require_once("php/verificarSesion.php");
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
+          <h4 class="modal-title">Buscar jugadores para agregar</h4>
         </div>
         <div class="modal-body">
+
+        	<form>
+        		<div class="form-group">
+        			<label for="buscador" class="control-label">Ingrese nombre de jugador</label>
+        			<input type="text" class="form-control" id="buscador" name="buscador">
+        			<br>
+        			<button type="button" id="botonazo">Buscar:</button>
+        		</div>
+        	</form>
+
+        	<div id="noEncontro" class="alert alert-danger">
+  				No se encontraron jugadores con el nombre buscado.
+			</div>
+
+        	<ul id="listAgregar" class="list-group">
+
+        	</ul>
             
         </div>
         <div class="modal-footer">
@@ -176,7 +193,7 @@ require_once("php/verificarSesion.php");
 
 
 
-			<div class="modal fade" id="grupo_creado" role="dialog">
+			<div class="modal fade" id="modificacion_echa" role="dialog">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
 			        <div class="modal-header">
@@ -197,6 +214,26 @@ require_once("php/verificarSesion.php");
   			</div>
 
 
+
+
+
+
+			<div class="modal fade" id="invitacion_enviada" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        
+			        <div class="modal-body">
+			        	<div class="alert alert-success">
+  							<strong>Se ah invitado al grupo correctamente</strong>
+						</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+  			</div>
 
 
 

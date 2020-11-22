@@ -52,9 +52,9 @@
 				<h4>Jugador <?php echo $_SESSION["NOMBRE"];?> Elegi la opcion que vos quieras:</h4>
 			</div>
 			<div class="panel-body">
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBusqueda" id="Botonazo" value="<?php echo($_SESSION['ID_USUARIO']) ?>">Busqueda De grupos</button>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBusqueda">Busqueda De grupos</button>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalCrear">Crear Grupo</button>
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSoli">Solicitudes</button>
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSoli" id="cantSol">Solicitudes </button>
 			</div>
 		</div>
 	</div>
@@ -134,7 +134,9 @@
           <h4 class="modal-title">Solicitudes</h4>
         </div>
         <div class="modal-body">
-
+        	<div id="sol" class="container">
+        		
+        	</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -254,6 +256,26 @@
   			</div>
 
 
+
+			<div class="modal fade" id="union_exitosa" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Unido a grupo</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<div class="alert alert-success">
+  							<strong>Te has unido al grupo exitosamente</strong>
+						</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" id="cargarGrupos" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+  			</div>
 
 
 

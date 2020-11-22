@@ -9,14 +9,17 @@ $conn = getConnection();
 $sql="SELECT grupos.ID_USUARIO_CREADOR FROM grupos WHERE grupos.ID_GRUPO=:elgrupo";
 
 $resultado=$conn->prepare($sql);
-$resultado->execute(":elgrupo"=>$_SESSION["GRUPO_ACTUAL"])
+$resultado->execute(array(":elgrupo"=>$_SESSION["GRUPO_ACTUAL"]));
 
-if ($resultado==$_SESSION["ID_USUARIO"]) {
+$registros=$resultado->fetchAll(PDO::FETCH_ASSOC);
+
+if ($registros[0]["ID_USUARIO_CREADOR"]==$_SESSION["ID_USUARIO"]) {
 	array_push($libro,true);
 }
 else{
 	array_push($libro,false);
 }
 closeConnection($conn);
-echo ($libro);
+
+echo json_encode($libro);
 ?>

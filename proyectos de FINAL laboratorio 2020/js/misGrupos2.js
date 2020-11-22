@@ -22,9 +22,9 @@ $(document).ready(function(){
 		$.ajax({
 			url:"php/esCreador.php",
 			type:"post",
-			dataType:"text",
+			dataType:"json",
 			success: function(event){
-				if (event==false) {
+				if (event[0]==false) {
 					$("#panelModificar").html("<div id='nohay' class='alert alert-info'><strong>No Tiene los derechos para modificar este grupo</strong></div>");
 				}
 			},
@@ -37,6 +37,7 @@ $(document).ready(function(){
 
 	//----------------------------------------------
 
+	
 
 	$("#modificar").submit(function(event){
 		event.preventDefault();
@@ -46,10 +47,16 @@ $(document).ready(function(){
 
 	//---------------------------------------------------
 
+	$("#noEncontro").hide();
 
-
+	$("#botonazo").click(function(){
+		buscandoJugadores();
+	})
 
 	//----------------------------------------------------
+
+
+
 
 })
 
@@ -75,7 +82,7 @@ function modificarGrupo(){
         contentType: false,
 		success: function(response){
 			$("#modalEditar").modal("hide");
-			$("#grupo_creado").modal('show');
+			$("#modificacion_echa").modal('show');
 			//$("form")[1].reset();
 		},
 		error: function (xhr, status, error) {
@@ -97,6 +104,92 @@ function verGrupo(){
 		error: function (xhr, status, error) {
 			console.log(error);
 			console.log("ah shit, here we go again");
+		}
+	})
+}
+
+function buscandoJugadores(){
+
+	if ($("#buscador").val()=="") {
+		$("#noEncontro").show();
+		$("#listAgregar").html("");
+	}
+	else{
+		$("#noEncontro").hide();
+		$("#listAgregar").html("");
+		var michi = $("#buscador").val().toLowerCase();
+
+		$.ajax({
+			url:"php/traerJugadores.php",
+			type:"post",
+			dataType:"json",
+			success:function(event){
+				$.each(event, function(){
+					var nom = this.NOMBRE.toLowerCase();
+					if (nom.includes(michi)) {
+						$("#listAgregar").append($("<div class='row'></div>").append(
+							$("<div class='col-sm-8'></div>").append("<li class='list-group-item'>"+this.NOMBRE+"</li>"),
+							$("<div class='col-sm-4'></div>").append("<button class='btn btn-primary' value="+this.ID_USUARIO+">Invitar al grupo</button>")));
+					
+					}
+					
+				});
+				if ($("#listAgregar").html()=="") {
+					$("#noEncontro").show();
+				}
+				comprobarSolicitud();
+				enviarSolicitud();
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("ah shit, here we go again en traer jugadores");
+			}
+		})
+	}
+	
+}
+
+function enviarSolicitud(){
+	$("#listAgregar button").click(function(){
+		
+		var gato ={"jugador":this.value};
+
+		$.ajax({
+			url:"php/enviarSolicitud.php",
+			type:"post",
+			dataType:"text",
+			data:gato,
+			success: function(echo){
+				$("[value="+gato.jugador+"]").text("En Espera").attr("disabled","");
+				$("#invitacion_enviada").modal("show");
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("ah shit, here we go again puta madre");
+			}
+		})		
+	})
+}
+
+function comprobarSolicitud(){
+
+	$.ajax({
+		url:"php/SolicitudEnEspera.php",
+		type:"post",
+		dataType:"json",
+		success:function(result){
+			$.each(result,function(){
+				var neko = this.ID_USUARIO;
+				for (var i = $("#listAgregar button").length - 1; i >= 0; i--) {
+					if ($($("#listAgregar button")[i]).val()==neko) {
+						$("[value="+neko+"]").text("En Espera").attr("disabled","");
+					}
+				}
+			})
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+			console.log("ah shit, here we go again es como la quinta");
 		}
 	})
 }
