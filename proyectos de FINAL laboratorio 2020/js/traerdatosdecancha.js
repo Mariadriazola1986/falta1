@@ -35,14 +35,14 @@ $(document).ready(function()
 	obtenerDeTipoCanchas();
 
 	$("#btnBuscarCanchas").click(function(event) {
-		buscarCanchas("","",$("#tipoFutbol").children('option:selected').val());
+		buscarCanchas("","",$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val());
 	});
 
 });
 
-function buscarCanchas(inputDistrito,inputDireccion,selecttipocancha)
+function buscarCanchas(inputDistrito,inputDireccion,selecttipocancha,idusuario)
 {
-	var parametros={"distrito":inputDistrito,"direccion":inputDireccion,"selecttipocancha":selecttipocancha};
+	var parametros={"distrito":inputDistrito,"direccion":inputDireccion,"selecttipocancha":selecttipocancha,"idusuario":idusuario};
 	$.ajax
 	({
 		data: parametros,
