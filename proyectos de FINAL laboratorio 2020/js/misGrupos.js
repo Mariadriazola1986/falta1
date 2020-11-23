@@ -7,9 +7,7 @@ $(document).ready(function(){
 		creandoGrupo();
 	})
 
-	$("#cargarGrupos").click(function(){
-		verGrupos();
-	})
+
 
 
 
@@ -186,7 +184,6 @@ function creandoGrupo(){
 	}
     
 	archivos.append("nombre",$("#nombreGrupo").val());
-	archivos.append("idusuario",$("#Botonazo").val());
 
 	$.ajax({
 		url: "php/crearGrupo.php",
@@ -200,6 +197,7 @@ function creandoGrupo(){
 			$("#modalCrear").modal("hide");
 			$("#grupo_creado").modal('show');
 			$("form")[1].reset();
+			verGrupos();
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
