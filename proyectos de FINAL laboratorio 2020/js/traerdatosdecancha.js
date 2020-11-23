@@ -4,28 +4,39 @@ $(document).ready(function()
 	$("#checkBoxDistrito").change(function() {
     //Si el checkbox está seleccionado
     	if($(this).is(":checked")) {
+    		$("#inputDistrito").prop('required', true);
+    		$("#btnBuscarCanchas").removeClass('oculto');
       		$('#distrito').toggle(1000);
     	}
     	else {
+    		$("#inputDistrito").prop('required', false);
       		$('#distrito').toggle(1000);
     	}
   	});
 
   	$("#checkBoxDireccion").change(function() {
+ 
     //Si el checkbox está seleccionado
     	if($(this).is(":checked")) {
+    		$("#inputDireccion").prop('required', true);
+    		$("#btnBuscarCanchas").removeClass('oculto');
       		$('#direccion').toggle(1000);
     	}
     	else {
+    		$("#inputDireccion").prop('required', false);
       		$('#direccion').toggle(1000);
     	}
   	});
   	$("#checkBoxTipoDeFutbol").change(function() {
+ 
     //Si el checkbox está seleccionado
     	if($(this).is(":checked")) {
+    		$("#tipoFutbol").prop('required', true);
+    		$("#btnBuscarCanchas").removeClass('oculto');
       		$('#tipodefutbol').toggle(1000);
     	}
     	else {
+    		$("#tipoFutbol").prop('required', false);
       		$('#tipodefutbol').toggle(1000);
     	}
   	});
@@ -34,9 +45,48 @@ $(document).ready(function()
 	//obtenerDatosCancha();
 	obtenerDeTipoCanchas();
 
-	$("#btnBuscarCanchas").click(function(event) {
-		buscarCanchas("","",$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val());
+	$("#formFiltradoCancha").submit(function(event) {
+		event.preventDefault();
+		if ($("#checkBoxDistrito").prop('checked'))//si solo distrito esta seleccionado
+		{
+			
+			buscarCanchas($("#inputDistrito").val(),"","",$("#idUsuario").val());
+		}
+
+		else if ($("#checkBoxDireccion").prop('checked')) {//si solo direccion esta seleccionado
+
+			buscarCanchas("",$("#inputDireccion").val(),"",$("#idUsuario").val());
+		}
+
+		else if ($("#checkBoxTipoDeFutbol").prop('checked')) {//si solo tipo de futbol esta seleccionado
+
+			buscarCanchas("","",$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val());
+		}
+		//-------------------------------------------------------------------------------------------------
+		 if ($("#checkBoxDistrito").prop('checked') && $("#checkBoxDireccion").prop('checked'))//si distrito y direccion esta seleccionado
+		{
+			
+			buscarCanchas($("#inputDistrito").val(),$("#inputDireccion").val(),"",$("#idUsuario").val());
+		}
+		 if ($("#checkBoxTipoDeFutbol").prop('checked') && $("#checkBoxDireccion").prop('checked'))//si tipo de futbol y direccion esta seleccionado
+		{
+			
+			buscarCanchas("",$("#inputDireccion").val(),$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val(),$("#idUsuario").val());
+		}
+		if ($("#checkBoxTipoDeFutbol").prop('checked') && $("#checkBoxDistrito").prop('checked'))//si tipo de futbol y distrito esta seleccionado (Q onda aca?)
+		{
+			
+			buscarCanchas($("#inputDistrito").val(),"",$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val(),$("#idUsuario").val());
+		}
+		if ($("#checkBoxTipoDeFutbol").prop('checked') && $("#checkBoxDistrito").prop('checked') && $("#checkBoxDireccion").prop('checked'))//si tipo de futbol,direccion y distrito esta seleccionado (Q onda aca tambien?)
+		{
+			
+			buscarCanchas($("#inputDistrito").val(),$("#inputDireccion").val(),$("#tipoFutbol").children('option:selected').val(),$("#idUsuario").val(),$("#idUsuario").val());
+		}
+
 	});
+
+
 
 });
 

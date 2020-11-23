@@ -19,6 +19,7 @@
 		<script src="js/unirseapartido.js"></script>
 		<script src="js/enviarInvitacion.js"></script>
 		<script src="js/cuandojuego.js"></script>
+		<script src="js/hoyjuego.js"></script>
 		<title>Jugador</title>
 	</head>
 	<body>

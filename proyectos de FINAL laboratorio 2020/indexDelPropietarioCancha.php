@@ -88,24 +88,25 @@
 
 							</div>
 							<div class="row col-md-6">
+									<form action="#" id="formFiltradoCancha">
+										<div class="form-group oculto" id="distrito">
+											<h4><label for="inputDistrito" class="label label-info">Distrito:</label></h4>
+											<input type="text" class="form-control"  id="inputDistrito" placeholder="Ingrese Distrito" >
+										</div>
+										<div class="form-group oculto" id="direccion">
+											<h4><label for="inputDireccion" class="label label-info">Direccion de la Cancha:</label></h4>
+											<input type="text" id="inputDireccion" class="form-control"  placeholder="Ingrese Direccion">
+										</div>
+										<div class="form-group oculto" id="tipodefutbol">
+											<h4><label for="tipoFutbol" class="label label-info">Tipo de Futbol:</label></h4>
+											<select class="form-control" id="tipoFutbol">
 
-									<div class="form-group oculto" id="distrito">
-										<h4><label for="inputDistrito" class="label label-info">Distrito:</label></h4>
-										<input type="text" class="form-control"  id="inputDistrito" placeholder="Ingrese Distrito">
-									</div>
-									<div class="form-group oculto" id="direccion">
-										<h4><label for="inputDireccion" class="label label-info">Direccion de la Cancha:</label></h4>
-										<input type="text" id="inputDireccion" class="form-control"  placeholder="Ingrese Direccion">
-									</div>
-									<div class="form-group oculto" id="tipodefutbol">
-										<h4><label for="tipoFutbol" class="label label-info">Tipo de Futbol:</label></h4>
-										<select class="form-control" id="tipoFutbol">
-
-										</select>
-									</div>
-									<div class="form-group">
-										<button type="button" class="btn btn-info btn-block" name="filtrar" id="btnBuscarCanchas" value="">Filtrar</button>
-									</div>
+											</select>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-info btn-block oculto" name="filtrar" id="btnBuscarCanchas" value="">Filtrar</button>
+										</div>
+									</form>
 
 							</div>
 						</div><br>
