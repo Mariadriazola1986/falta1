@@ -98,13 +98,21 @@ function validarRegistro(){
 
 function validarMail(input_mail) {
 	var mail=input_mail;
-	var expresion=/^[\w]+@[\w]+\.[a-z]+/;
+	//var expresion=/^[\w]+@[\w]+\.[a-z]+/;
+	
+	// Basicamente, le estoy diciendo que tome todo tipo de letra y/o caracter especial, pero esta condicionado si o si que agregues el "@"" y el "." del final
+	//EJ: "cualquierNumer0ocaracter_especial@cualquierNumer0ocaracter_especial.cualquierNumer0ocaracter_especial"
+	var expresion = /\S+@\S+\.\S+/;
 	
 	if (!expresion.test(mail)){
-		return false;
+		var resultado1=false;
+		console.log(resultado1);
+		return resultado1;
 	}
 	else{
-		return true;
+		resultado1 = true;
+		console.log(resultado1);
+		return resultado1;
 	}
 	
 }

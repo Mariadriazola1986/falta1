@@ -1,4 +1,6 @@
 <?php
+	/*Quiero traer de la BD: nombre, email, rol, y estado de usuario de todos los usuarios que no sean el administrador logueado 
+	PD: Necesito modificar el WHERE con el id del administrador logueado en ese momento*/
 	session_start();
 	require("conexion.php");
 
