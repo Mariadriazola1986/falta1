@@ -105,14 +105,10 @@ function validarMail(input_mail) {
 	var expresion = /\S+@\S+\.\S+/;
 	
 	if (!expresion.test(mail)){
-		var resultado1=false;
-		console.log(resultado1);
-		return resultado1;
+		return false;
 	}
 	else{
-		resultado1 = true;
-		console.log(resultado1);
-		return resultado1;
+		return true;
 	}
 	
 }
