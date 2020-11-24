@@ -10,12 +10,8 @@ $resultados=$conn->prepare($sql);
 $resultados->execute(array(":idusuario"=>$_SESSION["ID_USUARIO"]));
 
 $registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
-$registros_coincidentes=array();
-foreach ($registros as $lala){
-	array_push($registros_coincidentes, $lala);
-}
 
-echo json_encode($registros_coincidentes);
+echo json_encode($registros);
 
 closeConnection($conn);
 

@@ -223,6 +223,8 @@ function aceptarOrechazarCreador(){
 			var idj = this.value;
 			archivos.append("acajugador",idj.substring(1));
 
+			archivos.append("tipo","Acepto");
+
 			$.ajax({
 				url:"php/aceptarSolicitudGrupoJugador.php",
 				type:"post",
@@ -244,7 +246,34 @@ function aceptarOrechazarCreador(){
 
 		}
 		else{
-			console.log("rechazo");
+			var archivos = new FormData();
+			
+			var idg = this.id;
+			archivos.append("acagrupo",idg.substring(1));
+
+			var idj = this.value;
+			archivos.append("acajugador",idj.substring(1));
+
+			archivos.append("tipo","Rechazo");
+
+			$.ajax({
+				url:"php/aceptarSolicitudGrupoJugador.php",
+				type:"post",
+				dataType:"text",
+				data:archivos,
+				processData:false,
+        		cache:false,
+        		contentType: false,
+				success:function(result){
+					$("#rechazo_exitosa").modal("show");
+					verGrupos();
+					verSolicitudes();
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+					console.log("Otra vez fallo y no se por que");
+				}
+			})
 		}
 
 	})
@@ -256,11 +285,14 @@ function aceptarOrechazar(){
 	$("#sol button").click(function(){
 		
 		if ($(this).hasClass("btn-success")) {
-			
+			var unido = new FormData();
+
 			var idg = this.id;
 
-			var unido={"acagrupo":idg.substring(1)};
+			unido.append("tipo","Acepto");
 
+			unido.append("acagrupo",idg.substring(1));
+			
 			$.ajax({
 				url:"php/aceptarSolicitudGrupo.php",
 				type:"post",
@@ -279,7 +311,32 @@ function aceptarOrechazar(){
 
 		}
 		else{
-			console.log("rechazo");
+			var unido = new FormData();
+
+			var idg = this.id;
+
+			unido.append("tipo","Rechazo");
+
+			unido.append("acagrupo",idg.substring(1));
+			
+			$.ajax({
+				url:"php/aceptarSolicitudGrupo.php",
+				type:"post",
+				dataType:"text",
+				data:unido,
+				processData:false,
+        		cache:false,
+        		contentType: false,
+				success:function(result){
+					$("#rechazo_exitosa").modal("show");
+					verGrupos();
+					verSolicitudes();
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+					console.log("Otra vez fallo y no se por que");
+				}
+			})
 		}
 
 	})
