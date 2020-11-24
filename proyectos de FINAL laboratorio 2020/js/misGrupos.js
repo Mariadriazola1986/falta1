@@ -1,3 +1,6 @@
+var grupomio="";
+var jugadorentrar="";
+
 $(document).ready(function(){
 
 	verGrupos();
@@ -14,14 +17,17 @@ $(document).ready(function(){
 	//--------------------------------------------------
 	//PARA BUSCAR GRUPOS
 	$("#sinGrupos").hide();
+	$("#tablaThead").hide();
 
 	$("#bus").click(function(){
 		if ($("#nombre").val()=="") {
 			$("#sinGrupos").show();
 			$("#Tablabuscada").html("");
+			$("#tablaThead").hide();
 		}
 		else{
 			$("#sinGrupos").hide();
+			$("#tablaThead").show();
 			//vaciar la tabla
 			$("#Tablabuscada").html("");
 
@@ -39,15 +45,17 @@ $(document).ready(function(){
 							$("#Tablabuscada").append($("<tr></tr>").append(
 								$("<img>").attr("src", "imagenes/"+this.RUTA),
 								$("<td></td>").text(this.NOMBRE),
-								$("<td></td>").text(this.CANT_MIEMBROS),
-								$("<button></button>").attr("class", "btn-info btn-lg").text("Solicitar Unirse")
+								$("<td></td>").text(this.CANT_MIEMBROS+"/25"),
+								$("<button value="+this.ID_GRUPO+"></button>").attr("class", "btn-info btn-lg").text("Solicitar Unirse")
 							));
 						}
 					})
+					enviarSolicitudJugador();
+					comprobarSolicitud();
 
 					if ($("#Tablabuscada").html()=="") {
 						$("#sinGrupos").show();
-						console.log('No hay nada');
+						$("#tablaThead").hide();
 					}
 				}
 			})	
@@ -58,11 +66,88 @@ $(document).ready(function(){
 	//-----------------------------------------
 
 	verSolicitudes();
+	
 
 	//--------------------------------
 
 
 })
+
+
+function enviarSolicitudJugador(){
+	$("#Tablabuscada button").click(function(){
+		
+		var gato ={"grupoEntrar":this.value};
+
+		$.ajax({
+			url:"php/enviarSolicitudJugador.php",
+			type:"post",
+			dataType:"text",
+			data:gato,
+			success: function(echo){
+				$("#Tablabuscada button[value="+gato.grupoEntrar+"]").text("En Espera").attr("disabled","");
+				$("#solicitud_enviada").modal("show");
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("ah shit, here we go again puta madre");
+			}
+		})		
+	})
+}
+
+function comprobarSolicitud(){
+
+	for (var i = $("#Tablabuscada button").length - 1; i >= 0; i--) {
+
+		
+		var algo={"grupo":$($("#Tablabuscada button")[i]).val()};
+		var neko=$($("#Tablabuscada button")[i]).val();
+
+		$.ajax({
+			url:"php/EstadoDeSolicitud.php",
+			type:"post",
+			dataType:"json",
+			data:algo,
+			success:function(result){
+				if (result[0]==false) {
+				}
+				else{
+					if (result[0].ESTADO_SOLICITUD==4) {
+					$("#Tablabuscada button[value="+neko+"]").text("En Espera").attr("disabled","");
+					}
+					if (result[0].ESTADO_SOLICITUD==1) {
+						$("#Tablabuscada button[value="+neko+"]").text("Ya en grupo").attr("disabled","");
+					}
+				}
+
+				
+				
+				
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("ah shit, here we go again en estado lpm");
+			}
+		})
+
+		$.ajax({
+			url:"php/esCreadorBuscador.php",
+			type:"post",
+			dataType:"json",
+			data:algo,
+			success:function(result){
+				if (result[0]==true) {
+					$("#Tablabuscada button[value="+neko+"]").text("Ya en grupo").attr("disabled","");
+				}
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+				console.log("ah shit, here we go again en estado lpm");
+			}
+		})
+	}
+}
 
 
 function verSolicitudes(){
@@ -74,11 +159,9 @@ function verSolicitudes(){
 		dataType:"json",
 		success:function(result){
 			
-
-
 			$("#cantSol").text("Solicitudes ");
 			$("#cantSol").append("<span class='badge'>"+result.length+"</span>");
-
+			var cantS=result.length;
 
 			$.each(result, function(){
 				$("#sol").append($("<div class='row'></div>").append(
@@ -89,30 +172,92 @@ function verSolicitudes(){
 			})
 			aceptarOrechazar();
 
+			//----------------------------------------------
+
+			$("#sol2").html("");
+
+			$.ajax({
+				url:"php/verSolicitudesJugadores.php",
+				type:"post",
+				dataType:"json",
+				success:function(result2){
+			
+					$("#cantSol").text("Solicitudes ");
+					var cant2=cantS+result2.length;
+					$("#cantSol").append("<span class='badge'>"+cant2+"</span>");
+
+					for (var i = result2.length - 1; i >= 0; i--) {
+						
+						$("#sol2").append($("<div class='row'></div>").append(
+							$("<div class='col-sm-1'></div>").append("<img class='img-responsive' src=imagenes/"+result2[i].RUTA+" alt='Imagen de grupo'>"),
+							$("<div class='col-sm-2'></div>").append("<h4>El Jugador "+result2[i].NOMBRE+" quiere unirse al grupo "+result2[i].gruponombre+"</h4>"),
+							$("<div class='col-sm-1'></div>").append("<button value=a"+result2[i].ID_USUARIO+" id=s"+result2[i].ID_GRUPO+" class='btn-success'>Aceptar</button>"),
+							$("<div class='col-sm-1'></div>").append("<button value=0"+result2[i].ID_USUARIO+" id=n"+result2[i].ID_GRUPO+" class='btn-danger'>Rechazar</button>")));
+					}
+					aceptarOrechazarCreador();
+
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+					console.log("Hakuna matata");
+				}
+			})
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
 			console.log("Hakuna matata");
 		}
 	})
-
-
 }
 
+function aceptarOrechazarCreador(){
+	$("#sol2 button").click(function(){
+		
+		if ($(this).hasClass("btn-success")) {
 
+			var archivos = new FormData();
+			
+			var idg = this.id;
+			archivos.append("acagrupo",idg.substring(1));
 
+			var idj = this.value;
+			archivos.append("acajugador",idj.substring(1));
 
+			$.ajax({
+				url:"php/aceptarSolicitudGrupoJugador.php",
+				type:"post",
+				dataType:"text",
+				data:archivos,
+				processData:false,
+        		cache:false,
+        		contentType: false,
+				success:function(result){
+					$("#union_exitosa").modal("show");
+					verGrupos();
+					verSolicitudes();
+				},
+				error: function (xhr, status, error) {
+					console.log(error);
+					console.log("Otra vez fallo y no se por que");
+				}
+			})
 
+		}
+		else{
+			console.log("rechazo");
+		}
+
+	})
+}
 
 
 
 function aceptarOrechazar(){
 	$("#sol button").click(function(){
 		
-		if (this.value==1) {
+		if ($(this).hasClass("btn-success")) {
 			
 			var idg = this.id;
-			//console.log(idg.substring(1));
 
 			var unido={"acagrupo":idg.substring(1)};
 
@@ -132,17 +277,10 @@ function aceptarOrechazar(){
 				}
 			})
 
-
-
 		}
 		else{
 			console.log("rechazo");
 		}
-
-
-
-
-
 
 	})
 }

@@ -134,6 +134,9 @@
           <h4 class="modal-title">Solicitudes</h4>
         </div>
         <div class="modal-body">
+        	<div id="sol2" class="container">
+        		
+        	</div>
         	<div id="sol" class="container">
         		
         	</div>
@@ -175,10 +178,13 @@
 							<input class="finput" type="text" name="nombre" id="nombre">
 							<button type="button" id="bus">Buscar</button>
 						</form>
-						<h1 id="sinGrupos">No se encontro Resultado</h1>
+						
+						<div id="sinGrupos" class="alert alert-danger">
+  							No se encontro Resultado
+						</div>
 					<br>
 					<br>
-					<table>
+					<table id="tablaThead">
 						<thead>
 							<tr>
 								<th>Imagen</th>
@@ -279,7 +285,22 @@
 
 
 
-
+			<div class="modal fade" id="solicitud_enviada" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        
+			        <div class="modal-body">
+			        	<div class="alert alert-success">
+  							<strong>Se ah invitado al grupo correctamente</strong>
+						</div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+  			</div>
 
 
 
