@@ -198,13 +198,19 @@ function obtenerMisPartidos(id_user){
     						$("#MenviarAAmigo").modal("show");
     						$("#btnEnviarEmailAAmigo").val(id);
     					});
-    					/*$("#formPublicarPartido").submit(function(event) {
-    						event.preventDefault();
-    						PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());
+    					$("#seleccionoGrupo").click(function(event) {
+    						$("#modalBusqueda").modal("show");
+    						$("#busquedaGrupoAInvitar").val(id);
+    						$("#busquedaGrupoAInvitar").click(function(event) {
+    							invitarGrupo();
     						
-    					});*/
+    						});
 
-    				});
+    					});
+
+
+
+    			});
 
 		}
 			,
@@ -213,6 +219,86 @@ function obtenerMisPartidos(id_user){
 		}
 	});
 }
+
+function invitarGrupo(){
+	$("#Tablabuscada").empty();
+
+	var x = $("#nombre").val().toLowerCase();
+			$.ajax({
+				type: "POST",
+				url: "php/busquedaDeGrupos.php",
+				dataType: "json",
+				success: function(result){
+
+					$.each(result, function(){
+						var z = this.NOMBRE.toLowerCase();
+						if (z.includes(x)) {
+							$("#Tablabuscada").append('<tr><td><img class="img-responsive" src=imagenes/'+this.RUTA+
+								'></td><td>'+this.NOMBRE+'</td><td>'+this.CANT_MIEMBROS+'</td><td><button type="button" class="btn btn-success btn-lg" value='+this.ID_GRUPO+' id="btnYaEnviarInvitacion" name="btnYaInvitarGrupo">Invitar</button></td></tr>');
+							
+				
+						}
+					})
+					$("[name=btnYaInvitarGrupo]").click(function(event) {
+						// id partido alert($("#busquedaGrupoAInvitar").val());
+						// id Grupo alert($(this).val());
+						guardarInvitacionAGrupo($("#busquedaGrupoAInvitar").val(),$(this).val());
+							});
+
+					if ($("#Tablabuscada").html()=="") {
+						var message = $('<div class="well text-center error_message">No se encontro resultados.<button type="button" class="close" data-dismiss="alert">&times</button></div>');
+						message.appendTo($('#mensajeErrorBusqueda')).fadeIn(300).delay(5000).fadeOut(500);
+						console.log('No hay nada');
+					}
+				}
+			})	
+		
+			
+	
+
+}
+
+
+function guardarInvitacionAGrupo(id_partido,id_grupo){
+	var parametros={"id_partido":id_partido,"id_grupo":id_grupo};
+	$.ajax
+	({
+		data: parametros,
+		url: "php/enviarInvitacionAGrupo.php",
+		type: "POST",
+		dataType: "json",
+		beforeSend: function () {
+			$("#contenedor_carga_jugador").addClass('contenedor_carga');
+			$("#carga_jugador").addClass('carga');
+		},
+		success:  function (response) {
+			if (response.error=="NO") {
+				$("#Tablabuscada").empty();
+				$("#contenedor_carga_jugador").removeClass('contenedor_carga');
+					$("#carga_jugador").removeClass('carga');
+				$("body").append('<div class="modal fade" id="invitacioncorrectaAGrupo" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Envio correcto de invitacion</h4></div><div class="modal-body"><h4>Se envio la invitacion al grupo correctamente</h4></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>');
+				$("#invitacioncorrectaAGrupo").modal("show");
+					setTimeout(function(){ 
+					  $("#invitacioncorrectaAGrupo").modal('hide');
+					}, 9000);
+					
+			}
+			else{
+				$("#contenedor_carga_jugador").removeClass('contenedor_carga');
+				$("#carga_jugador").removeClass('carga');
+				
+			}
+			
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+
+}
+
+
+
 
 function verSiEstapublicado(idpartido){
 	var booleano=true;
