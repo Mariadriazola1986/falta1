@@ -7,12 +7,12 @@
 		$_SESSION['nombre_usuario'] = obtenerNombreUsuario($_SESSION['ID_USUARIO']);
 		if(!usuarioTieneAcceso($_SESSION['ID_USUARIO'], $_SERVER['PHP_SELF']))
 		{
-			header("location:index.html");
+			header("location:index.php");
 		}
 	}
     else
     {
-		header("location:index.html");
+		header("location:index.php");
 	}
 
     function usuarioTieneAcceso($idUsuario, $nombreRaizAcceso)
