@@ -5,7 +5,7 @@
                     );
 
 	$conn = getConnection();
-	$sql="SELECT canchas.ID_CANCHA,establecimientos.DISTRITO,establecimientos.DIRECCION FROM canchas,tipos_de_futbol,establecimientos WHERE canchas.ESTADO_CANCHA=1 AND canchas.ID_ESTABLECIMIENTO=establecimientos.ID_ESTABLECIMIENTO and canchas.TIPO=tipos_de_futbol.ID_TIPO ORDER by establecimientos.DISTRITO";
+	$sql="SELECT canchas.ID_CANCHA,localidades.nombre,establecimientos.BARRIO,establecimientos.DIRECCION, localidades.nombre,tipos_de_futbol.TIPO FROM canchas,tipos_de_futbol,establecimientos,provincias,localidades WHERE canchas.ID_ESTABLECIMIENTO = establecimientos.ID_ESTABLECIMIENTO AND canchas.TIPO=tipos_de_futbol.ID_TIPO AND establecimientos.LOCALIDAD=localidades.id AND localidades.provincia_id=provincias.id AND canchas.ESTADO_CANCHA=1";
 	$resultados=$conn->prepare($sql);
 	$resultados->execute();
 	$registros=$resultados->fetchAll(PDO::FETCH_ASSOC);

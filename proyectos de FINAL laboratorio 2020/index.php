@@ -244,7 +244,7 @@
                     	</div>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 
@@ -313,7 +313,9 @@
 			        </div>
 			        <div class="row">
 			        	<ul class="list-group">
-						  <li class="list-group-item" id="liDistrito"></li>
+						  <li class="list-group-item" id="liProvincia"></li>
+						  <li class="list-group-item" id="liLocalidad"></li>
+						  <li class="list-group-item" id="liBarrio"></li>
 						  <li class="list-group-item" id="liDireccion"></li>
 						  <li class="list-group-item" id="liTipoFutbol"></li>
 						  <li class="list-group-item" id="liPrecio"></li>

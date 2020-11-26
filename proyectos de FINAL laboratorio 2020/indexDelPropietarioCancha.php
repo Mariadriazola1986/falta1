@@ -122,37 +122,39 @@
 
 
 
-			<div class="modal fade" id="modalMasInfoCancha" role="dialog">
-			    <div class="modal-dialog">
+			<div id="modalMasInfoCancha" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
 
-			      <!-- Modal content-->
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Informacion de la Cancha</h4>
-			        </div>
-			        <div class="modal-body" >
-			        	<div class="row" id="contenedorcarrusel">
 
-			        	</div>
-			        	<div class="row">
-			        		<ul>
-								<li id="liDistrito"></li>
-								<li id="liDireccion"></li>
-								<li id="liTipoFutbol"></li>
-								<li id="liPrecio"></li>
-								<li id="liTelefono"></li>
-							</ul>
-			        	</div>
-
-                   	</div>
-
-			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			        </div>
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Informacion completa de la Cancha</h4>
 			      </div>
+			      <div class="modal-body">
+			        <div class="row" id="contenedorcarrusel">
 
+			        </div>
+			        <div class="row">
+			        	<ul class="list-group">
+						  <li class="list-group-item" id="liProvincia"></li>
+						  <li class="list-group-item" id="liLocalidad"></li>
+						  <li class="list-group-item" id="liBarrio"></li>
+						  <li class="list-group-item" id="liDireccion"></li>
+						  <li class="list-group-item" id="liTipoFutbol"></li>
+						  <li class="list-group-item" id="liPrecio"></li>
+						  <li class="list-group-item" id="liTelefono"></li>
+
+
+						</ul>
+				    </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			      </div>
 			    </div>
+
+			  </div>
 			</div>
 
 

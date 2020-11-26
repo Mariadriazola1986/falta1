@@ -135,7 +135,7 @@
                     	</div>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 
@@ -193,7 +193,7 @@
 	                                    	<input type="email" class="form-control" id="emaideamigo"  required>
 	                                	</div>
 	                                	<div class="form-group">
-	                                    	<label for="districtoBarrio" >Ingresa el distrito y el barrio donde se va a jugar el partido:</label>
+	                                    	<label for="districtoBarrio" >Ingresa la localidad y el barrio donde se va a jugar el partido:</label>
 	                                    	<input type="text" class="form-control" id="districtoBarrio"  required>
 	                                	</div>
 	                                	<button type="submit" class="btn btn-success" id="btnEnviarEmailAAmigo" value="">Enviar Email</button>
@@ -244,7 +244,7 @@
                     	</div>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 
@@ -266,7 +266,7 @@
 								<form action="#" id="formPublicarPartido">
 								    <div class="form-group">
 									  <h4><label for="commedetalles" class="label label-info">Detalles del partido:</label></h4>
-									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que districto van a jugar y que barrio para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
+									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que localidad y barrio se va a jugar para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
 									</div>
 									<button type="submit" class="btn btn-success" id="btnFormModalPublicar">Publicar</button>
 								</form>
@@ -298,7 +298,7 @@
                     	</div>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 
@@ -321,7 +321,7 @@
                     	</div>
 			        </div>
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 
@@ -372,7 +372,7 @@
 							</div>
 				        </div>
 				        <div class="modal-footer" >
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 				        </div>
 				      </div>
 				      

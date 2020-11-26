@@ -153,10 +153,12 @@ function obtenerDatosCancha(id_cancha)//todos los datos inclusive las imagenes
 				$("#contenedorcarrusel").empty();
 				$("#contenedorcarrusel").append('<div id="carrusel" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators" id="indicadorCancha"></ol><div class="carousel-inner" id="imagenesCancha"></div><a href="#carrusel" class="left carousel-control" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a><a href="#carrusel" class="right carousel-control" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a></div>');
 				var cantidad=0;
-				$("#liDistrito").html("Distrito: "+response.datos[0].DISTRITO+"");
+				$("#liProvincia").html("Provincia: "+response.datos[0].nombre_provincias+"");
+				$("#liLocalidad").html("Localidad: "+response.datos[0].nombre+"");
+				$("#liBarrio").html("Barrio: "+response.datos[0].BARRIO+"");
 				$("#liDireccion").html("Direccion: "+response.datos[0].DIRECCION+"");
 				$("#liTipoFutbol").html("Tipo De Futbol: "+response.datos[0].TIPO+"");
-				$("#liPrecio").html("Precio por Juego: "+response.datos[0].PRECIO+"");
+				$("#liPrecio").html("Precio por Juego: "+"$"+response.datos[0].PRECIO+"");
 				$("#liTelefono").html("Telefono: "+response.datos[0].TELEFONO+"");
 
 				$.each(response.datos, function() {
