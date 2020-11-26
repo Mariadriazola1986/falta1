@@ -1,6 +1,12 @@
 
 $(document).ready(function()
 {
+	traertodasMisCanchas($("#idUsuario").val());
+	//validarImagenes();
+	$("#formCargaCancha").submit(function(event) {
+					event.preventDefault();			
+					cargarCanchaNueva();
+				});
 	$('[data-toggle="tooltip"]').tooltip(); 
 	$("#irACancha").click(function(event) {
 		$("#modalCargaCancha").modal("show");
@@ -25,13 +31,14 @@ function traerMisEstablecimientos(idusuario){
 		success:  function (response) {
 			if (response.error=="NO") {
 				$.each(response.datos, function (){
-					$('#todosLosEstablecimientos').prepend("<div class='radio'><label><input type='radio' name='optradio' checked value='"+this.ID_ESTABLECIMIENTO+"'>"+this.DISTRITO+"</label> </div>");
+					$('#todosLosEstablecimientos').prepend("<div class='radio'><label><input type='radio' name='optradio' checked value='"+this.ID_ESTABLECIMIENTO+"'>"+this.BARRIO+" ("+this.nombre+","+this.nombre_provincias+" )</label> </div>");
 				});
 				validarImagenes();
-				$("#formCargaCancha").submit(function(event) {
+				/*$("#formCargaCancha").submit(function(event) {
+					alert();
 					event.preventDefault();			
-					cargarCancha();
-				});
+					cargarCanchaNueva();
+				});*/
 			}
 			else{
 
@@ -72,7 +79,7 @@ function modalMensajePropietario(titulo,error){
 }
 
 
-function cargarCancha() {
+function cargarCanchaNueva() {
 	var archivos = document.getElementById("archivos");
 	var archivo = archivos.files; 
 	var archivos = new FormData();
@@ -99,6 +106,7 @@ function cargarCancha() {
         		modalMensajePropietario("Carga Exitosa","La cancha fue registrada correctamente");
         		$("#modalMensajePropietario").modal("show");
         		$("#formCargaCancha")[0].reset();
+        		traertodasMisCanchas($("#idUsuario").val());
         	}
         	else {
         		modalMensajePropietario("Error en el formato,en la cantidad de imagenes, o el tamaño de las mismas","Las imagenes permitidas son jpeg, jpg y png, la cantidad minima requerida es de 2 y de maxima 10, y el tamaño permitido es hasta 4mb.");
@@ -111,12 +119,13 @@ function cargarCancha() {
 
 }
 
-function registrarEstablecimiento(idusuario,direccion,distrito,telefono){
-	var parametros={"idusuario":idusuario,"direccion":direccion,"distrito":distrito,"telefono":telefono};
+function traertodasMisCanchas(idusuario)
+{
+	var parametros={"idusuario":idusuario};
 	$.ajax
 	({
-		data:parametros,
-		url: "php/registrarEstablecimiento.php",
+		data: parametros,
+		url: "php/traertodasMisCanchas.php",
 		//contentType: "application/json",
 		type: "POST",
 		dataType: "json",
@@ -124,20 +133,29 @@ function registrarEstablecimiento(idusuario,direccion,distrito,telefono){
 
 		},
 		success:  function (response) {
+			$("#canchasFiltradas").empty();
 			if (response.error=="NO") {
-				$("body").append('<div class="modal fade" id="establecimientoRegistradoCorrectamenteEmail" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Registro Correcto</h4></div><div class="modal-body"><h4>Tu establecimiento se registro correctamente.</h4></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button></div></div></div></div>')
-				$("#establecimientoRegistradoCorrectamenteEmail").modal("show");
-				$("#queMostrarAPropietario").empty();
-				estaActiva($("#idUsuario").val());
+
+				$("#canchasFiltradas").append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-primary"><div class="panel-heading">Canchas</div><div class="panel-body"><div class="table-responsive"><table class="table table-bordered"><thead><tr><th class="success">Localidad</th><th class="success">Barrio</th><th class="success">Direccion</th><th class="success">Tipo De Futbol</th><th class="success">Informacion Completa</th></tr></thead><tbody id="lasCanchas"></tbody></table></div></div></div></div>');
+				$("#lasCanchas").empty();
+				$.each(response.datos, function() {
+					$("#lasCanchas").append('<tr><td>'+this.nombre+'</td><td>'+this.BARRIO+'</td><td>'+this.DIRECCION+'</td><td>'+this.TIPO+'</td><td><button type="button" name="btn_mas_info" class="btn btn-info" value='+this.ID_CANCHA+'>Ver info completa</button></td></tr>');
+
+				});
 			}
 			else{
-
+				var message = $('<div class="alert alert-danger  alert-dismissible text-center error_message"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+response.error+'</div>');
+				message.appendTo($('#canchasFiltradas')).fadeIn(300).delay(5000).fadeOut(500);
 			}
+			$("[name=btn_mas_info]").click(function(event) {
+				//$("#canchaResultado").removeClass("oculto");
+				obtenerDatosCancha($(this).val());
+    		});
+
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
 		}
 	});
 }
-
 

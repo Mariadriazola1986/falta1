@@ -43,6 +43,7 @@ $(document).ready(function()
 
 
 	//obtenerDatosCancha();
+	
 	obtenerDeTipoCanchas();
 
 	$("#formFiltradoCancha").submit(function(event) {
@@ -129,6 +130,8 @@ function buscarCanchas(inputDistrito,inputDireccion,selecttipocancha,idusuario)
 		}
 	});
 }
+
+
 
 
 

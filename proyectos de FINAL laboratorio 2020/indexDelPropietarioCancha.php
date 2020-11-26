@@ -253,8 +253,7 @@
 			        <div class="modal-body">
                         <div class="panel panel-default">
                         	<div class="panel-body">
-                        		<form action="#" id="formularioRegistroNuevoEstablecimiento"><div class="form-group"><label for="Direccion">Direccion Del Establecimiento:</label><input type="text" class="form-control" id="Direccion" required ></div><div class="form-group"><label for="Distrito">Distrito:</label><input type="text" class="form-control" id="Distrito" placeholder="ingrese distrito y el barrio del establecimiento" required></div><div class="form-group"><label for="Telefono">Telefono:</label><input type="number" class="form-control" id="Telefono" required></div><button type="submit" class="btn btn-success">Enviar</button>
-                        		</form>
+                        		<form action="#" id="formularioRegistroNuevoEstablecimiento"><div class="form-group"><label for="Direccion">Direccion Del Establecimiento:</label><input type="text" class="form-control" id="Direccion" required></div><div class="form-group"><div class="form-group"><label for="provincia">provincia:</label><select class="form-control" id="provincia" required=""><option value="0">seleccione una provincia</option></select></div><div class="form-group"><label for="localidad">localidad:</label><select class="form-control" id="localidad" required="" ></select></div><div class="form-group"><label for="barrio">barrio:</label><input type="text" id="barrio" required="" class="form-control" minlength="7" maxlength="200"></div><div class="form-group"><label for="Telefono">Telefono:</label><input type="number" class="form-control" id="Telefono" required></div><button type="submit" class="btn btn-success">Enviar</button></form>
 
 	                        </div>
                         </div>

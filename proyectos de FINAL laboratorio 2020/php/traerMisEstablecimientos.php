@@ -8,7 +8,7 @@
 	if(isset($_POST["id_usuario"]))
 	{
 		$conn = getConnection();
-		$sql="SELECT * FROM establecimientos WHERE establecimientos.ID_USUARIO=:id_usuario";
+		$sql="SELECT localidades.nombre,provincias.nombre_provincias,establecimientos.ID_ESTABLECIMIENTO,establecimientos.BARRIO FROM establecimientos,provincias,localidades WHERE establecimientos.ID_USUARIO=:id_usuario and establecimientos.LOCALIDAD=localidades.id AND localidades.provincia_id=provincias.id";
 		$resultados=$conn->prepare($sql);
 		$resultados->execute(array(":id_usuario" => $_POST["id_usuario"] ));
 		$registros=$resultados->fetchAll(PDO::FETCH_ASSOC);
