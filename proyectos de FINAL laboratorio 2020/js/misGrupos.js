@@ -298,6 +298,9 @@ function aceptarOrechazar(){
 				type:"post",
 				dataType:"text",
 				data:unido,
+				processData:false,
+        		cache:false,
+        		contentType: false,
 				success:function(result){
 					$("#union_exitosa").modal("show");
 					verGrupos();
@@ -411,7 +414,6 @@ function verGrupos(){
 		dataType: "json",
 		success: function(result){
 			if (result=="") {
-				console.log("esta vacio");
 				$("#latabla").hide();
 			}
 			else{
