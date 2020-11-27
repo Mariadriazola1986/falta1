@@ -1,9 +1,35 @@
 
 $(document).ready(function()
 {
-	traeCanchasActivas();
+	//traeCanchasActivas();
+	load(1);
 
 });
+
+function load(page){
+		var parametros = {"action":"ajax","page":page};
+		
+		$.ajax({
+			url:'php/traerTodasLasCanchasActivas.php',
+			data: parametros,
+			 beforeSend: function(objeto){
+			
+			},
+			success:function(data){
+				$("#listadoCanchas").empty();
+				$("#listadoCanchas").append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-primary"><div class="panel-heading">Canchas Disponibles</div><div class="panel-body" id="canchasDisponibles"></div></div></div>');
+				$("#canchasDisponibles").empty();
+				$("#canchasDisponibles").append(data);
+				$("[name=btn_mas_info]").click(function(event) {
+					obtenerDatosCancha($(this).val());
+    			});
+
+			}
+		})
+}
+
+
+
 
 function traeCanchasActivas()
 {
