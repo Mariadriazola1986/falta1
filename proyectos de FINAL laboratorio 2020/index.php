@@ -41,8 +41,8 @@
 				    </div>
 				    <div class="collapse navbar-collapse" id="myNavbar">
 				      <ul class="nav navbar-nav">
-				        <li><a href="#">Contacto</a></li>
-				        <li><a href="#">Quienes Somos</a></li>
+				        <li><a href="#" data-toggle="modal" data-target="#Contacto">Contacto</a></li>
+				        <li><a href="#" data-toggle="modal" data-target="#modalQuinesSomos">Quienes Somos</a></li>
 				      </ul>
 				      <ul class="nav navbar-nav navbar-right">
 				        <li> <a href="#" data-toggle="modal" data-target="#modalRegistro"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
@@ -121,6 +121,56 @@
 
 			    </div>
 			</div>
+
+			<div class="modal fade" id="modalQuinesSomos" role="dialog">
+			    <div class="modal-dialog">
+
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Quienes Somos.</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<li class="list-group-item list-group-item-success">
+			          		<p>Somos falta1 un proyecto integrador de la materia laboratorio de programacion 2020 UPE(Profesores:Nicolas Garrido y Elias Dominguez), gracias por visitar nuestra pagina.</p>
+			          	</li>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+
+			    </div>
+			</div>
+
+			<div class="modal fade" id="Contacto" role="dialog">
+			    <div class="modal-dialog">
+
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Contactos.</h4>
+			        </div>
+			        <div class="modal-body">
+			        		<label for="">Mail:</label>
+			          		<ul class="list-group">
+							  <li class="list-group-item list-group-item-success">mariaadriazola@gmail.com</li>
+							  <li class="list-group-item list-group-item-success">federico@gmail.com</li>
+							</ul>
+							<label for="">Telefonos:</label>
+							<li class="list-group-item list-group-item-success">42325986</li>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+
+			    </div>
+			</div>
+
+
 
 			<div class="modal fade" id="modalDeSeleccion" role="dialog">
 			    <div class="modal-dialog">

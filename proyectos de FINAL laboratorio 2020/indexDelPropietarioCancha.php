@@ -51,7 +51,7 @@
 
   			</div>
 
-  			<div class="row" id="tituloCancha">
+  			<!--<div class="row" id="tituloCancha">
 				<div class="panel panel-primary">
 					<div class="panel-body">
 						<ul class="nav nav-tabs col-lg-12">
@@ -63,12 +63,12 @@
 					</div>
 
 				</div>
-			</div>
+			</div>-->
 			<div class="row" id="contenedorFiltroCancha">
 				<div class="tab-content">
 				<div id="Canchas" class="tab-pane fade in active">
 					<div class="panel panel-primary">
-			        	<div class="panel-heading">
+			        	<!--<div class="panel-heading">
 			            <h4>Mis Canchas</h4>
 			            </div>
 						<div class="panel-body">
@@ -109,7 +109,7 @@
 									</form>
 
 							</div>
-						</div><br>
+						</div><br>-->
 						<div class="row" id="canchasFiltradas">
 
 						</div>
