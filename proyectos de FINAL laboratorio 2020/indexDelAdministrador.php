@@ -10,9 +10,11 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="lib/bootstrap3.css">
 		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/indexdelpropietario.css">
 		<script src="lib/jquery3.js"></script>
 		<script src="lib/bootstrap3.js"></script>
 		<script src="js/mostrarUsuarios.js"></script>
+		<script src="js/activarCanchas.js"></script>
 		<title>Administracion</title>
 	</head>
 
@@ -53,10 +55,20 @@
 					<div class="panel-heading">
 						<h4>Bienvenido <?php echo $_SESSION["NOMBRE"];?>. Desde aquí, podras gestionar a los usuarios registrados en el sistema y tambien el alta de las canchas</h4>
 					</div>
-					<!-- <div class="panel-body">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalRegistro">Registrar usuario</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalSoli">Ver solicitudes de alta de cancha</button>
-					</div> -->
+					<div class="panel-body">
+						<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalRegistro">Registrar usuario</button> -->
+						<button type="button" class="btn btn-default" data-toggle="collapse" href="#canchasInactivas" id="contSoli">Ver solicitudes de alta de cancha </button>
+						
+						<div class="panel-collapse collapse" id="canchasInactivas">
+							
+
+
+
+
+
+						</div>
+
+					</div>
 				</div>
 			</div>
 
@@ -103,10 +115,31 @@
 			          <h4 class="modal-title">Solicitudes de alta de cancha</h4>
 			        </div>
 			        <div class="modal-body">
-			          <div class="panel panel-default">
-			          	<h5>Aun no se me ocurre como hacer esta parte :(</h5>
-			          </div>
+			          
+
+			          	<div class="row" id="contenedorcarrusel">
+
+			        	</div>
+
+			        	<div class="row">
+			        	<ul class="list-group">
+						  <li class="list-group-item" id="liProvincia"></li>
+						  <li class="list-group-item" id="liLocalidad"></li>
+						  <li class="list-group-item" id="liBarrio"></li>
+						  <li class="list-group-item" id="liDireccion"></li>
+						  <li class="list-group-item" id="liTipoFutbol"></li>
+						  <li class="list-group-item" id="liPrecio"></li>
+						  <li class="list-group-item" id="liTelefono"></li>
+
+
+						</ul>
+				    	</div>
+
+
+			          
 			          <div class="modal-footer">
+			          	<button type="button" id="baja" class="btn btn-danger">Suspender</button>
+			          	<button type="button" id="alta" class="btn btn-success">Dar de alta</button>
 			          	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			          </div>
 			        </div>
@@ -174,6 +207,31 @@
 			        </div>
 			        <div class="modal-body">
 			          <h4>Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhhhhhhh funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h4>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+  			</div>
+
+
+
+
+
+
+  			<div class="modal fade" id="cancha_actualizada" role="dialog">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Se an actualizado los datos de la cancha</h4>
+			        </div>
+			        <div class="modal-body">
+			          <div class="alert alert-success">
+  							<strong>La cancha a sido de alta exitosamente</strong>
+						</div>
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
