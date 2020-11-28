@@ -59,11 +59,7 @@
 						<!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalRegistro">Registrar usuario</button> -->
 						<button type="button" class="btn btn-default" data-toggle="collapse" href="#canchasInactivas" id="contSoli">Ver solicitudes de alta de cancha </button>
 						
-						<div class="panel-collapse collapse" id="canchasInactivas">
-							
-
-
-
+						<div class="panel-collapse collapse" id="canchasInactivas">				
 
 
 						</div>
@@ -71,6 +67,8 @@
 					</div>
 				</div>
 			</div>
+
+
 
 			<!-- Aca tengo la tabla que voy a mostrar la info de los usuarios para el admin -->
 			<div class="row">
@@ -101,12 +99,8 @@
 
 
 
-
-
-
-
-
 			<!-- Mi modal de las solicitudes de alta de cancha -->
+
 			<div class="modal fade" id="modalSoli" role="dialog">
 			    <div class="modal-dialog">
 			    	<div class="modal-content">
@@ -114,13 +108,10 @@
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          <h4 class="modal-title">Solicitudes de alta de cancha</h4>
 			        </div>
-			        <div class="modal-body">
-			          
-
+			        <div class="modal-body">		          
 			          	<div class="row" id="contenedorcarrusel">
 
 			        	</div>
-
 			        	<div class="row">
 			        	<ul class="list-group">
 						  <li class="list-group-item" id="liProvincia"></li>
@@ -130,13 +121,8 @@
 						  <li class="list-group-item" id="liTipoFutbol"></li>
 						  <li class="list-group-item" id="liPrecio"></li>
 						  <li class="list-group-item" id="liTelefono"></li>
-
-
 						</ul>
-				    	</div>
-
-
-			          
+				    	</div>	          
 			          <div class="modal-footer">
 			          	<button type="button" id="baja" class="btn btn-danger">Suspender</button>
 			          	<button type="button" id="alta" class="btn btn-success">Dar de alta</button>
@@ -148,6 +134,8 @@
 			</div>
 
 
+
+			<!--Modal para modificar usuario-->
 
 			<div class="modal fade" id="modalModificarUsuario" role="dialog">
 			    <div class="modal-dialog">
@@ -198,6 +186,8 @@
 			    </div>
 			</div>
 
+
+			<!--Modal de se realizo el cambio-->			
 			<div class="modal fade" id="actualizacion_correcta" role="dialog">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
@@ -217,9 +207,35 @@
   			</div>
 
 
+  			<!-- Modal para confirmacion -->
+
+  			<div class="modal fade" id="modal_confirmar" role="dialog">
+			    <div class="modal-dialog">
+			     	<div class="modal-content">
+			       		<div class="modal-header">
+			         		<button type="button" class="close" data-dismiss="modal">&times;</button>
+			         		<h4 class="modal-title">Modificar datos de Usuario</h4>
+			        	</div>
+			        	<div class="modal-body">
+			        		<div class="alert alert-warning">
+			          			<h4 id="texto_confirma"></h4>
+			          		</div>
+
+			          		<button type="button" id="dijo_si" class="btn btn-success">Si</button>
+
+			          		<button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
+
+			        	</div>
+			        	<div class="modal-footer">
+			        	</div>
+			      	</div>
+			      
+			    </div>
+  			</div>
 
 
 
+  			<!-- modal de cancha actualizada -->
 
   			<div class="modal fade" id="cancha_actualizada" role="dialog">
 			    <div class="modal-dialog">

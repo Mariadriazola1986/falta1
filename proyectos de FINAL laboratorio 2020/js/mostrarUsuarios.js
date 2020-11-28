@@ -89,7 +89,45 @@ function abmUsuario(){
         }
         // Si valor es igual a 3, estoy dando de baja al usuario
         else if (valor == 3) {
-            console.log('entro en Baja de usuario');
+
+            $("#texto_confirma").text("Estas seguro de dar de baja el Usuario?")
+            $("#modal_confirmar").modal("show");
+
+            
+
+            seBajo(id);
+            
+          
+
+
         }
     });
+}
+
+function seBajo(id){
+    $("#dijo_si").click(function(){
+
+        var enviar={"id_usuario":id};
+
+
+        $.ajax({
+            url:"php/bajaUsuarioRegistrado.php",
+            dataType:"json",
+            data:enviar,
+            type:"POST",
+            success:function(result){
+                $("#modal_confirmar").modal("hide");
+                $("#actualizacion_correcta").modal("show");
+                obtenerUsuariosRegistrados();
+
+
+
+            },
+            error: function(xhr, status, error){
+                console.log(error);
+                console.log("Pincho. Averiguá el por qué :v");
+            }
+        })
+
+    })
 }
