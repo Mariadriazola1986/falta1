@@ -39,6 +39,7 @@
 		    		<div class="row">
 						<div class="col-md-8">
 							<input class="form-control order-select form-control-lg" placeholder="Buscar Cancha..." name="title" type="text" id="canchaABuscar" >
+							<p class="bg-danger oculto" id="errorDeBusquedaCancha"></p>
 						</div>
 						<div class="col-md-2">
 							<div class="dropdown">

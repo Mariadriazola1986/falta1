@@ -24,16 +24,24 @@
 		$reload = 'index.php';
 		//---------------------------
 
+		$val_dropdown="";
+		$nombre_dropdown="";
 
 		$where="";
 		if ($_REQUEST['valor']==1) {
 			$where="WHERE canchas.ID_ESTABLECIMIENTO = establecimientos.ID_ESTABLECIMIENTO AND canchas.TIPO=tipos_de_futbol.ID_TIPO AND establecimientos.LOCALIDAD=localidades.id AND localidades.provincia_id=provincias.id AND canchas.ESTADO_CANCHA=1 AND localidades.nombre LIKE '".$_REQUEST['dato']."%' LIMIT $offset,$per_page";
+			$val_dropdown=1;
+			$nombre_dropdown="Localidad";
 		}
 		else if($_REQUEST['valor']==2) {
 			$where="WHERE canchas.ID_ESTABLECIMIENTO = establecimientos.ID_ESTABLECIMIENTO AND canchas.TIPO=tipos_de_futbol.ID_TIPO AND establecimientos.LOCALIDAD=localidades.id AND localidades.provincia_id=provincias.id AND canchas.ESTADO_CANCHA=1 AND establecimientos.BARRIO LIKE '".$_REQUEST['dato']."%' LIMIT $offset,$per_page";
+			$val_dropdown=2;
+			$nombre_dropdown="Barrio";
 		}
 		else if($_REQUEST['valor']==3) {
 			$where="WHERE canchas.ID_ESTABLECIMIENTO = establecimientos.ID_ESTABLECIMIENTO AND canchas.TIPO=tipos_de_futbol.ID_TIPO AND establecimientos.LOCALIDAD=localidades.id AND localidades.provincia_id=provincias.id AND canchas.ESTADO_CANCHA=1 AND establecimientos.DIRECCION LIKE '".$_REQUEST['dato']."%' LIMIT $offset,$per_page";
+			$val_dropdown=3;
+			$nombre_dropdown="Direccion";
 		}
 
 
@@ -59,11 +67,12 @@
     			<div class="panel-body">
 		    		<div class="row">
 						<div class="col-md-8">
-							<input class="form-control order-select form-control-lg" placeholder="Buscar Cancha..." name="title" type="text" id="canchaABuscar" >
+							<input class="form-control order-select form-control-lg" placeholder="Buscar Cancha..." name="title" type="text" id="canchaABuscar" value="<?php echo $_REQUEST['dato'] ?>">
+							<p class="bg-danger oculto" id="errorDeBusquedaCancha"></p>
 						</div>
 						<div class="col-md-2">
 							<div class="dropdown">
-							  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  id="btnDropDownsBuscar" value="1">Localidad
+							  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  id="btnDropDownsBuscar" value="<?php echo $val_dropdown ?>"><?php echo $nombre_dropdown; ?>
 							  	<span class="caret"></span></button>
 							  	<ul class="dropdown-menu">
 							    	<li value="1"><a href="#canchaABuscar" id="busquedaLocalidad">Localidad</a></li>

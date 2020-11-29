@@ -2,8 +2,8 @@
 $(document).ready(function()
 {
 	//traeCanchasActivas();
+	
 	load(1);
-
 });
 
 function load(page){
@@ -41,7 +41,12 @@ function load(page){
 				});
 
 				$("#btnBuscar").click(function(event) {
-					buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+					if (validarParametroBusqueda($("#canchaABuscar").val())) {
+						buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+					}
+				});
+				$("input").click(function(event) {
+					limpiarAdvertencia();
 				});
 
 			}
@@ -85,7 +90,12 @@ function buscarCanchas(valor_filtro,dato){
 				});
 
 				$("#btnBuscar").click(function(event) {
-					buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+					if (validarParametroBusqueda($("#canchaABuscar").val())) {
+						buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+					}
+				});
+				$("input").click(function(event) {
+					limpiarAdvertencia();
 				});
 
 			}
@@ -93,6 +103,19 @@ function buscarCanchas(valor_filtro,dato){
 
 
 		})
+
+
+}
+
+function validarParametroBusqueda(nombre){
+	if(!estaVacio(nombre)) {
+		mostrarError($("#errorDeBusquedaCancha"),"El campo de busqueda no debe quedar vacio.");
+		return false;
+	}
+	else{
+		return true;
+	}
+
 
 
 }
@@ -114,6 +137,7 @@ function obtenerDatosCancha(id_cancha)//todos los datos inclusive las imagenes
 		},
 		success:  function (response) {
 			if (response.error=="NO") {
+
 				$("#contenedorcarrusel").empty();
 				$("#contenedorcarrusel").append('<div id="carrusel" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators" id="indicadorCancha"></ol><div class="carousel-inner" id="imagenesCancha"></div><a href="#carrusel" class="left carousel-control" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a><a href="#carrusel" class="right carousel-control" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a></div>');
 				var cantidad=0;
@@ -175,4 +199,26 @@ function obtenerDeTipoCanchas()
 			console.log(error);
 		}
 	});
+}
+
+
+function estaVacio(valor){
+	var expresion=/\S+/g;//expresion que da false cuando solo hay espacios inclusive si apretas muchas vece la barra espaciadora.
+	resultado=expresion.test(valor);
+	return resultado;
+} 
+
+function mostrarError(idspan,msje){
+	var errores=idspan;
+	errores.removeClass("oculto");
+	errores.html(msje);
+
+}
+function limpiarAdvertencia () {
+	var errores=[$("#errorDeBusquedaCancha")];
+	$.each(errores, function(index, val) {
+		val.addClass("oculto");
+		val.html("");
+	});
+	
 }
