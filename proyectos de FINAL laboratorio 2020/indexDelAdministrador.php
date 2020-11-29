@@ -154,14 +154,14 @@
 	                                    <label for="usuario" class="control-label">Usuario:</label>
 	                                    <input type="text" class="form-control" id="usuario" name="usuario" required>
 	                                </div>
-	                                <div class="form-group">
+	                                <!-- <div class="form-group">
 	                                    <label for="inputPassword" class="control-label">Contraseña:</label>
 	                                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese Contraseña" name="password" required>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputRepetirPassword" class="control-label">Confirmar Contraseña:</label>
 	                                    <input type="password" class="form-control" id="inputRepetirPassword" placeholder="Confirme Contraseña" name="repetirpassword" required>
-	                                </div>
+	                                </div> -->
 	                                <div class="form-group">
 	                                    <label for="email" class="control-label">Email:</label>
 	                                    <input type="email" class="form-control" id="email" name="email" required>
@@ -209,7 +209,7 @@
   			</div>
 
 
-  			<!-- Modal para confirmacion -->
+  			<!-- Modal para confirmacion de alta o baja-->
 
   			<div class="modal fade" id="modal_confirmar" role="dialog">
 			    <div class="modal-dialog">
@@ -224,6 +224,34 @@
 			          		</div>
 
 			          		<button type="button" name="dijo_si" class="btn btn-success">Si</button>
+
+			          		<button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
+
+			        	</div>
+			        	<div class="modal-footer">
+			        	</div>
+			      	</div>
+			      
+			    </div>
+  			</div>
+
+
+
+  			<!-- modal confirmar modificar datos del usuario -->
+
+  			<div class="modal fade" id="modal_confirmar_modificacion" role="dialog">
+			    <div class="modal-dialog">
+			     	<div class="modal-content">
+			       		<div class="modal-header">
+			         		<button type="button" class="close" data-dismiss="modal">&times;</button>
+			         		<h4 class="modal-title">Modificar datos de Usuario</h4>
+			        	</div>
+			        	<div class="modal-body">
+			        		<div class="alert alert-warning">
+			          			<h4>Confirmar nuevos datos de usuario? </h4>
+			          		</div>
+
+			          		<button type="button" name="confirmo" class="btn btn-success">Si</button>
 
 			          		<button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
 

@@ -4,6 +4,15 @@ var usuariosRegistrados = new Array();
 $(document).ready(function(){
     obtenerUsuariosRegistrados();
     AltaBaja();
+
+
+    $("#formUsuario").submit(function(event){
+        event.preventDefault();
+
+        modificarUsuario();
+        
+    })
+
 });
 
 function obtenerUsuariosRegistrados(){
@@ -93,6 +102,10 @@ function abmUsuario(){
                     $("#usuario").attr('placeholder', usuariosRegistrados[i].nombre);
                     $("#email").attr('placeholder', usuariosRegistrados[i].email);
 
+
+                    $("#modal_confirmar_modificacion button[name='confirmo']").attr("value",id);
+
+
                 }
             }
         }
@@ -156,3 +169,30 @@ function AltaBaja(){
 }
 
 
+function modificarUsuario(){
+
+    $("#modal_confirmar_modificacion").modal("show");
+
+    $("#modal_confirmar_modificacion button[name='confirmo']").click(function(){
+        $("#modalModificarUsuario").modal("hide");
+
+        var modificacion = {"usuario":$("#usuario").val(),"email":$("#email").val(),"id":this.value};
+
+        $.ajax({
+            url:"php/actualizarInfoUsuarioRegistrado.php",
+            type:"POST",
+            data:modificacion,
+            dataType:"text",
+            success:function(result){
+                $("#modal_confirmar_modificacion").modal("hide");
+                $("#actualizacion_correcta").modal("show");
+                $("form")[0].reset();
+                obtenerUsuariosRegistrados();
+            },
+            error: function(xhr, status, error){
+                console.log(error);
+                console.log("Pincho. Averiguá el por qué :v");
+            }
+        })
+    })
+}
