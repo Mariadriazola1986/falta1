@@ -84,6 +84,7 @@ function obtenerDatosCancha()//todos los datos inclusive las imagenes
 					$("#modalSoli").modal("show");
 
 					darDeAlta();
+					darDeBaja();
 
 				}
 
@@ -102,6 +103,33 @@ function darDeAlta(){
 
 		$.ajax({
 			url:"php/activarCanchas.php",
+			data: cancha,
+			type:"post",
+			dataType:"text",
+			success:function(result){
+
+				$("#modalSoli").modal("hide");
+				$("#cancha_actualizada").modal("show");
+				obtenerCanchasInactivas();
+
+
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		})
+
+	})
+}
+
+
+function darDeBaja(){
+	$("#baja").click(function(){
+
+		var cancha = {"id_cancha":this.value};
+
+		$.ajax({
+			url:"php/suspenderCancha.php",
 			data: cancha,
 			type:"post",
 			dataType:"text",

@@ -13,6 +13,4 @@ $resultadonombre->execute(array(":usuariobaja"=>$_POST["id_usuario"]));
 closeConnection($conn);
 
 
-
-
 ?>

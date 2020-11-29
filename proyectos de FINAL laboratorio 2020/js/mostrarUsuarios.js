@@ -3,10 +3,12 @@ var usuariosRegistrados = new Array();
 
 $(document).ready(function(){
     obtenerUsuariosRegistrados();
+    AltaBaja();
 });
 
 function obtenerUsuariosRegistrados(){
     //var botones = new Array();
+    $("#tablaUsuariosRegistrados").html("");
     $.ajax
     ({
         url: "php/traerUsuariosRegistrados.php",
@@ -74,7 +76,13 @@ function abmUsuario(){
         var valor = this.value;
         // Si valor es igual a 1, estoy dando de de alta al usuario
         if (valor == 1) {
-            console.log('entro en Alta de usuario');
+            $("#estado_cambio").text("Esta seguro que quiere dar de alta el usuario?");
+
+            $("#modal_confirmar").modal("show");
+
+            $("#modal_confirmar button[name='dijo_si']").attr("value",1).attr("id",id);
+
+
         }
         // Si valor es igual a 2, estoy modificando los datos del usuario
         else if (valor == 2) {
@@ -84,50 +92,67 @@ function abmUsuario(){
                 if (usuariosRegistrados[i].id_usuario == id) {
                     $("#usuario").attr('placeholder', usuariosRegistrados[i].nombre);
                     $("#email").attr('placeholder', usuariosRegistrados[i].email);
+
                 }
             }
         }
         // Si valor es igual a 3, estoy dando de baja al usuario
         else if (valor == 3) {
+            $("#estado_cambio").text("Esta seguro que quiere dar de baja el usuario?");
 
-            $("#texto_confirma").text("Estas seguro de dar de baja el Usuario?")
             $("#modal_confirmar").modal("show");
 
-            
-
-            seBajo(id);
-            
-          
-
-
+            $("#modal_confirmar button[name='dijo_si']").attr("value",2).attr("id",id);
         }
     });
 }
 
-function seBajo(id){
-    $("#dijo_si").click(function(){
+function AltaBaja(){
+    $("#modal_confirmar button[name='dijo_si']").click(function(){
 
-        var enviar={"id_usuario":id};
+        var enviar={"id_usuario":this.id};
 
+        if (this.value==1) {
 
-        $.ajax({
-            url:"php/bajaUsuarioRegistrado.php",
-            dataType:"json",
-            data:enviar,
-            type:"POST",
-            success:function(result){
-                $("#modal_confirmar").modal("hide");
-                $("#actualizacion_correcta").modal("show");
-                obtenerUsuariosRegistrados();
+            $.ajax({
+                url:"php/altaUsuarioRegistrado.php",
+                dataType:"text",
+                data:enviar,
+                type:"POST",
+                success:function(result){
+                    $("#modal_confirmar").modal("hide");
+                    $("#actualizacion_correcta").modal("show");
+                    obtenerUsuariosRegistrados();
 
+                },
+                error: function(xhr, status, error){
+                    console.log(error);
+                    console.log("Pincho. Averiguá el por qué :v");
+                }
+            })
+        }
+        else if (this.value==2) {
 
+            $.ajax({
+                url:"php/bajaUsuarioRegistrado.php",
+                dataType:"text",
+                data:enviar,
+                type:"POST",
+                success:function(result){
+                    $("#modal_confirmar").modal("hide");
+                    $("#actualizacion_correcta").modal("show");
+                    obtenerUsuariosRegistrados();
 
-            },
-            error: function(xhr, status, error){
-                console.log(error);
-                console.log("Pincho. Averiguá el por qué :v");
-            }
-        })
+                },
+                error: function(xhr, status, error){
+                    console.log(error);
+                    console.log("Pincho. Averiguá el por qué :v");
+                }
+            })
+
+        }    
 
     })
 }
+
+

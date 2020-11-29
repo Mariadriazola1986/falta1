@@ -179,7 +179,7 @@
                         </div>
                    	</div>                    
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 			        </div>
 			      </div>
 			      
@@ -196,7 +196,9 @@
 			          <h4 class="modal-title">Usuario Modificado Correctamente</h4>
 			        </div>
 			        <div class="modal-body">
-			          <h4>Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhhhhhhh funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h4>
+			          <div class="alert alert-info">
+			          	<strong>Estado del usuario modificado exitosamente.</strong>
+			          </div>
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -218,10 +220,10 @@
 			        	</div>
 			        	<div class="modal-body">
 			        		<div class="alert alert-warning">
-			          			<h4 id="texto_confirma"></h4>
+			          			<h4 id="estado_cambio"></h4>
 			          		</div>
 
-			          		<button type="button" id="dijo_si" class="btn btn-success">Si</button>
+			          		<button type="button" name="dijo_si" class="btn btn-success">Si</button>
 
 			          		<button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
 
@@ -232,6 +234,8 @@
 			      
 			    </div>
   			</div>
+
+
 
 
 
@@ -246,7 +250,7 @@
 			        </div>
 			        <div class="modal-body">
 			          <div class="alert alert-success">
-  							<strong>La cancha a sido de alta exitosamente</strong>
+  							<strong>Los Datos de la cancha han sido modificados exitosamente</strong>
 						</div>
 			        </div>
 			        <div class="modal-footer">
