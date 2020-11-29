@@ -8,12 +8,57 @@ $(document).ready(function()
 
 function load(page){
 		var parametros = {"action":"ajax","page":page};
-		
+
 		$.ajax({
 			url:'php/traerTodasLasCanchasActivas.php',
 			data: parametros,
 			 beforeSend: function(objeto){
-			
+
+			},
+			success:function(data){
+				//alert("primerpaginador");
+				$("#listadoCanchas").empty();
+				$("#listadoCanchas").append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-primary"><div class="panel-heading">Canchas Disponibles</div><div class="panel-body" id="canchasDisponibles"></div></div></div>');
+				$("#canchasDisponibles").empty();
+				$("#canchasDisponibles").append(data);
+				$("[name=btn_mas_info]").click(function(event) {
+					obtenerDatosCancha($(this).val());
+    			});
+
+
+    			$("#busquedaBarrio").click(function(event) {
+    				$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+
+				});
+				$("#busquedaDireccion").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("#busquedaLocalidad").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+
+				$("#btnBuscar").click(function(event) {
+					buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+				});
+
+			}
+
+
+
+		})
+}
+
+function buscarCanchas(valor_filtro,dato){
+	parametros={"valor":valor_filtro,"dato":dato,"action":"ajax","page":1};
+	$.ajax({
+			url:'php/buscarCanchas.php',
+			data: parametros,
+			type: "POST",
+			 beforeSend: function(objeto){
+
 			},
 			success:function(data){
 				$("#listadoCanchas").empty();
@@ -24,52 +69,32 @@ function load(page){
 					obtenerDatosCancha($(this).val());
     			});
 
-			}
-		})
-}
 
-
-
-
-function traeCanchasActivas()
-{
-	$.ajax
-	({
-
-		url: "php/traerTodasLasCanchasActivas.php",
-		//contentType: "application/json",
-		type: "POST",
-		dataType: "json",
-		beforeSend: function () {
-
-		},
-		success:  function (response) {
-			
-			if (response.error=="NO") {
-				$("#listadoCanchas").empty();
-				$("#listadoCanchas").append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="panel panel-primary"><div class="panel-heading">Canchas</div><div class="panel-body"><div class="table-responsive"><table class="table table-bordered"><thead><tr><th class="success">Localidad</th><th class="success">Barrio</th><th class="success">Direccion</th><th class="success">Tipo De Futbol</th><th class="success">Informacion Completa</th></tr></thead><tbody id="lasCanchas"></tbody></table></div></div></div></div>');
-				$("#lasCanchas").empty();
-				$.each(response.datos, function() {
-					$("#lasCanchas").append('<tr><td>'+this.nombre+'</td><td>'+this.BARRIO
-						+'</td><td>'+this.DIRECCION+'</td><td>'+this.TIPO+'</td><td><button type="button" name="btn_mas_info" class="btn btn-info" value='
-						+this.ID_CANCHA+'>Ver info completa</button></td></tr>');
+    			$("#busquedaBarrio").click(function(event) {
+    				$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
 
 				});
-			}
-			else{
-				$("#listadoCanchas").append('<div class="panel panel-default"><div class="panel-body"><div class="alert alert-info"><strong>'+response.error+'</strong></div></div></div>');
-				
-			}
-			$("[name=btn_mas_info]").click(function(event) {
-				//$("#canchaResultado").removeClass("oculto");
-				obtenerDatosCancha($(this).val());
-    		});
+				$("#busquedaDireccion").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("#busquedaLocalidad").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
 
-		},
-		error: function (xhr, status, error) {
-			console.log(error);
-		}
-	});
+				$("#btnBuscar").click(function(event) {
+					buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+				});
+
+			}
+
+
+
+		})
+
+
 }
 
 

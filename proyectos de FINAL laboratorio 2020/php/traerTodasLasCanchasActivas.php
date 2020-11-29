@@ -29,9 +29,41 @@
 		$regtraercanchas=$restraercanchas->fetchAll(PDO::FETCH_ASSOC);
 		closeConnection($conn);
 
-		
+
 		if ($numrows>0){
 			?>
+
+
+  			<div class="panel panel-default">
+    			<div class="panel-body">
+		    		<div class="row">
+						<div class="col-md-8">
+							<input class="form-control order-select form-control-lg" placeholder="Buscar Cancha..." name="title" type="text" id="canchaABuscar" >
+						</div>
+						<div class="col-md-2">
+							<div class="dropdown">
+							  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  id="btnDropDownsBuscar" value="1">Localidad
+							  	<span class="caret"></span></button>
+							  	<ul class="dropdown-menu">
+							    	<li value="1"><a href="#canchaABuscar" id="busquedaLocalidad">Localidad</a></li>
+							    	<li value="2"><a href="#canchaABuscar" id="busquedaBarrio">Barrio</li>
+							    	<li value="3"><a href="#canchaABuscar" id="busquedaDireccion">Direccion</a></li>
+							  	</ul>
+							</div>
+
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-success btn-lg" id="btnBuscar">
+			      				<span class="glyphicon glyphicon-search"></span> Buscar
+			    			</button>
+						</div>
+					</div><br>
+
+    			</div>
+  			</div>
+
+
+		<h3>Todas Las Canchas</h3>
 		<div class="table-responsive">
 			<table class="table table-bordered">
 				  <thead>
@@ -45,6 +77,13 @@
 				</thead>
 				<tbody>
 				<?php
+				if (empty($regtraercanchas)) {
+					?>
+					<tr class="danger">
+						<td colspan="5"><?php echo "No hay canchas disponibles";?></td>
+					</tr>
+					<?php
+				}
 				foreach ($regtraercanchas as $cancha) {
 					?>
 					<tr>
@@ -54,7 +93,7 @@
 						<td><?php echo $cancha['TIPO'];?></td>
 						<td><button type="button" name="btn_mas_info" class="btn btn-info" value='<?php echo $cancha['ID_CANCHA'] ?>'>Ver info completa</button></td>
 					</tr>
-					<?php	
+					<?php
 				}
 				?>
 				</tbody>
@@ -63,9 +102,9 @@
 		<div class="table-pagination pull-right">
 			<?php echo paginate($reload, $page, $total_pages, $adjacents);?>
 		</div>
-		
+
 			<?php
-			
+
 		} else {
 			?>
 			<div class="alert alert-info alert-dismissable">
