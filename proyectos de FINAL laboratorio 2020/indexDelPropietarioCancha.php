@@ -50,66 +50,10 @@
 			<div id="queMostrarAPropietario">
 
   			</div>
-
-  			<!--<div class="row" id="tituloCancha">
-				<div class="panel panel-primary">
-					<div class="panel-body">
-						<ul class="nav nav-tabs col-lg-12">
-							<li class="active"><a data-toggle="tab" href="#Canchas">Mis Canchas</a></li>
-
-
-					  	</ul>
-
-					</div>
-
-				</div>
-			</div>-->
 			<div class="row" id="contenedorFiltroCancha">
 				<div class="tab-content">
 				<div id="Canchas" class="tab-pane fade in active">
 					<div class="panel panel-primary">
-			        	<!--<div class="panel-heading">
-			            <h4>Mis Canchas</h4>
-			            </div>
-						<div class="panel-body">
-							<div class="row col-md-6">
-								<h2>Busca tu cancha</h2>
-								  <p>Elegi por que parametros filtrar las canchas:</p>
-
-								    <div class="checkbox">
-								      <label><input type="checkbox" value="" id="checkBoxDistrito">Distrito</label>
-								    </div>
-								    <div class="checkbox">
-								      <label><input type="checkbox" value="" id="checkBoxDireccion">Direccion</label>
-								    </div>
-								    <div class="checkbox">
-								      <label><input type="checkbox" value="" id="checkBoxTipoDeFutbol">Tipo De Futbol</label>
-								    </div>
-
-							</div>
-							<div class="row col-md-6">
-									<form action="#" id="formFiltradoCancha">
-										<div class="form-group oculto" id="distrito">
-											<h4><label for="inputDistrito" class="label label-info">Distrito:</label></h4>
-											<input type="text" class="form-control"  id="inputDistrito" placeholder="Ingrese Distrito" >
-										</div>
-										<div class="form-group oculto" id="direccion">
-											<h4><label for="inputDireccion" class="label label-info">Direccion de la Cancha:</label></h4>
-											<input type="text" id="inputDireccion" class="form-control"  placeholder="Ingrese Direccion">
-										</div>
-										<div class="form-group oculto" id="tipodefutbol">
-											<h4><label for="tipoFutbol" class="label label-info">Tipo de Futbol:</label></h4>
-											<select class="form-control" id="tipoFutbol">
-
-											</select>
-										</div>
-										<div class="form-group">
-											<button type="submit" class="btn btn-info btn-block oculto" name="filtrar" id="btnBuscarCanchas" value="">Filtrar</button>
-										</div>
-									</form>
-
-							</div>
-						</div><br>-->
 						<div class="row" id="canchasFiltradas">
 
 						</div>
@@ -212,10 +156,12 @@
 										<select class="form-control" id="tipo">
 
 										</select>
+										<p class="bg-danger oculto" id="errorTipoCanchaCarga"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="precioCancha" class="control-label">Precio de la cancha:</label>
 	                                    <input type="number" class="form-control" id="precioCancha" placeholder="Ingrese Precio de la cancha" required>
+	                                    <p class="bg-danger oculto" id="errorPrecioCancha"></p>
 	                                </div>
 	                                <div class="input-group mb-3">
 									  <div class="input-group-prepend">
@@ -225,13 +171,14 @@
 									  <div class="custom-file">
 									    <input type="file" class="custom-file-input" id="archivos" required="" multiple data-toggle="tooltip" title="2 como minima y 10 como maxima">
 									  </div>
+									  <p class="bg-danger oculto" id="errorImagenCancha"></p>
 									</div><br>
 
 	                                    <button type="submit" class="btn btn-success" id="btnRegistrarCancha" value="">Registrar Cancha</button>
 
 
 	                            </form>
-
+	                            <p class="bg-danger oculto" id="errorCargaCanchaServidor"></p>
 	                        </div>
                         </div>
 
@@ -255,7 +202,34 @@
 			        <div class="modal-body">
                         <div class="panel panel-default">
                         	<div class="panel-body">
-                        		<form action="#" id="formularioRegistroNuevoEstablecimiento"><div class="form-group"><label for="Direccion">Direccion Del Establecimiento:</label><input type="text" class="form-control" id="Direccion" required></div><div class="form-group"><div class="form-group"><label for="provincia">provincia:</label><select class="form-control" id="provincia" required=""><option value="0">seleccione una provincia</option></select></div><div class="form-group"><label for="localidad">localidad:</label><select class="form-control" id="localidad" required="" ></select></div><div class="form-group"><label for="barrio">barrio:</label><input type="text" id="barrio" required="" class="form-control" minlength="7" maxlength="200"></div><div class="form-group"><label for="Telefono">Telefono:</label><input type="number" class="form-control" id="Telefono" required></div><button type="submit" class="btn btn-success">Enviar</button></form>
+                        		<form action="#" id="formularioRegistroNuevoEstablecimiento">
+                        			<div class="form-group">
+                        				<label for="Direccion">Direccion Del Establecimiento:</label><input type="text" class="form-control" id="Direccion" required>
+                        				<p class="bg-danger oculto" id="errorDireccionNewEstablecimiento"></p>
+                        			</div>
+                        			<div class="form-group">
+                        				<label for="provincia">Provincia:</label>
+                        				<select class="form-control" id="provincia" required="">
+                        					<option value="0">seleccione una provincia</option>
+                        				</select>
+                        				<p class="bg-danger oculto" id="errorProvinciaNewEstablecimiento"></p>
+                        			</div>
+                        			<div class="form-group"><label for="localidad">Localidad:</label>
+                        				<select class="form-control" id="localidad" required="" ></select>
+                        				<p class="bg-danger oculto" id="errorLocalidadNewEstablecimiento"></p>
+                        			</div>
+                        			<div class="form-group">
+                        				<label for="barrio">Barrio:</label>
+                        				<input type="text" id="barrio" required="" class="form-control" minlength="7" maxlength="200">
+                        				<p class="bg-danger oculto" id="errorBarrioNewEstablecimientoN"></p>
+                        			</div>
+                        			<div class="form-group"><label for="Telefono">Telefono:</label>
+                        				<input type="number" class="form-control" id="Telefono" required>
+                        				<p class="bg-danger oculto" id="errorTelefonoNewEstablecimiento"></p>
+                        			</div>
+                        			<button type="submit" class="btn btn-success">Enviar</button>
+                        		</form>
+                        		<p class="bg-danger oculto" id="errorServidorNewEstablecimiento"></p>
 
 	                        </div>
                         </div>

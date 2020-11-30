@@ -4,16 +4,63 @@ $(document).ready(function()
 	traertodasMisCanchas($("#idUsuario").val());
 	//validarImagenes();
 	$("#formCargaCancha").submit(function(event) {
-					event.preventDefault();			
+		event.preventDefault();
+				if (validarCancha()) {
 					cargarCanchaNueva();
+				}
 				});
-	$('[data-toggle="tooltip"]').tooltip(); 
+	$("select,input").click(function(event){
+						limpiarAdvertencia();
+					});
+	$('[data-toggle="tooltip"]').tooltip();
 	$("#irACancha").click(function(event) {
 		$("#modalCargaCancha").modal("show");
 		$("#btnRegistrarCancha").val($("input:radio[name=optradio]:checked").val());
 		/* $("input:radio[name=optradio]:checked").val() */
 	});
 });
+//--
+function validarCancha(){
+	if (!estaVacio($("#tipo").val()) || $("#tipo").val()==undefined) {
+		mostrarError($("#errorTipoCanchaCarga"),"EL campo Tipo de Cancha no debe quedar vacio.");
+		return false;
+	}
+	else if (!estaVacio($("#precioCancha").val())||$("#precioCancha").val()==undefined) {
+		mostrarError($("#errorPrecioCancha"),"El campo Precio no debe quedar vacio.");
+		return false;
+	}
+	else if (isNaN($("#precioCancha").val())) {
+		mostrarError($("#errorPrecioCancha"),"El Precio de la cancha no es un numero.");
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function estaVacio(valor){
+	var expresion=/\S+/g;//expresion que da false cuando solo hay espacios inclusive si apretas muchas vece la barra espaciadora.
+	resultado=expresion.test(valor);
+	return resultado;
+}
+
+function mostrarError(idspan,msje){
+	var errores=idspan;
+	errores.removeClass("oculto");
+	errores.html(msje);
+
+}
+function limpiarAdvertencia () {
+	var errores=[$("#errorTipoCanchaCarga"),$("#errorPrecioCancha"),$("#errorImagenCancha"),$("#errorCargaCanchaServidor")];
+	$.each(errores, function(index, val) {
+		val.addClass("oculto");
+		val.html("");
+	});
+
+}
+
+//--
+
 
 
 function traerMisEstablecimientos(idusuario){
@@ -36,7 +83,7 @@ function traerMisEstablecimientos(idusuario){
 				validarImagenes();
 				/*$("#formCargaCancha").submit(function(event) {
 					alert();
-					event.preventDefault();			
+					event.preventDefault();
 					cargarCanchaNueva();
 				});*/
 			}
@@ -52,17 +99,17 @@ function traerMisEstablecimientos(idusuario){
 
 function validarImagenes(){
 	   $("#archivos").change(function(){
-	   	
+
         var fileLength = this.files.length;
         var match= ["image/jpeg","image/png","image/jpg"];
         var ok=true;
         var i;
-	        for(i = 0; i < fileLength; i++){ 
+	        for(i = 0; i < fileLength; i++){
 	            var file = this.files[i];
 	            var imagefile = file.type;
 	            if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) )){
 	                ok=false;
-	                
+
 	            }
 	        }
 	    if (!ok) {
@@ -81,21 +128,21 @@ function modalMensajePropietario(titulo,error){
 
 function cargarCanchaNueva() {
 	var archivos = document.getElementById("archivos");
-	var archivo = archivos.files; 
+	var archivo = archivos.files;
 	var archivos = new FormData();
 
 	for(i=0; i<archivo.length; i++){
 		archivos.append('archivo'+i,archivo[i],);
 	}
-    
+
     archivos.append("idestablecimiento",$("#btnRegistrarCancha").val());
     archivos.append("precio",$("#precioCancha").val());
     archivos.append("tipo",$("#tipo").val());
-    
+
     $.ajax({
-        url: 'php/cargarCancha.php', 
+        url: 'php/cargarCancha.php',
         dataType: 'text',
-        data: archivos,                         
+        data: archivos,
         type: 'post',
         processData:false,
         cache:false,
@@ -114,7 +161,7 @@ function cargarCanchaNueva() {
 	                $("#archivos").val('');
         	}
         }
-     });  
+     });
 
 
 }
