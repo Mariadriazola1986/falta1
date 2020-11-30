@@ -235,6 +235,7 @@
 	                                    <label for="nombreGrupo" class="control-label">Nombre:</label>
 	                                    <input type="text" class="form-control" id="nombreGrupo" placeholder="Ingrese nombre de Grupo" name="nombreGrupo" required>
 	                                </div>
+	                                <p class="bg-danger oculto" id="error_nombre"></p>
 	                                <div class="form-group">
 	                                    <label for="fotoG" class="control-label">Foto de grupo</label><br>
         								<input class="form-control" type="file" name="fotoG" id="fotoG" required>

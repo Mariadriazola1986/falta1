@@ -7,7 +7,15 @@ $(document).ready(function(){
 
 	$("#crearGrupo").submit(function(event){
 		event.preventDefault();	
-		creandoGrupo();
+		if (existeGrupo()) {
+			$("#error_nombre").addClass("oculto");
+			$("#error_nombre").text("");
+			creandoGrupo();
+		}
+		else{
+			$("#error_nombre").removeClass("oculto");
+			$("#error_nombre").text("El nombre de grupo ya existe");
+		}
 	})
 
 
@@ -72,6 +80,23 @@ $(document).ready(function(){
 
 
 })
+
+function existeGrupo(){
+	var newNom = $("#nombreGrupo").val();
+	$.ajax({
+		type: "POST",
+		url: "php/busquedaDeGrupos.php",
+		dataType: "json",
+		success: function(result){
+			$.each(result, function(){
+				if (this.NOMBRE==newNom) {
+					return true;
+				}
+			})
+			return false;
+		}
+	})
+}
 
 
 function enviarSolicitudJugador(){
