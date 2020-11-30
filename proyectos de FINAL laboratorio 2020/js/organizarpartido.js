@@ -182,9 +182,17 @@ function obtenerMisPartidos(id_user){
     					$("#PublicarPartido").modal("show");
     					$("#formPublicarPartido").submit(function(event) {
     						event.preventDefault();
+    							if (validarPublicacion()) {
+    								$("#btnFormModalPublicar").attr("disabled",true); 
+    								PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());
+    							}
+    							else{
+    								$("#btnFormModalPublicar").attr("disabled",false);
+    							}		
     						
-    							PublicarMiPartido($("#btnFormModalPublicar").val(),$("#commedetalles").val());		
-    						
+    					});
+    					$("textarea").click(function(event) {
+    						limpiarAdvertencia();
     					});
     				}
 
@@ -219,6 +227,29 @@ function obtenerMisPartidos(id_user){
 		}
 	});
 }
+
+function validarPublicacion(){
+	
+	if (!estaVacio($("#commedetalles").val())) {
+		mostrarError($("#errorDetallePublicacion"),"La descripcion no debe quedar vacio.");
+		return false;
+	}
+	else if ($("#commedetalles").val().length<174) {
+		mostrarError($("#errorDetallePublicacion"),"La descripcion del partido es demasiado corta, por favor ingrese mas detalle.");
+		return false;
+	}
+
+	else if ($("#commedetalles").val().length>740) {
+		mostrarError($("#errorDetallePublicacion"),"La descripcion supero la cantidad de caracteres permitidos.");
+		return false;
+	}
+	else{
+		return true;
+
+	}
+}
+
+
 
 function invitarGrupo(){
 	$("#Tablabuscada").empty();
@@ -365,9 +396,10 @@ function PublicarMiPartido(idpartido,comentarios){
 				$("#PublicarPartido").modal("hide");
 				$("#formPublicarPartido")[0].reset();
 				$("#PublicacionExitosa").modal("show");
+				$("#btnFormModalPublicar").attr("disabled",false);
 				setTimeout(function(){
 					  $("#PublicacionExitosa").modal('hide');
-					}, 2000);
+					}, 6000);
 				$("#misPartidos>tr").empty();
 				obtenerMisPartidos($("#btnRegistrarPartido").val());
 			}
@@ -509,7 +541,7 @@ function mostrarError(idspan,msje){
 
 }
 function limpiarAdvertencia () {
-	var errores=[$("#errorDeFechaseleccionada"),$("#errorDeHoraseleccionada"),$("#errorDeFutbolseleccionado")];
+	var errores=[$("#errorDeFechaseleccionada"),$("#errorDeHoraseleccionada"),$("#errorDeFutbolseleccionado"),$("#errorDetallePublicacion"),$("#errorPublicacionServidor")];
 	$.each(errores, function(index, val) {
 		val.addClass("oculto");
 		val.html("");

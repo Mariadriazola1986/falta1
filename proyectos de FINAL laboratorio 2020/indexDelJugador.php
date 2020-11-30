@@ -266,10 +266,12 @@
 								<form action="#" id="formPublicarPartido">
 								    <div class="form-group">
 									  <h4><label for="commedetalles" class="label label-info">Detalles del partido:</label></h4>
-									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que localidad y barrio se va a jugar para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required=""></textarea>
+									  <textarea class="form-control" rows="5" id="commedetalles" placeholder="Lo recomendable es que pongas en que localidad y barrio se va a jugar para que el potencial jugador sepa donde va a ser el partido, los demas detalles es a tu gusto" required="" maxlength="740" minlength="174"></textarea>
+									  <p class="bg-danger oculto" id="errorDetallePublicacion"></p>
 									</div>
 									<button type="submit" class="btn btn-success" id="btnFormModalPublicar">Publicar</button>
 								</form>
+								<p class="bg-danger oculto" id="errorPublicacionServidor"></p>
 	                        </div>
                     	</div>
 			        </div>
