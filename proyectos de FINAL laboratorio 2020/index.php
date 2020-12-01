@@ -315,19 +315,23 @@
 	                                <div class="form-group">
 	                                    <label for="inputnombreinvitado" class="control-label">Nombre:</label>
 	                                    <input type="text" class="form-control" id="inputnombreinvitado" placeholder="Ingrese su nombre" required>
+	                                    <p class="bg-danger" id="errorNombreRegInvitacion"></p>
 	                                </div>
 
 	                                <div class="form-group">
 	                                    <label for="inputapellidoivitado" class="control-label">Apellido:</label>
 	                                    <input type="text" class="form-control" id="inputapellidoinvitado" placeholder="Ingrese su apellido"required>
+	                                    <p class="bg-danger" id="errorApellidoRegInvitacion"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputdniinvitado" class="control-label">DNI:</label>
 	                                    <input type="number" class="form-control" id="inputdniinvitado" placeholder="Ingrese su DNI"required>
+	                                    <p class="bg-danger" id="errorDNIRegInvitacion"></p>
 	                                </div>
 	                                <div class="form-group">
 	                                    <label for="inputtelefonoinvitado" class="control-label">Telefono:</label>
 	                                    <input type="number" class="form-control" id="inputtelefonoinvitado" placeholder="Ingrese su telefono"required>
+	                                    <p class="bg-danger" id="errorTelefonoRegInvitacion"></p>
 	                                </div>
 	                                <br>
 	                                <div class="form-group">
