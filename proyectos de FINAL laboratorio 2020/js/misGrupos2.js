@@ -55,10 +55,28 @@ $(document).ready(function(){
 
 	//----------------------------------------------------
 
-
+	$("#abandono").click(function(){
+		abandonarGrupo();
+	})
 
 
 })
+
+function abandonarGrupo(){
+	$.ajax({
+		url:"php/abandonarGrupo.php",
+		type:"post",
+		dataType:"text",
+		success:function(result){
+			$(location).attr('href',"misGrupos.php");
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+			console.log("toca averiguar por que");
+		}
+	})
+}
+
 
 function modificarGrupo(){
 	var archivos = document.getElementById("fotoG");

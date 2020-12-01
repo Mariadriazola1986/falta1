@@ -141,7 +141,7 @@ require_once("php/verificarSesion.php");
           <h4 class="modal-title">Esta seguro de que desea abandonar el grupo?</h4>
         </div>
         <div class="modal-body">
-            <button type="button" class="btn btn-success">SI</button>
+            <button type="button" id="abandono" class="btn btn-success">SI</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
         </div>
       </div>

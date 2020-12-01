@@ -1,5 +1,4 @@
-var grupomio="";
-var jugadorentrar="";
+var grupolista=new Array();
 
 $(document).ready(function(){
 
@@ -7,14 +6,20 @@ $(document).ready(function(){
 
 	$("#crearGrupo").submit(function(event){
 		event.preventDefault();	
-		if (existeGrupo()) {
+		existeGrupo(grupolista);
+
+		var supe = $("#nombreGrupo").val();
+
+		if (revisar(supe)) {
 			$("#error_nombre").addClass("oculto");
 			$("#error_nombre").text("");
 			creandoGrupo();
+
 		}
 		else{
 			$("#error_nombre").removeClass("oculto");
 			$("#error_nombre").text("El nombre de grupo ya existe");
+			grupolista= new Array();
 		}
 	})
 
@@ -81,21 +86,37 @@ $(document).ready(function(){
 
 })
 
-function existeGrupo(){
-	var newNom = $("#nombreGrupo").val();
+function existeGrupo(grupolista){
 	$.ajax({
 		type: "POST",
 		url: "php/busquedaDeGrupos.php",
 		dataType: "json",
 		success: function(result){
 			$.each(result, function(){
-				if (this.NOMBRE==newNom) {
-					return true;
-				}
+				grupolista.push(this.NOMBRE);
 			})
-			return false;
+			return grupolista;
 		}
 	})
+}
+
+function revisar(supe){
+	var num = grupolista.length;
+	var ok=0;
+	for (i in grupolista) {	
+		console.log(grupolista[i]);
+		if (grupolista[i]==supe) {
+			ok=1;
+		}		
+	}
+	if (ok==1) {
+		return false;
+	}
+	else{
+		return true;
+	}
+
+	
 }
 
 
