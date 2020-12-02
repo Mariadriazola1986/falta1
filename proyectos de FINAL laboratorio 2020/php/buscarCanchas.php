@@ -3,7 +3,7 @@
 	//var_dump($_REQUEST);
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if($action == 'ajax'){
-		include 'pagination.php'; //incluir el archivo de paginación
+		include 'pagination2.php'; //incluir el archivo de paginación
 		//las variables de paginación
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
 		$per_page = 10; //la cantidad de registros que desea mostrar

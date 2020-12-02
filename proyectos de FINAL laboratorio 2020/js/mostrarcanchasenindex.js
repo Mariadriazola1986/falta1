@@ -1,4 +1,5 @@
-
+DROPDOWNBUSCAR="";
+VALCANCHAABUSCAR="";
 $(document).ready(function()
 {
 	//traeCanchasActivas();
@@ -42,7 +43,12 @@ function load(page){
 
 				$("#btnBuscar").click(function(event) {
 					if (validarParametroBusqueda($("#canchaABuscar").val())) {
-						buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+						
+						DROPDOWNBUSCAR=$("#btnDropDownsBuscar").val();
+						VALCANCHAABUSCAR=$("#canchaABuscar").val();
+						load2(1);
+
+						//buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
 					}
 				});
 				$("input").click(function(event) {
@@ -56,8 +62,8 @@ function load(page){
 		})
 }
 
-function buscarCanchas(valor_filtro,dato){
-	parametros={"valor":valor_filtro,"dato":dato,"action":"ajax","page":1};
+function load2(page){
+	parametros={"valor":DROPDOWNBUSCAR,"dato":VALCANCHAABUSCAR,"action":"ajax","page":page};
 	$.ajax({
 			url:'php/buscarCanchas.php',
 			data: parametros,
@@ -91,7 +97,10 @@ function buscarCanchas(valor_filtro,dato){
 
 				$("#btnBuscar").click(function(event) {
 					if (validarParametroBusqueda($("#canchaABuscar").val())) {
-						buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
+						DROPDOWNBUSCAR=$("#btnDropDownsBuscar").val();
+						VALCANCHAABUSCAR=$("#canchaABuscar").val();
+						load2(1);
+						//buscarCanchas($("#btnDropDownsBuscar").val(),$("#canchaABuscar").val());
 					}
 				});
 				$("input").click(function(event) {
