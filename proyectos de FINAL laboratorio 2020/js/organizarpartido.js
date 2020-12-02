@@ -1,10 +1,21 @@
 var GDIA = ""; //variable global del calendario.
 
+var IDPARTIDOLPM="";
+var DROPDOWNBUSCARVAL="";
+var CANCHAIDBUSCAR="";
+
+//-------
+
 $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('input,select').click(function(event) {
 		limpiarAdvertencia();
 	});
+
+	actualizarDrop();
+
+
+
     obtenerDiaActual();
     obtenerCalendario();
     obtenerTipoFutbol();
@@ -219,6 +230,20 @@ function obtenerMisPartidos(id_user){
 
 
     			});
+    			$("[name=boton_reservar]").click(function(event) {
+						var idPartido=($(this).val());
+						IDPARTIDOLPM=idPartido;
+						$("#MReservarCancha").modal("show");
+						
+    					$("#btnBuscar").click(function(event) {
+							if (validarParametroBusqueda($("#canchaABuscar").val())) {
+								DROPDOWNBUSCARVAL=$("#btnDropDownsBuscar").val();
+								CANCHAIDBUSCAR=$("#canchaABuscar").val()
+								load(1);
+					}
+				});
+
+    			});
 
 		}
 			,
@@ -227,6 +252,140 @@ function obtenerMisPartidos(id_user){
 		}
 	});
 }
+//-nuevo
+function load(page){
+	parametros={"valor":DROPDOWNBUSCARVAL,"dato":CANCHAIDBUSCAR,"action":"ajax","page":page,"idPartido":IDPARTIDOLPM};
+	$.ajax({
+			url:'php/buscarCanchasAReservar.php',
+			data: parametros,
+			type: "POST",
+			 beforeSend: function(objeto){
+
+			},
+			success:function(data){
+				$("#canchasBuscadaDisponibles").empty();
+				$("#canchasBuscadaDisponibles").append(data);
+				$("[name=btn_mas_info]").click(function(event) {
+					obtenerDatosCanchaAReservar($(this).val());
+    			});
+
+
+    			$("#busquedaBarrio").click(function(event) {
+    				$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+
+				});
+				$("#busquedaDireccion").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("#busquedaLocalidad").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("input").click(function(event) {
+					limpiarAdvertencia();
+				});
+
+			}
+
+
+
+		})
+}
+
+function obtenerDatosCanchaAReservar(id_cancha)//todos los datos inclusive las imagenes
+{
+
+	var parametros={"id_cancha":id_cancha};
+	$.ajax
+	({
+		data: parametros,
+		url: "php/traerDatosCancha.php",
+		//contentType: "application/json",
+		type: "POST",
+		dataType: "json",
+		beforeSend: function () {
+		},
+		success:  function (response) {
+			if (response.error=="NO") {
+
+				$("#contenedorcarrusel").empty();
+				$("#contenedorcarrusel").append('<div id="carrusel" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators" id="indicadorCancha"></ol><div class="carousel-inner" id="imagenesCancha"></div><a href="#carrusel" class="left carousel-control" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a><a href="#carrusel" class="right carousel-control" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a></div>');
+				var cantidad=0;
+				$("#liProvincia").html("Provincia: "+response.datos[0].nombre_provincias+"");
+				$("#liLocalidad").html("Localidad: "+response.datos[0].nombre+"");
+				$("#liBarrio").html("Barrio: "+response.datos[0].BARRIO+"");
+				$("#liDireccion").html("Direccion: "+response.datos[0].DIRECCION+"");
+				$("#liTipoFutbol").html("Tipo De Futbol: "+response.datos[0].TIPO+"");
+				$("#liPrecio").html("Precio por Juego: "+"$"+response.datos[0].PRECIO+"");
+				$("#liTelefono").html("Telefono: "+response.datos[0].TELEFONO+"");
+
+				$.each(response.datos, function() {
+					if (cantidad==0)
+					{
+						$("#indicadorCancha").append('<li data-target="#carrusel" data-slide-to='+cantidad+' class="active"></li>');
+						$("#imagenesCancha").append('<div class="item active"><img src="imagenes/'+this.RUTA+'" alt="'+this.RUTA+'"></div>');
+					}
+					else{
+						$("#indicadorCancha").append('<li data-target="#carrusel" data-slide-to='+cantidad+'></li>');
+						$("#imagenesCancha").append('<div class="item"><img src="imagenes/'+this.RUTA+'" alt="'+this.RUTA+'"></div>');
+					}
+				 	cantidad++;
+
+				});
+				$("#modalMasInfoCancha").modal("show");
+
+
+			}
+
+		},
+		error: function (xhr, status, error) {
+			console.log(error);
+		}
+	});
+}
+
+
+
+
+function actualizarDrop(){
+    			$("#busquedaBarrio").click(function(event) {
+    				$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+
+				});
+				$("#busquedaDireccion").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("#busquedaLocalidad").click(function(event) {
+					$("#btnDropDownsBuscar").val($(this).parent().val());
+    				$("#btnDropDownsBuscar").html($(this).text()+"                        <span class='caret'></span>");
+				});
+				$("input").click(function(event) {
+					limpiarAdvertencia();
+				});
+
+}
+
+
+
+
+function validarParametroBusqueda(nombre){
+	if(!estaVacio(nombre)) {
+		mostrarError($("#errorDeBusquedaCancha"),"El campo de busqueda no debe quedar vacio.");
+		return false;
+	}
+	else{
+		return true;
+	}
+
+
+
+}
+
+
 
 function validarPublicacion(){
 	
@@ -253,16 +412,15 @@ function validarPublicacion(){
 
 function invitarGrupo(){
 	$("#Tablabuscada").empty();
-	var parametros={"funcion":"traergrupos"};
+
 	var x = $("#nombre").val().toLowerCase();
 			$.ajax({
-				data:parametros,
 				type: "POST",
 				url: "php/busquedaDeGrupos.php",
 				dataType: "json",
 				success: function(result){
 
-					$.each(result.datos, function(){
+					$.each(result, function(){
 						var z = this.NOMBRE.toLowerCase();
 						if (z.includes(x)) {
 							$("#Tablabuscada").append('<tr><td><img class="img-responsive" src=imagenes/'+this.RUTA+
@@ -542,7 +700,7 @@ function mostrarError(idspan,msje){
 
 }
 function limpiarAdvertencia () {
-	var errores=[$("#errorDeFechaseleccionada"),$("#errorDeHoraseleccionada"),$("#errorDeFutbolseleccionado"),$("#errorDetallePublicacion"),$("#errorPublicacionServidor")];
+	var errores=[$("#errorDeFechaseleccionada"),$("#errorDeBusquedaCancha"),$("#errorDeHoraseleccionada"),$("#errorDeFutbolseleccionado"),$("#errorDetallePublicacion"),$("#errorPublicacionServidor")];
 	$.each(errores, function(index, val) {
 		val.addClass("oculto");
 		val.html("");

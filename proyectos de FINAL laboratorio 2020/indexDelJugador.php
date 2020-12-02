@@ -161,6 +161,92 @@
 
 			    </div>
   			</div>
+
+  			<div class="modal fade" id="MReservarCancha" role="dialog">
+			    <div class="modal-dialog">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">Busca tu cancha para reservar</h4>
+				        </div>
+				        <div class="modal-body">					
+							<div class="panel panel-default">
+				    			<div class="panel-body">
+						    		<div class="row">
+										<div class="col-xs-4">
+											<input class="form-control order-select form-control-lg" placeholder="Buscar Cancha..." name="title" type="text" id="canchaABuscar" >
+											<p class="bg-danger oculto" id="errorDeBusquedaCancha"></p>
+										</div>
+										<div class="col-xs-2">
+											<div class="dropdown">
+											  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  id="btnDropDownsBuscar" value="1">Localidad
+											  	<span class="caret"></span></button>
+											  	<ul class="dropdown-menu">
+											    	<li value="1"><a href="#canchaABuscar" id="busquedaLocalidad">Localidad</a></li>
+											    	<li value="2"><a href="#canchaABuscar" id="busquedaBarrio">Barrio</li>
+											    	<li value="3"><a href="#canchaABuscar" id="busquedaDireccion">Direccion</a></li>
+											  	</ul>
+											</div>
+
+										</div>
+										<div class="col-xs-2">
+											<button type="button" class="btn btn-success" id="btnBuscar">
+							      				<span class="glyphicon glyphicon-search"></span> Buscar
+							    			</button>
+										</div>
+									</div><br>
+
+				    			</div>
+				    			<div class="panel-body" id="canchasBuscadaDisponibles">
+				   
+				    			</div>
+				  			</div>
+				        </div>
+				        <div class="modal-footer">
+				          
+				        </div>
+				      </div>
+
+			    </div>
+  			</div>
+
+  			<div id="modalMasInfoCancha" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Informacion completa de la Cancha</h4>
+			      </div>
+			      <div class="modal-body">
+			        <div class="row" id="contenedorcarrusel">
+
+			        </div>
+			        <div class="row">
+			        	<ul class="list-group">
+						  <li class="list-group-item" id="liProvincia"></li>
+						  <li class="list-group-item" id="liLocalidad"></li>
+						  <li class="list-group-item" id="liBarrio"></li>
+						  <li class="list-group-item" id="liDireccion"></li>
+						  <li class="list-group-item" id="liTipoFutbol"></li>
+						  <li class="list-group-item" id="liPrecio"></li>
+						  <li class="list-group-item" id="liTelefono"></li>
+
+
+						</ul>
+				    </div>
+				    <button type="button" class="btn btn-success">Reservar Esta Cancha</button>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
+
+
   			<div class="modal fade" id="MAquienVasAInvitar" role="dialog">
 			    <div class="modal-dialog">
 				      <div class="modal-content">
