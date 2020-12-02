@@ -129,13 +129,15 @@ function AltaBaja(){
 
             $.ajax({
                 url:"php/altaUsuarioRegistrado.php",
-                dataType:"text",
+                dataType:"json",
                 data:enviar,
                 type:"POST",
                 success:function(result){
-                    $("#modal_confirmar").modal("hide");
-                    $("#actualizacion_correcta").modal("show");
-                    obtenerUsuariosRegistrados();
+                    if (result.error=="NO") {
+                        $("#modal_confirmar").modal("hide");
+                        $("#actualizacion_correcta").modal("show");
+                        obtenerUsuariosRegistrados();
+                    }  
 
                 },
                 error: function(xhr, status, error){
@@ -148,13 +150,16 @@ function AltaBaja(){
 
             $.ajax({
                 url:"php/bajaUsuarioRegistrado.php",
-                dataType:"text",
+                dataType:"json",
                 data:enviar,
                 type:"POST",
                 success:function(result){
-                    $("#modal_confirmar").modal("hide");
-                    $("#actualizacion_correcta").modal("show");
-                    obtenerUsuariosRegistrados();
+                    if (result.error=="NO") {
+                        $("#modal_confirmar").modal("hide");
+                        $("#actualizacion_correcta").modal("show");
+                        obtenerUsuariosRegistrados();
+                    }
+                    
 
                 },
                 error: function(xhr, status, error){
@@ -182,12 +187,15 @@ function modificarUsuario(){
             url:"php/actualizarInfoUsuarioRegistrado.php",
             type:"POST",
             data:modificacion,
-            dataType:"text",
+            dataType:"json",
             success:function(result){
-                $("#modal_confirmar_modificacion").modal("hide");
-                $("#actualizacion_correcta").modal("show");
-                $("form")[0].reset();
-                obtenerUsuariosRegistrados();
+                if (result.error=="NO") {
+                    $("#modal_confirmar_modificacion").modal("hide");
+                    $("#actualizacion_correcta").modal("show");
+                    $("form")[0].reset();
+                    obtenerUsuariosRegistrados();
+                }
+                
             },
             error: function(xhr, status, error){
                 console.log(error);

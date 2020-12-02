@@ -61,7 +61,7 @@ require_once("php/verificarSesion.php");
 					</div>
 					<div id="Dnom" class="col-sm-4 col-xs-6">
 						
-						<a data-toggle="modal" data-target="#modalEditar" id="esAdmin">Administrar Grupo</a>
+					
 					</div>
 					<div id="Dbut" class="col-sm-4">
 						<br>

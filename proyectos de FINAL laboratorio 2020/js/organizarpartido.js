@@ -253,15 +253,16 @@ function validarPublicacion(){
 
 function invitarGrupo(){
 	$("#Tablabuscada").empty();
-
+	var parametros={"funcion":"traergrupos"};
 	var x = $("#nombre").val().toLowerCase();
 			$.ajax({
+				data:parametros,
 				type: "POST",
 				url: "php/busquedaDeGrupos.php",
 				dataType: "json",
 				success: function(result){
 
-					$.each(result, function(){
+					$.each(result.datos, function(){
 						var z = this.NOMBRE.toLowerCase();
 						if (z.includes(x)) {
 							$("#Tablabuscada").append('<tr><td><img class="img-responsive" src=imagenes/'+this.RUTA+

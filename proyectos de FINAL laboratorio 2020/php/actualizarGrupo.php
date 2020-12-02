@@ -3,7 +3,7 @@ require_once("conexion.php");
 session_start();
 $ruta = '../imagenes/';
 $sepuedeCargarDatos=array();
-$imagenesCargadasalservidor=array();
+
 
 
 if ($_FILES["archivo0"]["size"]<4000000) {
@@ -16,7 +16,7 @@ if ($_FILES["archivo0"]["size"]<4000000) {
 		$Destino = $ruta.$NombreOriginal;
 
 		move_uploaded_file($temporal, $Destino);
-		array_push($imagenesCargadasalservidor,$NombreOriginal);
+		
 		array_push($sepuedeCargarDatos,true);
 	}
 	else{
@@ -27,8 +27,7 @@ else{
 	array_push($sepuedeCargarDatos,false);
 }
 
-
-
+if (estaTodoOk($sepuedeCargarDatos)) {
 	$conn = getConnection();
 
 	$sqlimagen="UPDATE fotos, grupos SET fotos.RUTA=:newruta WHERE fotos.ID_FOTO=grupos.ID_FOTO AND grupos.ID_GRUPO=:estegrupo";
@@ -40,6 +39,9 @@ else{
 	$resultadonombre->execute(array(":newnombre"=>$_POST["nombre"],":grupito"=>$_SESSION["GRUPO_ACTUAL"]));
 
 	closeConnection($conn);
+}
+
+	
 
 
 function estaTodoOk($unArray){

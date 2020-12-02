@@ -2,15 +2,25 @@
 
 require_once("conexion.php");
 
-$conn = getConnection();
+$resultados_de_validacion = array( 'error' => 'NO',
+                        'datos' => array()   
+                    );
 
-$sql="UPDATE usuarios SET usuarios.ESTADO_USUARIO=1 WHERE usuarios.ID_USUARIO=:usuarioalta";
+if (isset($_POST["id_usuario"])) {
+	$conn = getConnection();
 
-$resultadonombre=$conn->prepare($sql);
+	$sql="UPDATE usuarios SET usuarios.ESTADO_USUARIO=1 WHERE usuarios.ID_USUARIO=:usuarioalta";
 
-$resultadonombre->execute(array(":usuarioalta"=>$_POST["id_usuario"]));
+	$resultadonombre=$conn->prepare($sql);
 
-closeConnection($conn);
+	$resultadonombre->execute(array(":usuarioalta"=>$_POST["id_usuario"]));
 
+	closeConnection($conn);
+
+}
+else{
+	$resultados_de_validacion['error']="Usuario invalido";
+}
+echo json_encode($resultados_de_validacion);
 
 ?>

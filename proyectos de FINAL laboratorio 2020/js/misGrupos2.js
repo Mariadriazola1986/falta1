@@ -66,9 +66,12 @@ function abandonarGrupo(){
 	$.ajax({
 		url:"php/abandonarGrupo.php",
 		type:"post",
-		dataType:"text",
+		dataType:"json",
 		success:function(result){
-			$(location).attr('href',"misGrupos.php");
+			if (result.error=="NO") {
+				$(location).attr('href',"misGrupos.php");
+			}
+			
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
@@ -102,6 +105,7 @@ function modificarGrupo(){
 			$("#modalEditar").modal("hide");
 			$("#modificacion_echa").modal('show');
 			//$("form")[1].reset();
+			verGrupo();
 		},
 		error: function (xhr, status, error) {
 			console.log(error);
@@ -115,7 +119,10 @@ function verGrupo(){
 		type:"post",
 		dataType:"json",
 		success:function(event){
+			$("#Dimg").html("");
+			$("#Dnom").html("");
 			$("#Dimg").append($("<img alt='aca va algo'>").attr("src","imagenes/"+event[0].RUTA));
+			$("#Dnom").append("<a data-toggle='modal' data-target='#modalEditar' id='esAdmin'>Administrar Grupo</a>");
 			$("#Dnom").prepend($("<h3></h3>").text(event[0].CANT_MIEMBROS+"/25"));
 			$("#Dnom").prepend($("<h1></h1>").text(event[0].NOMBRE));
 		},
@@ -178,12 +185,14 @@ function enviarSolicitud(){
 			dataType:"text",
 			data:gato,
 			success: function(echo){
-				$("[value="+gato.jugador+"]").text("En Espera").attr("disabled","");
-				$("#invitacion_enviada").modal("show");
+				if (echo.error=="NO") {
+					$("[value="+gato.jugador+"]").text("En Espera").attr("disabled","");
+					$("#invitacion_enviada").modal("show");
+				}
+				
 			},
 			error: function (xhr, status, error) {
 				console.log(error);
-				console.log("ah shit, here we go again puta madre");
 			}
 		})		
 	})

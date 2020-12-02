@@ -45,24 +45,27 @@ $(document).ready(function(){
 			$("#Tablabuscada").html("");
 
 			var x = $("#nombre").val().toLowerCase();
-
+			var parametros={"funcion":"traerLasTiposCanchas"};
 			$.ajax({
+				data:parametros,
 				type: "POST",
 				url: "php/busquedaDeGrupos.php",
 				dataType: "json",
 				success: function(result){
-
-					$.each(result, function(){
-						var z = this.NOMBRE.toLowerCase();
-						if (z.includes(x)) {
-							$("#Tablabuscada").append($("<tr></tr>").append(
-								$("<img>").attr("src", "imagenes/"+this.RUTA),
-								$("<td></td>").text(this.NOMBRE),
-								$("<td></td>").text(this.CANT_MIEMBROS+"/25"),
-								$("<button value="+this.ID_GRUPO+"></button>").attr("class", "btn-info btn-lg").text("Solicitar Unirse")
-							));
-						}
-					})
+					if (result.error=="NO") {
+						$.each(result.datos, function(){
+							var z = this.NOMBRE.toLowerCase();
+							if (z.includes(x)) {
+								$("#Tablabuscada").append($("<tr></tr>").append(
+									$("<img>").attr("src", "imagenes/"+this.RUTA),
+									$("<td></td>").text(this.NOMBRE),
+									$("<td></td>").text(this.CANT_MIEMBROS+"/25"),
+									$("<button value="+this.ID_GRUPO+"></button>").attr("class", "btn-info btn-lg").text("Solicitar Unirse")
+								));
+							}
+						})
+					}
+					
 					enviarSolicitudJugador();
 					comprobarSolicitud();
 
@@ -87,12 +90,14 @@ $(document).ready(function(){
 })
 
 function existeGrupo(grupolista){
+	var parametros={"funcion":"traergrupos"};
 	$.ajax({
+		data:parametros,
 		type: "POST",
 		url: "php/busquedaDeGrupos.php",
 		dataType: "json",
 		success: function(result){
-			$.each(result, function(){
+			$.each(result.datos, function(){
 				grupolista.push(this.NOMBRE);
 			})
 			return grupolista;
@@ -128,11 +133,14 @@ function enviarSolicitudJugador(){
 		$.ajax({
 			url:"php/enviarSolicitudJugador.php",
 			type:"post",
-			dataType:"text",
+			dataType:"json",
 			data:gato,
 			success: function(echo){
-				$("#Tablabuscada button[value="+gato.grupoEntrar+"]").text("En Espera").attr("disabled","");
-				$("#solicitud_enviada").modal("show");
+				if (echo.error=="NO") {
+					$("#Tablabuscada button[value="+gato.grupoEntrar+"]").text("En Espera").attr("disabled","");
+					$("#solicitud_enviada").modal("show");
+				}
+				
 			},
 			error: function (xhr, status, error) {
 				console.log(error);
@@ -401,11 +409,14 @@ function esteGrupo(){
 		var zoom = {"elgrupo":final};
 		$.ajax({
 			url:"php/marcarGrupo.php",
-			dataType:"text",
+			dataType:"json",
 			type:"post",
 			data: zoom,
 			success: function(event){
-				$(location).attr('href',"misGrupos2.php");
+				if (event.error=="NO"){
+					$(location).attr('href',"misGrupos2.php");
+				}
+				
 			},
 			error: function (xhr, status, error) {
 				console.log(error);
